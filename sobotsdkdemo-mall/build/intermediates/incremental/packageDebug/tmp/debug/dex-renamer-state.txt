@@ -1,0 +1,4 @@
+#Fri Dec 20 18:04:33 CST 2019
+base.0=/Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/build/intermediates/dex/debug/mergeDexDebug/out
+path.0=classes.dex
+renamed.0=classes.dex

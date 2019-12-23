@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+
+    // 签名配置
+    signingConfigs {
+
+        debug {
+            storeFile file("./keystore/debug.keystore")
+        }
+    }
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.debug
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug{
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //以下三项必填
+    implementation project(':sobotsdk-mall-x')
+//    api 'com.sobot.chat:sobotsdk-mall-x:2.7.13.3'
+
+    implementation 'com.squareup.okhttp3:okhttp:3.8.0'
+
+
+    //目前支持常⻅的3种图片加载库，必须在下面的图片加载库中选择一个添加依赖
+    // compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    // compile 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+//    implementation 'com.sobot.chat:sobotsupport-glidev4:1.0.10'
+
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    //AlphaIndicatorView
+    implementation ('com.lzy.widget:view-core:0.1.5') {
+        exclude group: 'com.android.support'
+    }
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+}

@@ -1,0 +1,588 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:2:1-63:12
+INJECTED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:2:1-63:12
+INJECTED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:2:1-63:12
+MERGED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-166:12
+MERGED from [com.github.bumptech.glide:glide:4.8.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/c31e44be21a8e281eeed48aa3cdb4256/AndroidManifest.xml:2:1-12:12
+MERGED from [com.lzy.widget:view-core:0.1.5] /Users/moren/.gradle/caches/transforms-2/files-2.1/dd5b74cb2e5235688e5814b70878a8af/AndroidManifest.xml:2:1-16:12
+MERGED from [androidx.appcompat:appcompat:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/84fc476dd4edbf8006e76554761bc79f/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/b2dd0b9736e212c24cd954de6f01f3ad/AndroidManifest.xml:17:1-22:12
+MERGED from [com.sobot.chat:sobotsupport-glidev4:1.0.8] /Users/moren/.gradle/caches/transforms-2/files-2.1/28801b5ee43d54214472c61ff8cb5a4e/AndroidManifest.xml:2:1-10:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/269ac986e94953c8b08c5282d0233c9f/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.fragment:fragment:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/24e9efcb2bd301d82052e44106876404/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/ef0e88780a566c29d603cc7cba81e2d2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/84e3e3e89511fd7895ba9d64c94d75c7/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/ba02906d3c221da295c0df1d3f758a1b/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/b9a606c57dfb4c0c0c4e0da3998a781f/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/55547fbd014e004073a2cebcc57e1e46/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/ffc0ddcc27272692804bbc44feb1bc24/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/eab618d930eefb9e6e73ac90245137e4/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/0a837e5d43780374a823074c8fcf3d9a/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/6a6849af22b280e0bbb4cfef42fe41b6/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/78625088a08241f033d3caa34e20211f/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/fc811914ec19b07e8608eb84893558c9/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/2301261c6c33fe11d088710ebef26099/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/ffb0d6cbe3a3f57b5a23aba64417c665/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/36c9788db6d20a39fd7da98590eca968/AndroidManifest.xml:17:1-25:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/817a6a19ecb81768a9dba9cc88c29f6f/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/8fc732476f81a41f00eeeddd9b5d41ff/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/19f47c57aef4940a3206de1e1b6b98a2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/65498bc40fc4e1e3dd40ef9105014821/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/4999aee7ee99348bff681831b9c09115/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/3b59161d76d1c104b03dcf54e507ed02/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/38284a1f2e292428503732b1e88f65d5/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/0f0171a99ad7c320e6d9315a18d680e0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/b183eb888f56205dea1f911aaebc7cc0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/5f9890b52f58a063dab107184e29dbe2/AndroidManifest.xml:17:1-22:12
+MERGED from [com.sobot.chat:sobotsdk-imageloader:1.0.4] /Users/moren/.gradle/caches/transforms-2/files-2.1/45cff2410f5d4092f48630d24d3687aa/AndroidManifest.xml:2:1-10:12
+INJECTED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:2:1-63:12
+INJECTED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:2:1-63:12
+	package
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:3:5-33
+	android:versionName
+		INJECTED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:2:1-63:12
+		INJECTED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:2:1-63:12
+		INJECTED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:2:11-69
+application
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:5:5-61:19
+MERGED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:29:5-164:19
+MERGED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:29:5-164:19
+MERGED from [com.github.bumptech.glide:glide:4.8.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/c31e44be21a8e281eeed48aa3cdb4256/AndroidManifest.xml:10:5-20
+MERGED from [com.github.bumptech.glide:glide:4.8.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/c31e44be21a8e281eeed48aa3cdb4256/AndroidManifest.xml:10:5-20
+MERGED from [com.lzy.widget:view-core:0.1.5] /Users/moren/.gradle/caches/transforms-2/files-2.1/dd5b74cb2e5235688e5814b70878a8af/AndroidManifest.xml:11:5-14:19
+MERGED from [com.lzy.widget:view-core:0.1.5] /Users/moren/.gradle/caches/transforms-2/files-2.1/dd5b74cb2e5235688e5814b70878a8af/AndroidManifest.xml:11:5-14:19
+MERGED from [com.sobot.chat:sobotsupport-glidev4:1.0.8] /Users/moren/.gradle/caches/transforms-2/files-2.1/28801b5ee43d54214472c61ff8cb5a4e/AndroidManifest.xml:7:5-8:19
+MERGED from [com.sobot.chat:sobotsupport-glidev4:1.0.8] /Users/moren/.gradle/caches/transforms-2/files-2.1/28801b5ee43d54214472c61ff8cb5a4e/AndroidManifest.xml:7:5-8:19
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/269ac986e94953c8b08c5282d0233c9f/AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/269ac986e94953c8b08c5282d0233c9f/AndroidManifest.xml:9:5-20
+MERGED from [androidx.core:core:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/ffb0d6cbe3a3f57b5a23aba64417c665/AndroidManifest.xml:22:5-89
+MERGED from [androidx.core:core:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/ffb0d6cbe3a3f57b5a23aba64417c665/AndroidManifest.xml:22:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/36c9788db6d20a39fd7da98590eca968/AndroidManifest.xml:22:5-23:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/36c9788db6d20a39fd7da98590eca968/AndroidManifest.xml:22:5-23:19
+MERGED from [com.sobot.chat:sobotsdk-imageloader:1.0.4] /Users/moren/.gradle/caches/transforms-2/files-2.1/45cff2410f5d4092f48630d24d3687aa/AndroidManifest.xml:7:5-8:19
+MERGED from [com.sobot.chat:sobotsdk-imageloader:1.0.4] /Users/moren/.gradle/caches/transforms-2/files-2.1/45cff2410f5d4092f48630d24d3687aa/AndroidManifest.xml:7:5-8:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/ffb0d6cbe3a3f57b5a23aba64417c665/AndroidManifest.xml:22:18-86
+	android:supportsRtl
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:10:9-35
+	android:label
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:9:9-52
+	android:icon
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:8:9-49
+	android:allowBackup
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:7:9-35
+	android:networkSecurityConfig
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:30:9-69
+	android:theme
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:11:9-53
+	android:usesCleartextTraffic
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:31:9-44
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:6:9-28
+activity#com.sobotmall.demo.activity.SplashActivity
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:12:9-21:20
+	android:screenOrientation
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:14:13-49
+	android:windowSoftInputMode
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:15:13-52
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:13:13-52
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:16:13-20:29
+action#android.intent.action.MAIN
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:17:17-69
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:17:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:19:17-77
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:19:27-74
+activity#com.sobotmall.demo.SobotDemoNewActivity
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:22:9-58
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:22:19-55
+activity#com.sobotmall.demo.activity.more.SobotDemoMasterActivity
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:23:9-75
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:23:19-72
+activity#com.sobotmall.demo.activity.more.SobotPersonSetActivity
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:24:9-74
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:24:19-71
+activity#com.sobotmall.demo.activity.more.SobotConsultationSetActivity
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:25:9-80
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:25:19-77
+activity#com.sobotmall.demo.activity.more.SobotDemoInitModeTypeActivity
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:26:9-81
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:26:19-78
+activity#com.sobotmall.demo.activity.more.SobotTransferCustomActivity
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:27:9-79
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:27:19-76
+activity#com.sobotmall.demo.activity.more.SobotReceptionistIdSetActivity
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:28:9-82
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:28:19-79
+activity#com.sobotmall.demo.activity.more.SobotSkillSetActivity
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:29:9-73
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:29:19-70
+activity#com.sobotmall.demo.activity.more.SobotRobotSetActivity
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:30:9-73
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:30:19-70
+activity#com.sobotmall.demo.activity.more.SobotSatisfactionSetActivity
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:31:9-80
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:31:19-77
+activity#com.sobotmall.demo.activity.more.SobotAccessSetActivity
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:32:9-74
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:32:19-71
+activity#com.sobotmall.demo.activity.more.SobotCustomTitleActivity
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:33:9-76
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:33:19-73
+activity#com.sobotmall.demo.activity.more.SobotIsUseVoiceSetActivity
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:34:9-78
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:34:19-75
+activity#com.sobotmall.demo.activity.more.SobotHistoryRulerActivity
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:35:9-77
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:35:19-74
+activity#com.sobotmall.demo.activity.more.SobotNotificationSetActivity
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:36:9-80
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:36:19-77
+activity#com.sobotmall.demo.activity.more.SobotCustomReplyActivity
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:37:9-76
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:37:19-73
+activity#com.sobotmall.demo.activity.product.SobotDemoRobotActivity
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:38:9-77
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:38:19-74
+activity#com.sobotmall.demo.activity.product.SobotDemoCustomActivity
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:39:9-78
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:39:19-75
+activity#com.sobotmall.demo.activity.product.SobotDemoCloudCallActivity
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:40:9-81
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:40:19-78
+activity#com.sobotmall.demo.activity.product.SobotDemoWorkOrderActivity
+ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:41:9-80
+	android:name
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml:41:19-78
+uses-sdk
+INJECTED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml
+INJECTED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml
+MERGED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [com.github.bumptech.glide:glide:4.8.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/c31e44be21a8e281eeed48aa3cdb4256/AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.bumptech.glide:glide:4.8.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/c31e44be21a8e281eeed48aa3cdb4256/AndroidManifest.xml:6:5-8:41
+MERGED from [com.lzy.widget:view-core:0.1.5] /Users/moren/.gradle/caches/transforms-2/files-2.1/dd5b74cb2e5235688e5814b70878a8af/AndroidManifest.xml:7:5-9:41
+MERGED from [com.lzy.widget:view-core:0.1.5] /Users/moren/.gradle/caches/transforms-2/files-2.1/dd5b74cb2e5235688e5814b70878a8af/AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.appcompat:appcompat:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/84fc476dd4edbf8006e76554761bc79f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/84fc476dd4edbf8006e76554761bc79f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/b2dd0b9736e212c24cd954de6f01f3ad/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/b2dd0b9736e212c24cd954de6f01f3ad/AndroidManifest.xml:20:5-44
+MERGED from [com.sobot.chat:sobotsupport-glidev4:1.0.8] /Users/moren/.gradle/caches/transforms-2/files-2.1/28801b5ee43d54214472c61ff8cb5a4e/AndroidManifest.xml:5:5-44
+MERGED from [com.sobot.chat:sobotsupport-glidev4:1.0.8] /Users/moren/.gradle/caches/transforms-2/files-2.1/28801b5ee43d54214472c61ff8cb5a4e/AndroidManifest.xml:5:5-44
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/269ac986e94953c8b08c5282d0233c9f/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/269ac986e94953c8b08c5282d0233c9f/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.fragment:fragment:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/24e9efcb2bd301d82052e44106876404/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/24e9efcb2bd301d82052e44106876404/AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/ef0e88780a566c29d603cc7cba81e2d2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/ef0e88780a566c29d603cc7cba81e2d2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/84e3e3e89511fd7895ba9d64c94d75c7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/84e3e3e89511fd7895ba9d64c94d75c7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/ba02906d3c221da295c0df1d3f758a1b/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/ba02906d3c221da295c0df1d3f758a1b/AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/b9a606c57dfb4c0c0c4e0da3998a781f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/b9a606c57dfb4c0c0c4e0da3998a781f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/55547fbd014e004073a2cebcc57e1e46/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/55547fbd014e004073a2cebcc57e1e46/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/ffc0ddcc27272692804bbc44feb1bc24/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/ffc0ddcc27272692804bbc44feb1bc24/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/eab618d930eefb9e6e73ac90245137e4/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/eab618d930eefb9e6e73ac90245137e4/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/0a837e5d43780374a823074c8fcf3d9a/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/0a837e5d43780374a823074c8fcf3d9a/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/6a6849af22b280e0bbb4cfef42fe41b6/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/6a6849af22b280e0bbb4cfef42fe41b6/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/78625088a08241f033d3caa34e20211f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/78625088a08241f033d3caa34e20211f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/fc811914ec19b07e8608eb84893558c9/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/fc811914ec19b07e8608eb84893558c9/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/2301261c6c33fe11d088710ebef26099/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/2301261c6c33fe11d088710ebef26099/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/ffb0d6cbe3a3f57b5a23aba64417c665/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/ffb0d6cbe3a3f57b5a23aba64417c665/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/36c9788db6d20a39fd7da98590eca968/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/36c9788db6d20a39fd7da98590eca968/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/817a6a19ecb81768a9dba9cc88c29f6f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/817a6a19ecb81768a9dba9cc88c29f6f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/8fc732476f81a41f00eeeddd9b5d41ff/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/8fc732476f81a41f00eeeddd9b5d41ff/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/19f47c57aef4940a3206de1e1b6b98a2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/19f47c57aef4940a3206de1e1b6b98a2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/65498bc40fc4e1e3dd40ef9105014821/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/65498bc40fc4e1e3dd40ef9105014821/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/4999aee7ee99348bff681831b9c09115/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/4999aee7ee99348bff681831b9c09115/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/3b59161d76d1c104b03dcf54e507ed02/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/3b59161d76d1c104b03dcf54e507ed02/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/38284a1f2e292428503732b1e88f65d5/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/38284a1f2e292428503732b1e88f65d5/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/0f0171a99ad7c320e6d9315a18d680e0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/0f0171a99ad7c320e6d9315a18d680e0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/b183eb888f56205dea1f911aaebc7cc0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/b183eb888f56205dea1f911aaebc7cc0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/5f9890b52f58a063dab107184e29dbe2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/moren/.gradle/caches/transforms-2/files-2.1/5f9890b52f58a063dab107184e29dbe2/AndroidManifest.xml:20:5-44
+MERGED from [com.sobot.chat:sobotsdk-imageloader:1.0.4] /Users/moren/.gradle/caches/transforms-2/files-2.1/45cff2410f5d4092f48630d24d3687aa/AndroidManifest.xml:5:5-44
+MERGED from [com.sobot.chat:sobotsdk-imageloader:1.0.4] /Users/moren/.gradle/caches/transforms-2/files-2.1/45cff2410f5d4092f48630d24d3687aa/AndroidManifest.xml:5:5-44
+INJECTED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml
+INJECTED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml
+		INJECTED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml
+		ADDED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml
+		INJECTED from /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/src/main/AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-67
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:8:22-64
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-81
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:9:22-78
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:10:5-80
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:10:22-77
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-75
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:22-72
+uses-permission#com.google.android.apps.photos.permission.GOOGLE_PHOTOS
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-95
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:22-92
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:5-79
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:5-76
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:22-73
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:5-71
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:22-68
+uses-permission#android.permission.GET_TASKS
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:5-68
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:22-65
+uses-permission#android.permission.VIBRATE
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:5-66
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:22-63
+uses-permission#android.permission.CAMERA
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:5-65
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:22-62
+uses-permission#android.permission.WAKE_LOCK
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:5-68
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:22-65
+supports-screens
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:21:5-27:40
+	android:largeScreens
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:23:9-36
+	android:smallScreens
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:9-36
+	android:normalScreens
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:24:9-37
+	android:xlargeScreens
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:27:9-37
+	android:resizeable
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:25:9-34
+	android:anyDensity
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:22:9-34
+activity#com.sobot.chat.conversation.SobotChatActivity
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:32:9-37:58
+	android:screenOrientation
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:36:13-47
+	android:launchMode
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:35:13-44
+	android:windowSoftInputMode
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:37:13-55
+	android:configChanges
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:34:13-74
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:33:13-73
+activity#com.sobot.chat.activity.SobotPhotoActivity
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:38:9-43:53
+	android:screenOrientation
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:42:13-47
+	android:hardwareAccelerated
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:41:13-48
+	android:configChanges
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:40:13-74
+	android:theme
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:43:13-50
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:39:13-70
+activity#com.sobot.chat.activity.WebViewActivity
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:44:9-49:58
+	android:screenOrientation
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:47:13-47
+	android:windowSoftInputMode
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:49:13-55
+	android:configChanges
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:46:13-74
+	android:theme
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:48:13-50
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:45:13-67
+activity#com.sobot.chat.activity.SobotSkillGroupActivity
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:50:9-54:57
+	android:screenOrientation
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:53:13-47
+	android:configChanges
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:52:13-74
+	android:theme
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:54:13-54
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:51:13-75
+activity#com.sobot.chat.activity.SobotPostMsgActivity
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:55:9-60:58
+	android:screenOrientation
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:58:13-47
+	android:windowSoftInputMode
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:60:13-55
+	android:configChanges
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:57:13-74
+	android:theme
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:59:13-50
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:56:13-72
+activity#com.sobot.chat.activity.SobotConsultationListActivity
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:61:9-66:58
+	android:screenOrientation
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:64:13-47
+	android:windowSoftInputMode
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:66:13-55
+	android:configChanges
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:63:13-74
+	android:theme
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:65:13-50
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:62:13-81
+activity#com.sobot.chat.activity.SobotPhotoListActivity
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:67:9-72:53
+	android:screenOrientation
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:71:13-47
+	android:hardwareAccelerated
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:70:13-48
+	android:configChanges
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:69:13-74
+	android:theme
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:72:13-50
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:68:13-74
+activity#com.sobot.chat.activity.SobotCusFieldActivity
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:73:9-78:58
+	android:screenOrientation
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:76:13-47
+	android:windowSoftInputMode
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:78:13-55
+	android:configChanges
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:75:13-74
+	android:theme
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:77:13-50
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:74:13-73
+activity#com.sobot.chat.activity.SobotPostCategoryActivity
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:79:9-84:58
+	android:screenOrientation
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:82:13-47
+	android:windowSoftInputMode
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:84:13-55
+	android:configChanges
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:81:13-74
+	android:theme
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:83:13-50
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:80:13-77
+activity#com.sobot.chat.activity.SobotQueryFromActivity
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:85:9-90:58
+	android:screenOrientation
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:88:13-47
+	android:windowSoftInputMode
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:90:13-55
+	android:configChanges
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:87:13-74
+	android:theme
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:89:13-50
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:86:13-74
+activity#com.sobot.chat.activity.SobotChooseCityActivity
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:91:9-96:58
+	android:screenOrientation
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:94:13-47
+	android:windowSoftInputMode
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:96:13-55
+	android:configChanges
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:93:13-74
+	android:theme
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:95:13-50
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:92:13-75
+activity#com.sobot.chat.activity.SobotChooseFileActivity
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:97:9-102:58
+	android:screenOrientation
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:100:13-47
+	android:windowSoftInputMode
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:102:13-55
+	android:configChanges
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:99:13-74
+	android:theme
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:101:13-50
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:98:13-75
+activity#com.sobot.chat.activity.SobotFileDetailActivity
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:103:9-107:53
+	android:screenOrientation
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:106:13-47
+	android:configChanges
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:105:13-74
+	android:theme
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:107:13-50
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:104:13-75
+activity#com.sobot.chat.activity.SobotCameraActivity
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:108:9-112:53
+	android:screenOrientation
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:111:13-47
+	android:configChanges
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:110:13-74
+	android:theme
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:112:13-50
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:109:13-71
+activity#com.sobot.chat.activity.SobotVideoActivity
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:113:9-117:53
+	android:screenOrientation
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:116:13-47
+	android:configChanges
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:115:13-74
+	android:theme
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:117:13-50
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:114:13-70
+activity#com.sobot.chat.activity.SobotTicketDetailActivity
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:118:9-122:53
+	android:screenOrientation
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:121:13-47
+	android:configChanges
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:120:13-74
+	android:theme
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:122:13-50
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:119:13-77
+activity#com.sobot.chat.activity.SobotReplyTicketActivity
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:123:9-127:53
+	android:screenOrientation
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:126:13-47
+	android:configChanges
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:125:13-74
+	android:theme
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:127:13-50
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:124:13-76
+activity#com.sobot.chat.activity.SobotHelpCenterActivity
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:128:9-132:53
+	android:screenOrientation
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:131:13-47
+	android:configChanges
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:130:13-74
+	android:theme
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:132:13-50
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:129:13-75
+activity#com.sobot.chat.activity.SobotProblemCategoryActivity
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:133:9-137:53
+	android:screenOrientation
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:136:13-47
+	android:configChanges
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:135:13-74
+	android:theme
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:137:13-50
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:134:13-80
+activity#com.sobot.chat.activity.SobotProblemDetailActivity
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:138:9-142:53
+	android:screenOrientation
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:141:13-47
+	android:configChanges
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:140:13-74
+	android:theme
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:142:13-50
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:139:13-78
+activity#com.sobot.chat.activity.SobotPostLeaveMsgActivity
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:143:9-147:53
+	android:screenOrientation
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:146:13-47
+	android:configChanges
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:145:13-74
+	android:theme
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:147:13-50
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:144:13-77
+service#com.sobot.chat.core.channel.SobotTCPServer
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:149:9-152:50
+	android:label
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:152:13-47
+	android:exported
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:151:13-37
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:150:13-70
+service#com.sobot.chat.server.SobotSessionServer
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:153:9-76
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:153:18-73
+provider#com.sobot.chat.provider.SobotFileProvider
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:155:9-163:20
+	android:grantUriPermissions
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:159:13-47
+	android:authorities
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:157:13-70
+	android:exported
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:158:13-37
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:156:13-69
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:160:13-162:64
+	android:resource
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:162:17-61
+	android:name
+		ADDED from [:sobotsdk-mall-x] /Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/library_manifest/debug/AndroidManifest.xml:161:17-67

@@ -1,0 +1,36 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdkdemo-mall/build/intermediates/incremental/mergeDebugResources/merged.dir/values-land/values-land.xml",
+            "map": [
+                {
+                    "source": "/Users/moren/android_workspace/demo/ZjcenterProject/X_SobotSDK_Mall_Git/sobotsdk-mall-x/build/intermediates/packaged_res/debug/values-land/values-land.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,123,193,263,327,382,439,493,546,598,651",
+                        "endColumns": "67,69,69,63,54,56,53,52,51,52,51",
+                        "endOffsets": "118,188,258,322,377,434,488,541,593,646,698"
+                    },
+                    "to": {
+                        "startLines": "5,6,7,8,9,10,11,12,13,14,15",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "264,332,402,472,536,591,648,702,755,807,860",
+                        "endColumns": "67,69,69,63,54,56,53,52,51,52,51",
+                        "endOffsets": "327,397,467,531,586,643,697,750,802,855,907"
+                    }
+                },
+                {
+                    "source": "/Users/moren/.gradle/caches/transforms-2/files-2.1/84fc476dd4edbf8006e76554761bc79f/res/values-land/values-land.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,125,196",
+                        "endColumns": "69,70,67",
+                        "endOffsets": "120,191,259"
+                    }
+                }
+            ]
+        }
+    ]
+}
