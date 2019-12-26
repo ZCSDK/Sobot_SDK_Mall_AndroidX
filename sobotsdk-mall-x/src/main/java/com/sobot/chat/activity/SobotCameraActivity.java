@@ -2,6 +2,7 @@ package com.sobot.chat.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import androidx.fragment.app.FragmentActivity;
@@ -9,7 +10,6 @@ import androidx.fragment.app.FragmentActivity;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.sobot.chat.R;
 import com.sobot.chat.camera.StCameraView;
 import com.sobot.chat.camera.listener.StCameraListener;
 import com.sobot.chat.camera.listener.StClickListener;
@@ -17,12 +17,13 @@ import com.sobot.chat.camera.listener.StErrorListener;
 import com.sobot.chat.camera.util.FileUtil;
 import com.sobot.chat.utils.ResourceUtils;
 import com.sobot.chat.utils.SobotPathManager;
+import com.sobot.chat.utils.ToastUtil;
 import com.sobot.chat.widget.statusbar.StatusBarCompat;
 
 /**
  * @author Created by jinxl on 2018/12/3.
  */
-public class SobotCameraActivity extends FragmentActivity{
+public class SobotCameraActivity extends FragmentActivity {
     private static final String EXTRA_ACTION_TYPE = "EXTRA_ACTION_TYPE";
     private static final String EXTRA_IMAGE_FILE_PATH = "EXTRA_IMAGE_FILE_PATH";
     private static final String EXTRA_VIDEO_FILE_PATH = "EXTRA_VIDEO_FILE_PATH";
@@ -34,7 +35,7 @@ public class SobotCameraActivity extends FragmentActivity{
     private StCameraView jCameraView;
 
     /**
-     * @param context         应用程序上下文
+     * @param context 应用程序上下文
      * @return
      */
     public static Intent newIntent(Context context) {
@@ -68,20 +69,20 @@ public class SobotCameraActivity extends FragmentActivity{
      * @return
      */
     public static int getActionType(Intent intent) {
-        return intent.getIntExtra(EXTRA_ACTION_TYPE,0);
+        return intent.getIntExtra(EXTRA_ACTION_TYPE, 0);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        setContentView(ResourceUtils.getIdByName(getApplicationContext(),"layout","sobot_activity_camera"));
-        jCameraView = (StCameraView) findViewById(ResourceUtils.getIdByName(getApplicationContext(),"id","sobot_cameraview"));
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setContentView(ResourceUtils.getIdByName(getApplicationContext(), "layout", "sobot_activity_camera"));
+        jCameraView = (StCameraView) findViewById(ResourceUtils.getIdByName(getApplicationContext(), "id", "sobot_cameraview"));
         //设置视频保存路径
         jCameraView.setSaveVideoPath(SobotPathManager.getInstance().getVideoDir());
         jCameraView.setFeatures(StCameraView.BUTTON_STATE_BOTH);
-        jCameraView.setTip(getResources().getString(R.string.sobot_tap_hold_camera));
+        jCameraView.setTip(ResourceUtils.getResString(this,"sobot_tap_hold_camera"));
         jCameraView.setMediaQuality(StCameraView.MEDIA_QUALITY_MIDDLE);
         jCameraView.setErrorLisenter(new StErrorListener() {
             @Override
@@ -94,7 +95,7 @@ public class SobotCameraActivity extends FragmentActivity{
 
             @Override
             public void AudioPermissionError() {
-                Toast.makeText(SobotCameraActivity.this, ResourceUtils.getResString(SobotCameraActivity.this,"sobot_no_voice_permission"), Toast.LENGTH_SHORT).show();
+                ToastUtil.showCustomToast(SobotCameraActivity.this, ResourceUtils.getResString(SobotCameraActivity.this,"sobot_no_voice_permission"), Toast.LENGTH_SHORT);
             }
         });
         //JCameraView监听
@@ -135,7 +136,6 @@ public class SobotCameraActivity extends FragmentActivity{
         });
 
         StatusBarCompat.setNavigationBarColor(this,0x33000000);
-
 
     }
 

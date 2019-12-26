@@ -5,11 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.sobot.chat.adapter.base.SobotBaseAdapter;
 import com.sobot.chat.api.model.ZhiChiUploadAppFileModelResult;
 import com.sobot.chat.utils.SobotBitmapUtil;
 import com.sobot.chat.utils.ResourceUtils;
+import com.sobot.chat.widget.image.SobotRCImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,12 @@ import java.util.List;
 
 public class SobotPicListAdapter extends SobotBaseAdapter<ZhiChiUploadAppFileModelResult> {
 
+    public static final int PIC = 1;
+    public static final int ADD = 0;
+    public static final int DEL = 2;
+
+
+    ViewClickListener listener;
 
     public SobotPicListAdapter(Context context, List<ZhiChiUploadAppFileModelResult> list) {
         super(context, list);
@@ -31,12 +39,14 @@ public class SobotPicListAdapter extends SobotBaseAdapter<ZhiChiUploadAppFileMod
         SobotFileHolder viewHolder = null;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(ResourceUtils.getIdByName(context, "layout", "sobot_piclist_item"),null);
-            viewHolder = new SobotFileHolder(context,convertView);
+            convertView = LayoutInflater.from(context).inflate(ResourceUtils.getIdByName(context, "layout", "sobot_piclist_item"), null);
+            viewHolder = new SobotFileHolder(context, convertView);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (SobotFileHolder) convertView.getTag();
         }
+        viewHolder.setPosition(position);
+        viewHolder.setListener(listener);
         viewHolder.bindData(message);
         return convertView;
     }
@@ -50,12 +60,12 @@ public class SobotPicListAdapter extends SobotBaseAdapter<ZhiChiUploadAppFileMod
     }
 
     public void addData(ZhiChiUploadAppFileModelResult data) {
-        if(list == null){
+        if (list == null) {
             return;
         }
-        int lastIndex = (list.size() - 1) < 0?0:list.size() - 1;
-        list.add(lastIndex,data);
-        if (list.size() >= 5) {
+        int lastIndex = (list.size() - 1) < 0 ? 0 : list.size() - 1;
+        list.add(lastIndex, data);
+        if (list.size() >= 4) {
             ZhiChiUploadAppFileModelResult lastBean = list.get(lastIndex);
             if (lastBean != null && 0 == lastBean.getViewState()) {
                 list.remove(lastIndex);
@@ -64,21 +74,21 @@ public class SobotPicListAdapter extends SobotBaseAdapter<ZhiChiUploadAppFileMod
         restDataView();
     }
 
-    public void addDatas(List<ZhiChiUploadAppFileModelResult> tmpList){
+    public void addDatas(List<ZhiChiUploadAppFileModelResult> tmpList) {
         list.clear();
         list.addAll(tmpList);
         restDataView();
     }
 
     public void restDataView() {
-        if(list.size() == 0){
+        if (list.size() == 0) {
             ZhiChiUploadAppFileModelResult addFile = new ZhiChiUploadAppFileModelResult();
             addFile.setViewState(0);
             list.add(addFile);
-        }else{
-            int lastIndex = (list.size() - 1) < 0?0:list.size() - 1;
+        } else {
+            int lastIndex = (list.size() - 1) < 0 ? 0 : list.size() - 1;
             ZhiChiUploadAppFileModelResult result = list.get(lastIndex);
-            if(list.size() < 5 && result.getViewState() != 0){
+            if (list.size() < 4 && result.getViewState() != 0) {
                 ZhiChiUploadAppFileModelResult addFile = new ZhiChiUploadAppFileModelResult();
                 addFile.setViewState(0);
                 list.add(addFile);
@@ -87,7 +97,7 @@ public class SobotPicListAdapter extends SobotBaseAdapter<ZhiChiUploadAppFileMod
         notifyDataSetChanged();
     }
 
-    public ArrayList<ZhiChiUploadAppFileModelResult> getPicList(){
+    public ArrayList<ZhiChiUploadAppFileModelResult> getPicList() {
         ArrayList<ZhiChiUploadAppFileModelResult> tmplist = new ArrayList<>();//所有图片的地址
         for (int i = 0; i < list.size(); i++) {
             ZhiChiUploadAppFileModelResult picFile = list.get(i);
@@ -100,36 +110,82 @@ public class SobotPicListAdapter extends SobotBaseAdapter<ZhiChiUploadAppFileMod
 
     @Override
     public int getCount() {
-        if (list.size() < 6) {
+        if (list.size() < 5) {
             return list.size();
         } else {
-            return 5;
+            return 4;
         }
     }
 
 
     private static class SobotFileHolder {
         private Context mContext;
-        ImageView sobot_iv_pic;
+        SobotRCImageView sobot_iv_pic;
+        LinearLayout sobot_iv_pic_add_ll;
         ImageView sobot_iv_pic_add;
+        private ImageView sobot_remove;
+        private ViewClickListener listener;
+        private int position;
 
-        SobotFileHolder(Context context,View convertView) {
+        SobotFileHolder(Context context, View convertView) {
             this.mContext = context;
-            sobot_iv_pic = (ImageView) convertView.findViewById(ResourceUtils.getIdByName(context, "id","sobot_iv_pic"));
-            sobot_iv_pic_add = (ImageView) convertView.findViewById(ResourceUtils.getIdByName(context, "id","sobot_iv_pic_add"));
+            sobot_iv_pic = (SobotRCImageView) convertView.findViewById(ResourceUtils.getIdByName(context, "id", "sobot_iv_pic"));
+            sobot_iv_pic_add = (ImageView) convertView.findViewById(ResourceUtils.getIdByName(context, "id", "sobot_iv_pic_add"));
+            sobot_iv_pic_add_ll = (LinearLayout) convertView.findViewById(ResourceUtils.getIdByName(context, "id", "sobot_iv_pic_add_ll"));
+            sobot_remove = (ImageView) convertView.findViewById(ResourceUtils.getIdByName(context, "id", "sobot_iv_pic_delete"));
+        }
+
+        public void setListener(ViewClickListener listener) {
+            this.listener = listener;
+        }
+
+        public void setPosition(int position) {
+            this.position = position;
         }
 
         void bindData(ZhiChiUploadAppFileModelResult message) {
-            if(message.getViewState() == 0){
+            if (message.getViewState() == 0) {
                 sobot_iv_pic.setVisibility(View.GONE);
-                sobot_iv_pic_add.setVisibility(View.VISIBLE);
-            }else{
+                sobot_iv_pic_add_ll.setVisibility(View.VISIBLE);
+                sobot_remove.setVisibility(View.GONE);
+            } else {
                 sobot_iv_pic.setVisibility(View.VISIBLE);
-                sobot_iv_pic_add.setVisibility(View.GONE);
+                sobot_iv_pic_add_ll.setVisibility(View.GONE);
+                sobot_remove.setVisibility(View.VISIBLE);
                 SobotBitmapUtil.display(mContext, message.getFileLocalPath(), sobot_iv_pic, ResourceUtils
                         .getIdByName(mContext, "drawable", "sobot_default_pic"), ResourceUtils
                         .getIdByName(mContext, "drawable", "sobot_default_pic_err"));
             }
+
+            sobot_iv_pic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null)
+                        listener.clickView(v, position, PIC);
+                }
+            });
+            sobot_iv_pic_add_ll.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null)
+                        listener.clickView(v, position, ADD);
+                }
+            });
+            sobot_remove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null)
+                        listener.clickView(v, position, DEL);
+                }
+            });
         }
+    }
+
+    public void setOnClickItemViewListener(ViewClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface ViewClickListener {
+        void clickView(View view, int position, int type);
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.sobot.chat.activity.SobotVideoActivity;
@@ -21,6 +22,7 @@ import com.sobot.chat.utils.SobotBitmapUtil;
 import com.sobot.chat.viewHolder.base.MessageHolderBase;
 import com.sobot.chat.widget.RoundProgressBar;
 import com.sobot.chat.widget.SobotImageView;
+import com.sobot.chat.widget.image.SobotRCImageView;
 
 /**
  * 小视频
@@ -30,8 +32,7 @@ public class VideoMessageHolder extends MessageHolderBase implements View.OnClic
     private RoundProgressBar sobot_progress;
     private ImageView sobot_msgStatus;
     private ImageView st_tv_play;
-    private SobotImageView st_iv_pic;
-    private RelativeLayout sobot_msg_container;
+    private SobotRCImageView st_iv_pic;
     private int sobot_bg_default_pic;
 
     private ZhiChiMessageBase mData;
@@ -42,10 +43,8 @@ public class VideoMessageHolder extends MessageHolderBase implements View.OnClic
         sobot_progress = (RoundProgressBar) convertView.findViewById(ResourceUtils.getResId(context, "sobot_pic_progress_round"));
         sobot_msgStatus = (ImageView) convertView.findViewById(ResourceUtils.getResId(context, "sobot_msgStatus"));
         st_tv_play = (ImageView) convertView.findViewById(ResourceUtils.getResId(context, "st_tv_play"));
-        st_iv_pic = (SobotImageView) convertView.findViewById(ResourceUtils.getResId(context, "st_iv_pic"));
-        sobot_msg_container = (RelativeLayout) convertView.findViewById(ResourceUtils.getResId(context, "sobot_msg_container"));
+        st_iv_pic = (SobotRCImageView) convertView.findViewById(ResourceUtils.getResId(context, "st_iv_pic"));
         sobot_bg_default_pic = ResourceUtils.getDrawableId(context, "sobot_bg_default_pic");
-        st_iv_pic.setCornerRadius(4);
         sobot_progress.setTextDisplayable(false);
         if (sobot_msgStatus != null) {
             sobot_msgStatus.setOnClickListener(this);
@@ -123,6 +122,7 @@ public class VideoMessageHolder extends MessageHolderBase implements View.OnClic
             }
             sobot_progress.setProgress(100);
             sobot_progress.setVisibility(View.GONE);
+            msgProgressBar.setVisibility(View.GONE);
             st_tv_play.setVisibility(View.VISIBLE);
             return;
         }
@@ -140,12 +140,14 @@ public class VideoMessageHolder extends MessageHolderBase implements View.OnClic
                 sobot_msgStatus.setVisibility(View.VISIBLE);
                 sobot_progress.setProgress(100);
                 sobot_progress.setVisibility(View.GONE);
+                msgProgressBar.setVisibility(View.GONE);
                 break;
             case SobotProgress.FINISH:
                 st_tv_play.setVisibility(View.VISIBLE);
                 sobot_msgStatus.setVisibility(View.GONE);
                 sobot_progress.setProgress(100);
                 sobot_progress.setVisibility(View.GONE);
+                msgProgressBar.setVisibility(View.GONE);
                 break;
             case SobotProgress.PAUSE:
             case SobotProgress.WAITING:
@@ -153,7 +155,8 @@ public class VideoMessageHolder extends MessageHolderBase implements View.OnClic
                 st_tv_play.setVisibility(View.GONE);
                 sobot_msgStatus.setVisibility(View.GONE);
                 sobot_progress.setProgress((int) (progress.fraction * 100));
-                sobot_progress.setVisibility(View.VISIBLE);
+                sobot_progress.setVisibility(View.GONE);
+                msgProgressBar.setVisibility(View.VISIBLE);
                 break;
         }
     }

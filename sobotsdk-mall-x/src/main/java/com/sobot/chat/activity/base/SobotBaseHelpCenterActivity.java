@@ -36,5 +36,4 @@ public abstract class SobotBaseHelpCenterActivity extends SobotBaseActivity {
         outState.putBundle(ZhiChiConstant.SOBOT_BUNDLE_INFORMATION, mInformationBundle);
         super.onSaveInstanceState(outState);
     }
-
 }

@@ -10,7 +10,7 @@ import com.sobot.chat.viewHolder.base.MessageHolderBase;
 import com.sobot.chat.widget.StExpandableTextView;
 
 /**
- * 位置消息
+ * 非置顶公告消息
  * Created by jinxl on 2017/3/17.
  */
 public class NoticeMessageHolder extends MessageHolderBase {
@@ -22,6 +22,7 @@ public class NoticeMessageHolder extends MessageHolderBase {
     public NoticeMessageHolder(Context context, View convertView) {
         super(context, convertView);
         expand_text_view = (StExpandableTextView) convertView.findViewById(ResourceUtils.getResId(context, "expand_text_view"));
+        expand_text_view.setLinkBottomLine(true);
     }
 
     @Override

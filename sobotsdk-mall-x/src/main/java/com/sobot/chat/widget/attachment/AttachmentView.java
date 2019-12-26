@@ -1,8 +1,10 @@
 package com.sobot.chat.widget.attachment;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -56,7 +58,7 @@ public class AttachmentView extends FrameLayout {
 
     private void initView(Context context) {
         mContext = context;
-        rootView = inflate(context, ResourceUtils.getResLayoutId(context, "sobot_layout_attachment_view"), this);
+        rootView = inflate(context, ResourceUtils.getResLayoutId(context, "layout_attachment_view"), this);
         sobotAttachmentRootView = (RelativeLayout) findViewById(ResourceUtils.getResId(context, "sobot_attachment_root_view"));
         sobotFileName = (TextView) findViewById(ResourceUtils.getResId(context, "sobot_file_name"));
         sobotFileTypeIcon = (ImageView) findViewById(ResourceUtils.getResId(context, "sobot_file_type_icon"));
@@ -105,10 +107,10 @@ public class AttachmentView extends FrameLayout {
             sobotAttachmentRootView.setVisibility(GONE);
             SobotBitmapUtil.display(mContext, fileUrl, imageView);
 
-        } else if (type == FileTypeConfig.MSGTYPE_FILE_MP4) {
-            imageView.setVisibility(VISIBLE);
-            sobotAttachmentRootView.setVisibility(GONE);
-            SobotBitmapUtil.display(mContext, fileUrl, imageView);
+//        } else if (type == FileTypeConfig.MSGTYPE_FILE_MP4) {
+//            imageView.setVisibility(VISIBLE);
+//            sobotAttachmentRootView.setVisibility(GONE);
+//            SobotBitmapUtil.display(mContext, fileUrl, imageView);
 
         } else {
             imageView.setVisibility(GONE);

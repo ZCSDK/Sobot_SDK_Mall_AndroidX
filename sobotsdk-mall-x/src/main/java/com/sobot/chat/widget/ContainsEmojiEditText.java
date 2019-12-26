@@ -1,5 +1,6 @@
 package com.sobot.chat.widget;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.text.Editable;
@@ -7,11 +8,13 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -28,10 +31,12 @@ import com.sobot.chat.api.model.SobotRobotGuess;
 import com.sobot.chat.core.channel.SobotMsgManager;
 import com.sobot.chat.core.http.OkHttpUtils;
 import com.sobot.chat.core.http.callback.StringResultCallBack;
+import com.sobot.chat.utils.LogUtils;
 import com.sobot.chat.utils.ResourceUtils;
 import com.sobot.chat.utils.ScreenUtils;
 import com.sobot.chat.utils.SharedPreferencesUtil;
 import com.sobot.chat.utils.ZhiChiConstant;
+import com.sobot.chat.widget.emoji.InputHelper;
 import com.sobot.chat.widget.kpswitch.util.KeyboardUtil;
 
 import java.util.ArrayList;
@@ -51,6 +56,7 @@ public class ContainsEmojiEditText extends EditText implements View.OnFocusChang
     View mContentView;
     SobotAutoCompelteAdapter mAdapter;
     MyWatcher myWatcher;
+    MyEmojiWatcher myEmojiWatcher;
     String mUid;
     String mRobotFlag;
     boolean mIsAutoComplete;
@@ -73,6 +79,8 @@ public class ContainsEmojiEditText extends EditText implements View.OnFocusChang
 
     // 初始化edittext 控件
     private void initEditText() {
+        myEmojiWatcher = new MyEmojiWatcher();
+        addTextChangedListener(myEmojiWatcher);
         boolean supportFlag = SharedPreferencesUtil.getBooleanData(getContext(), ZhiChiConstant.SOBOT_CONFIG_SUPPORT, false);
         if (!supportFlag) {
             return;
@@ -102,7 +110,7 @@ public class ContainsEmojiEditText extends EditText implements View.OnFocusChang
         }
     }
 
-    void doAfterTextChanged(String s) {
+    public void doAfterTextChanged(String s) {
         if (!mIsAutoComplete) {
             return;
         }
@@ -149,6 +157,7 @@ public class ContainsEmojiEditText extends EditText implements View.OnFocusChang
 
     private class MyWatcher implements TextWatcher {
         public void afterTextChanged(Editable s) {
+            LogUtils.e( "beforeTextChanged: "+s.toString());
             if (!SobotApi.getSwitchMarkStatus(MarkConfig.LANDSCAPE_SCREEN)) {
                 doAfterTextChanged(s.toString());
             }
@@ -156,11 +165,29 @@ public class ContainsEmojiEditText extends EditText implements View.OnFocusChang
 
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 //            doBeforeTextChanged();
+            LogUtils.e( "beforeTextChanged: "+s.toString());
         }
 
         public void onTextChanged(CharSequence s, int start, int before, int count) {
+            LogUtils.e( "onTextChanged: "+s.toString());
         }
     }
+
+    /**
+     * 表情监听
+     */
+    private class MyEmojiWatcher implements TextWatcher {
+        public void afterTextChanged(Editable s) {
+        }
+
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            s = InputHelper.displayEmoji(getContext(), s);
+        }
+    }
+
 
     public boolean isShowing() {
         if (mPopWindow != null) {

@@ -78,7 +78,8 @@
                 android:layout_height="25dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:src="@drawable/sobot_webview_btn_copy_selector" />
+                android:src="@drawable/sobot_webview_btn_copy_selector"
+                android:visibility="gone" />
         </LinearLayout>
 
     </LinearLayout>

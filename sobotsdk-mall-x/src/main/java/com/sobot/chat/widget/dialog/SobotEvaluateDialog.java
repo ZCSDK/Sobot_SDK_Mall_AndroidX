@@ -1,10 +1,16 @@
 package com.sobot.chat.widget.dialog;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.StyleRes;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -27,6 +33,8 @@ import com.sobot.chat.core.http.OkHttpUtils;
 import com.sobot.chat.core.http.callback.StringResultCallBack;
 import com.sobot.chat.utils.ChatUtils;
 import com.sobot.chat.utils.CommonUtils;
+import com.sobot.chat.utils.ResourceUtils;
+import com.sobot.chat.utils.ScreenUtils;
 import com.sobot.chat.utils.SharedPreferencesUtil;
 import com.sobot.chat.utils.ToastUtil;
 import com.sobot.chat.utils.ZhiChiConstant;
@@ -43,8 +51,10 @@ import java.util.List;
 public class SobotEvaluateDialog extends SobotActionSheet {
     private final String CANCEL_TAG = SobotEvaluateDialog.class.getSimpleName();
     private Activity context;
-    private int score;
+    private int score;//默认 选中几颗星 从前面界面传过来
+    private int isSolve;//默认 是否已解决 从前面界面传过来  0 是已解决  1 未解决
     private boolean isFinish;
+    private boolean isExitSession;
     private ZhiChiInitModeBase initModel;
     private int current_model;
     private int commentType;/*commentType 评价类型 主动评价1 邀请评价0*/
@@ -60,6 +70,7 @@ public class SobotEvaluateDialog extends SobotActionSheet {
     private RadioButton sobot_btn_ok_robot;//评价  已解决
     private RadioButton sobot_btn_no_robot;//评价  未解决
     private Button sobot_close_now;//提交评价按钮
+    private View sobot_ratingBar_split_view;//如果有已解决按钮和未解决按钮就显示，否则隐藏；
 
     private EditText sobot_add_content;//评价  添加建议
     private TextView sobot_tv_evaluate_title;//评价   当前是评价机器人还是评价人工客服
@@ -88,15 +99,42 @@ public class SobotEvaluateDialog extends SobotActionSheet {
         super(context);
     }
 
-    public SobotEvaluateDialog(Activity context, boolean isFinish, ZhiChiInitModeBase initModel, int current_model, int commentType, String customName, int score) {
+    public SobotEvaluateDialog(Activity context, boolean isFinish,boolean isExitSession, ZhiChiInitModeBase initModel, int current_model, int commentType, String customName, int score) {
         super(context);
         this.context = context;
         this.score = score;
         this.isFinish = isFinish;
+        this.isExitSession=isExitSession;
         this.initModel = initModel;
         this.current_model = current_model;
         this.commentType = commentType;
         this.customName = customName;
+    }
+
+    public SobotEvaluateDialog(Activity context, boolean isFinish,boolean isExitSession, ZhiChiInitModeBase initModel, int current_model, int commentType, String customName, int score, int isSolve) {
+        super(context);
+        this.context = context;
+        this.score = score;
+        this.isFinish = isFinish;
+        this.isExitSession=isExitSession;
+        this.initModel = initModel;
+        this.current_model = current_model;
+        this.commentType = commentType;
+        this.customName = customName;
+        this.isSolve = isSolve;
+    }
+
+    public SobotEvaluateDialog(Activity context, boolean isFinish,boolean isExitSession, ZhiChiInitModeBase initModel, int current_model, int commentType, String customName, int score, int isSolve, @StyleRes int themeResId) {
+        super(context, themeResId);
+        this.context = context;
+        this.score = score;
+        this.isFinish = isFinish;
+        this.isExitSession=isExitSession;
+        this.initModel = initModel;
+        this.current_model = current_model;
+        this.commentType = commentType;
+        this.customName = customName;
+        this.isSolve = isSolve;
     }
 
     @Override
@@ -123,13 +161,10 @@ public class SobotEvaluateDialog extends SobotActionSheet {
         sobot_ratingBar_title = (TextView) findViewById(getResId("sobot_ratingBar_title"));
         sobot_tv_evaluate_title_hint = (TextView) findViewById(getResId("sobot_tv_evaluate_title_hint"));
         sobot_evaluate_cancel = (TextView) findViewById(getResId("sobot_evaluate_cancel"));
+        sobot_ratingBar_split_view = findViewById(ResourceUtils.getIdByName(context, "id",
+                "sobot_ratingBar_split_view"));
         if (isFinish) {
-            boolean isShowEvaluateCancel = SharedPreferencesUtil.getBooleanData(context, "isShowEvaluateCancel", true);
-            if (isShowEvaluateCancel) {
-                sobot_evaluate_cancel.setVisibility(View.VISIBLE);
-            } else {
-                sobot_evaluate_cancel.setVisibility(View.GONE);
-            }
+            // sobot_evaluate_cancel.setVisibility(View.VISIBLE);
         } else {
             sobot_evaluate_cancel.setVisibility(View.GONE);
         }
@@ -166,18 +201,28 @@ public class SobotEvaluateDialog extends SobotActionSheet {
         });
         setViewGone();
         setViewListener();
+        if (ScreenUtils.isFullScreen(context)) {
+            getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        }
     }
 
     @Override
     protected void initData() {
         if (current_model == ZhiChiConstant.client_model_customService) {
             ZhiChiApi zhiChiApi = SobotMsgManager.getInstance(context).getZhiChiApi();
-            zhiChiApi.satisfactionMessage(CANCEL_TAG, initModel.getUid(), new ResultCallBack<SatisfactionSet>() {
+            zhiChiApi.satisfactionMessage(CANCEL_TAG, initModel.getPartnerid(), new ResultCallBack<SatisfactionSet>() {
                 @Override
                 public void onSuccess(SatisfactionSet satisfactionSet) {
                     if (satisfactionSet != null && "1".equals(satisfactionSet.getCode()) && satisfactionSet.getData() != null && satisfactionSet.getData().size() != 0) {
                         satisFactionList = satisfactionSet.getData();
                         sobot_ratingBar.setRating(score);
+                        if (isSolve == 0) {
+                            sobot_btn_ok_robot.setChecked(true);
+                            sobot_btn_no_robot.setChecked(false);
+                        } else {
+                            sobot_btn_ok_robot.setChecked(false);
+                            sobot_btn_no_robot.setChecked(true);
+                        }
 
                         setCustomLayoutViewVisible(score, satisFactionList);
 
@@ -190,8 +235,10 @@ public class SobotEvaluateDialog extends SobotActionSheet {
 
                         if (satisFactionList.get(0).getIsQuestionFlag()) {
                             sobot_robot_relative.setVisibility(View.VISIBLE);
+                            sobot_ratingBar_split_view.setVisibility(View.VISIBLE);
                         } else {
                             sobot_robot_relative.setVisibility(View.GONE);
+                            sobot_ratingBar_split_view.setVisibility(View.GONE);
                         }
                     }
                 }
@@ -259,6 +306,8 @@ public class SobotEvaluateDialog extends SobotActionSheet {
                 CommonUtils.sendLocalBroadcast(context.getApplicationContext(), intent);
             }
         });
+
+
     }
 
     @Override
@@ -493,7 +542,7 @@ public class SobotEvaluateDialog extends SobotActionSheet {
         param.setIsresolve(getResovled());
         param.setCommentType(commentType);
         if (current_model == ZhiChiConstant.client_model_robot) {
-            param.setRobotFlag(initModel.getCurrentRobotFlag());
+            param.setRobotFlag(initModel.getRobotid());
         } else {
             param.setScore(score + "");
         }
@@ -555,7 +604,7 @@ public class SobotEvaluateDialog extends SobotActionSheet {
 
         ZhiChiApi zhiChiApi = SobotMsgManager.getInstance(context).getZhiChiApi();
         final SobotCommentParam commentParam = getCommentParam();
-        zhiChiApi.comment(CANCEL_TAG, initModel.getCid(), initModel.getUid(), commentParam,
+        zhiChiApi.comment(CANCEL_TAG, initModel.getCid(), initModel.getPartnerid(), commentParam,
                 new StringResultCallBack<CommonModel>() {
                     @Override
                     public void onSuccess(CommonModel result) {
@@ -564,6 +613,7 @@ public class SobotEvaluateDialog extends SobotActionSheet {
                         intent.setAction(ZhiChiConstants.dcrc_comment_state);
                         intent.putExtra("commentState", true);
                         intent.putExtra("isFinish", isFinish);
+                        intent.putExtra("isExitSession", isExitSession);
                         intent.putExtra("commentType", commentType);
                         if (!TextUtils.isEmpty(commentParam.getScore())) {
                             intent.putExtra("score", Integer.parseInt(commentParam.getScore()));
@@ -600,5 +650,46 @@ public class SobotEvaluateDialog extends SobotActionSheet {
     public void onDetachedFromWindow() {
         OkHttpUtils.getInstance().cancelTag(CANCEL_TAG);
         super.onDetachedFromWindow();
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(@NonNull MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {/*点击外部隐藏键盘*/
+            View v = getCurrentFocus();
+            if (isShouldHideInput(v, ev)) {
+
+                InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm != null) {
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+            return super.dispatchTouchEvent(ev);
+        }
+        // 必不可少，否则所有的组件都不会有TouchEvent了
+        if (getWindow().superDispatchTouchEvent(ev)) {
+            return true;
+        }
+        return onTouchEvent(ev);
+    }
+
+    /*是否在外部*/
+    public boolean isShouldHideInput(View v, MotionEvent event) {
+        if (v != null && (v instanceof EditText)) {
+            int[] leftTop = {0, 0};
+            //获取输入框当前的location位置
+            v.getLocationInWindow(leftTop);
+            int left = leftTop[0];
+            int top = leftTop[1];
+            int bottom = top + v.getHeight();
+            int right = left + v.getWidth();
+            if (event.getX() > left && event.getX() < right
+                    && event.getY() > top && event.getY() < bottom) {
+                // 点击的是输入框区域，保留点击EditText的事件
+                return false;
+            } else {
+                return true;
+            }
+        }
+        return false;
     }
 }

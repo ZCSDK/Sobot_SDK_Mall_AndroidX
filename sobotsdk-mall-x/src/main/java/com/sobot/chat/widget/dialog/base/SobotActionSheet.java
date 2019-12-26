@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
+import androidx.annotation.StyleRes;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -13,6 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.sobot.chat.utils.ResourceUtils;
+import com.sobot.chat.widget.kpswitch.util.KeyboardUtil;
 
 /**
  * Created by jinxl on 2017/6/12.
@@ -26,7 +28,14 @@ public abstract class SobotActionSheet extends Dialog {
 
     public SobotActionSheet(Activity context) {
         // 给Dialog的Window设置样式
-        super(context, ResourceUtils.getIdByName(context, "style", "sobot_clearHistoryDialogStyle"));
+        this(context, ResourceUtils.getIdByName(context, "style", "sobot_clearHistoryDialogStyle"));
+
+    }
+
+    public SobotActionSheet(Activity context, @StyleRes int themeResId) {
+        // 给Dialog的Window设置样式
+
+        super(context, themeResId);
 
         // 修改Dialog(Window)的弹出位置
         screenHeight = getScreenHeight(context);
@@ -121,6 +130,12 @@ public abstract class SobotActionSheet extends Dialog {
 
     public String getResString(String name){
         return getContext().getResources().getString(getResStringId(name));
+    }
+
+    @Override
+    public void dismiss() {
+        KeyboardUtil.hideKeyboard(getCurrentFocus());
+        super.dismiss();
     }
 
 }

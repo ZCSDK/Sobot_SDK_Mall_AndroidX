@@ -2,16 +2,22 @@ package com.sobot.chat.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import com.sobot.chat.activity.base.SobotBaseActivity;
+import com.sobot.chat.activity.base.SobotDialogBaseActivity;
 import com.sobot.chat.adapter.SobotProvinAdapter;
 import com.sobot.chat.api.model.SobotCityResult;
+import com.sobot.chat.api.model.SobotCusFieldConfig;
 import com.sobot.chat.api.model.SobotProvinInfo;
+import com.sobot.chat.core.channel.SobotMsgManager;
 import com.sobot.chat.core.http.callback.StringResultCallBack;
+import com.sobot.chat.utils.ResourceUtils;
 import com.sobot.chat.utils.ToastUtil;
 import com.sobot.chat.utils.ZhiChiConstant;
 import com.sobot.chat.widget.dialog.SobotDialogUtils;
@@ -22,11 +28,14 @@ import java.util.List;
 /**
  * @author Created by jinxl on 2018/1/8.
  */
-public class SobotChooseCityActivity extends SobotBaseActivity {
+public class SobotChooseCityActivity extends SobotDialogBaseActivity {
     private Bundle mIntentBundleData;
+    private SobotCusFieldConfig cusFieldConfig;
 
     private ListView mListView;
     private SobotProvinInfo mProvinInfo;
+    private LinearLayout sobot_btn_cancle;
+    private TextView sobot_tv_title;
 
     private SparseArray<List<SobotProvinInfo.SobotProvinceModel>> tmpMap = new SparseArray<>();
     private List<SobotProvinInfo.SobotProvinceModel> tmpDatas = new ArrayList<>();
@@ -38,30 +47,21 @@ public class SobotChooseCityActivity extends SobotBaseActivity {
     private SobotProvinInfo.SobotProvinceModel mFinalData = new SobotProvinInfo.SobotProvinceModel();
 
     @Override
-    protected int getContentViewResId() {
-        return getResLayoutId("sobot_activity_cusfield");
+    protected int getRootViewLayoutId() {
+        return ResourceUtils.getResLayoutId(this, "sobot_activity_cusfield");
     }
 
-    @Override
-    protected void initBundleData(Bundle savedInstanceState) {
-        if (savedInstanceState == null) {
-            mIntentBundleData = getIntent().getBundleExtra(ZhiChiConstant.SOBOT_INTENT_BUNDLE_DATA);
-        } else {
-            mIntentBundleData = savedInstanceState.getBundle(ZhiChiConstant.SOBOT_INTENT_BUNDLE_DATA);
-        }
+    private void initIntent() {
+        mIntentBundleData = getIntent().getBundleExtra(ZhiChiConstant.SOBOT_INTENT_BUNDLE_DATA);
         if (mIntentBundleData != null) {
-            initIntent(mIntentBundleData);
+            if (mIntentBundleData.getSerializable("cusFieldConfig") != null) {
+                cusFieldConfig = (SobotCusFieldConfig) mIntentBundleData.getSerializable("cusFieldConfig");
+            }
         }
-    }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        //销毁前缓存数据
-        outState.putBundle(ZhiChiConstant.SOBOT_INTENT_BUNDLE_DATA, mIntentBundleData);
-        super.onSaveInstanceState(outState);
-    }
-
-    private void initIntent(Bundle mIntentBundleData) {
+        if (cusFieldConfig != null && !TextUtils.isEmpty(cusFieldConfig.getFieldName())) {
+            sobot_tv_title.setText(cusFieldConfig.getFieldName());
+        }
         mProvinInfo = (SobotProvinInfo) mIntentBundleData.getSerializable(ZhiChiConstant.SOBOT_INTENT_BUNDLE_DATA_PROVININFO);
         mFiledId = mIntentBundleData.getString(ZhiChiConstant.SOBOT_INTENT_BUNDLE_DATA_FIELD_ID);
         if (mProvinInfo != null && mProvinInfo.getProvinces() != null) {
@@ -71,10 +71,6 @@ public class SobotChooseCityActivity extends SobotBaseActivity {
         }
     }
 
-    @Override
-    protected void onLeftMenuClick(View view) {
-        backPressed();
-    }
 
     @Override
     public void onBackPressed() {
@@ -96,7 +92,11 @@ public class SobotChooseCityActivity extends SobotBaseActivity {
 
     @Override
     public void initView() {
-        mListView = (ListView) findViewById(getResId("sobot_activity_cusfield_listview"));
+        sobot_btn_cancle = (LinearLayout) findViewById(ResourceUtils.getIdByName(
+                this, "id", "sobot_btn_cancle"));
+        sobot_tv_title = (TextView) findViewById(ResourceUtils.getIdByName(
+                this, "id", "sobot_tv_title"));
+        mListView = (ListView) findViewById(ResourceUtils.getResId(getBaseContext(), ("sobot_activity_cusfield_listview")));
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -117,10 +117,17 @@ public class SobotChooseCityActivity extends SobotBaseActivity {
                 }
             }
         });
+        sobot_btn_cancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                backPressed();
+            }
+        });
     }
 
     @Override
     public void initData() {
+        initIntent();
         if (mProvinInfo != null && mProvinInfo.getProvinces() != null) {
             showDataWithLevel(null);
         }
@@ -138,12 +145,10 @@ public class SobotChooseCityActivity extends SobotBaseActivity {
             }
             isRunning = true;
             // 获取下一级
-            SobotDialogUtils.startProgressDialog(SobotChooseCityActivity.this);
-            zhiChiApi.queryCity(SobotChooseCityActivity.this,data.level == 0 ? data.provinceId : null, data.level == 1 ? data.cityId : null, new StringResultCallBack<SobotCityResult>() {
+            SobotMsgManager.getInstance(getBaseContext()).getZhiChiApi().queryCity(SobotChooseCityActivity.this, data.level == 0 ? data.provinceId : null, data.level == 1 ? data.cityId : null, new StringResultCallBack<SobotCityResult>() {
                 @Override
                 public void onSuccess(SobotCityResult result) {
                     isRunning = false;
-                    SobotDialogUtils.stopProgressDialog(SobotChooseCityActivity.this);
                     final SobotProvinInfo bean = result.getData();
 
                     if (bean.getCitys() != null && bean.getCitys().size() > 0) {
@@ -169,7 +174,7 @@ public class SobotChooseCityActivity extends SobotBaseActivity {
 
     }
 
-    private void showData(List<SobotProvinInfo.SobotProvinceModel> beans,final SobotProvinInfo.SobotProvinceModel data) {
+    private void showData(List<SobotProvinInfo.SobotProvinceModel> beans, final SobotProvinInfo.SobotProvinceModel data) {
         saveData(data.level, data);
         currentLevel++;
         tmpMap.put(currentLevel, beans);

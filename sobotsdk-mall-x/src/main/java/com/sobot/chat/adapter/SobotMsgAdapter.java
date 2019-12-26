@@ -26,13 +26,13 @@ import com.sobot.chat.viewHolder.ImageMessageHolder;
 import com.sobot.chat.viewHolder.LocationMessageHolder;
 import com.sobot.chat.viewHolder.NoticeMessageHolder;
 import com.sobot.chat.viewHolder.OrderCardMessageHolder;
+import com.sobot.chat.viewHolder.RemindMessageHolder;
 import com.sobot.chat.viewHolder.RetractedMessageHolder;
+import com.sobot.chat.viewHolder.RichTextMessageHolder;
 import com.sobot.chat.viewHolder.RobotAnswerItemsMsgHolder;
 import com.sobot.chat.viewHolder.RobotKeyWordMessageHolder;
 import com.sobot.chat.viewHolder.RobotQRMessageHolder;
 import com.sobot.chat.viewHolder.RobotTemplateMessageHolder1;
-import com.sobot.chat.viewHolder.RemindMessageHolder;
-import com.sobot.chat.viewHolder.RichTextMessageHolder;
 import com.sobot.chat.viewHolder.RobotTemplateMessageHolder2;
 import com.sobot.chat.viewHolder.RobotTemplateMessageHolder3;
 import com.sobot.chat.viewHolder.RobotTemplateMessageHolder4;
@@ -76,12 +76,11 @@ public class SobotMsgAdapter extends SobotBaseAdapter<ZhiChiMessageBase> {
             "sobot_chat_msg_item_video_r",//小视频右边的布局文件
             "sobot_chat_msg_item_location_r",//位置信息的布局文件
             "sobot_chat_msg_item_notice",//通告消息的布局文件
-            "sobot_chat_msg_item_card_r",//商品卡片信息的布局文件
+            "sobot_chat_msg_item_card_r",//商品卡片右侧信息的布局文件
             "sobot_chat_msg_item_order_card_r",//订单卡片右侧消息
             "sobot_chat_msg_item_order_card_l",//订单卡片左侧消息
             "sobot_chat_msg_item_card_l",//商品卡片左侧信息的布局文件
             "sobot_chat_msg_item_template6_l",//机器人  多轮会话模板 6
-
     };
 
     /**
@@ -185,7 +184,7 @@ public class SobotMsgAdapter extends SobotBaseAdapter<ZhiChiMessageBase> {
      */
     public static final int MSG_TYPE_NOTICE = 23;
     /**
-     * 商品卡片
+     * 商品卡片右侧
      */
     public static final int MSG_TYPE_CARD_R = 24;
     /**
@@ -422,6 +421,7 @@ public class SobotMsgAdapter extends SobotBaseAdapter<ZhiChiMessageBase> {
             handerRemindTiem(holder, position);
             holder.initNameAndFace(itemType, context, message, senderface, sendername);
             holder.applyCustomUI();//设置UI
+            holder.bindZhiChiMessageBase(message);//设置message
             holder.bindData(context, message);
         }
         return convertView;
@@ -558,6 +558,34 @@ public class SobotMsgAdapter extends SobotBaseAdapter<ZhiChiMessageBase> {
                 }
             }
             convertView.setTag(holder);
+        }
+
+        else{//不复用布局
+
+            switch (itemType) {
+                case MSG_TYPE_ROBOT_TEMPLATE1: {
+                    convertView = LayoutInflater.from(context).inflate(ResourceUtils.getIdByName(context, "layout", layoutRes[itemType]), null);
+                    MessageHolderBase holder;
+                    holder = new RobotTemplateMessageHolder1(context, convertView);
+                    convertView.setTag(holder);
+                    break;
+                }
+                case MSG_TYPE_ROBOT_TEMPLATE2: {
+                    convertView = LayoutInflater.from(context).inflate(ResourceUtils.getIdByName(context, "layout", layoutRes[itemType]), null);
+                    MessageHolderBase holder;
+                    holder = new RobotTemplateMessageHolder2(context, convertView);
+                    convertView.setTag(holder);
+                    break;
+                }
+                case MSG_TYPE_ROBOT_TEMPLATE3: {
+                    convertView = LayoutInflater.from(context).inflate(ResourceUtils.getIdByName(context, "layout", layoutRes[itemType]), null);
+                    MessageHolderBase holder;
+                    holder = new RobotTemplateMessageHolder3(context, convertView);
+                    convertView.setTag(holder);
+                    break;
+                }
+            }
+
         }
         return convertView;
     }
@@ -891,6 +919,23 @@ public class SobotMsgAdapter extends SobotBaseAdapter<ZhiChiMessageBase> {
             }
         } catch (Exception e) {
             LogUtils.i("error : removeKeyWordTranferItem()");
+        }
+    }
+
+    /**
+     * 评价成功后 删除评价
+     */
+    public void removeEvaluateData() {
+        String senderType = ZhiChiConstant.message_sender_type_custom_evaluate + "";
+        for (int i = list.size() - 1; i >= 0; i--) {
+            ZhiChiMessageBase msgInfo = list.get(i);
+            if (senderType.equals(msgInfo.getSenderType())) {
+                SobotEvaluateModel sobotEvaluateModel = msgInfo.getSobotEvaluateModel();
+                if (sobotEvaluateModel != null) {
+                    list.remove(msgInfo);
+                    break;
+                }
+            }
         }
     }
 

@@ -33,6 +33,7 @@ public class SobotUILImageLoader extends SobotImageLoader {
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .showImageOnLoading(loadingResId)
                 .showImageOnFail(failResId)
+                .showImageForEmptyUri(failResId)
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)
@@ -56,6 +57,7 @@ public class SobotUILImageLoader extends SobotImageLoader {
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .showImageOnLoading(loadingResId)
                 .showImageOnFail(failResId)
+                .showImageForEmptyUri(failResId)
                 .cacheInMemory(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .build();

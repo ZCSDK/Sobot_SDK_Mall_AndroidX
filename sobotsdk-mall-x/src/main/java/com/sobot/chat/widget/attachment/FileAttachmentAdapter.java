@@ -3,11 +3,14 @@ package com.sobot.chat.widget.attachment;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.sobot.chat.api.model.SobotFileModel;
 import com.sobot.chat.utils.LogUtils;
+import com.sobot.chat.utils.ScreenUtils;
 
 import java.util.ArrayList;
 
@@ -22,10 +25,10 @@ public class FileAttachmentAdapter extends RecyclerView.Adapter<FileAttachmentAd
     private AttachmentView.Listener clickListener;
 
     public FileAttachmentAdapter(Context context, ArrayList<SobotFileModel> arrayList, int fileNameColor, AttachmentView.Listener clickListener) {
-        this.context=context;
+        this.context = context;
         this.arrayList = arrayList;
-        fileColor=fileNameColor;
-        this.clickListener=clickListener;
+        fileColor = fileNameColor;
+        this.clickListener = clickListener;
     }
 
 
@@ -33,22 +36,24 @@ public class FileAttachmentAdapter extends RecyclerView.Adapter<FileAttachmentAd
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = new AttachmentView(context);
+        int mWidth = (ScreenUtils.getScreenWH(context)[0] - ScreenUtils.dip2px(context, 60)) / 3;
+        ViewGroup.LayoutParams layoutParams = new FrameLayout.LayoutParams(mWidth,ScreenUtils.dip2px(context, 85));
+        view.setLayoutParams(layoutParams);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        SobotFileModel fileModel=arrayList.get(i);
+        SobotFileModel fileModel = arrayList.get(i);
         viewHolder.attachmentView.setFileName(fileModel.getFileName());
-        LogUtils.e(i+"\t"+fileModel.getFileType()+"\t"+fileModel.getFileUrl());
+        LogUtils.e(i + "\t" + fileModel.getFileType() + "\t" + fileModel.getFileUrl());
         viewHolder.attachmentView.setFileUrl(fileModel.getFileUrl());
         viewHolder.attachmentView.setFileTypeIcon(FileTypeConfig.getFileType(fileModel.getFileType()));
         viewHolder.attachmentView.setFileNameColor(fileColor);
         viewHolder.attachmentView.setPosition(i);
         viewHolder.attachmentView.setListener(clickListener);
         viewHolder.attachmentView.setFileModel(fileModel);
-
 
 
     }
@@ -66,7 +71,7 @@ public class FileAttachmentAdapter extends RecyclerView.Adapter<FileAttachmentAd
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            attachmentView= (AttachmentView) itemView;
+            attachmentView = (AttachmentView) itemView;
         }
     }
 }

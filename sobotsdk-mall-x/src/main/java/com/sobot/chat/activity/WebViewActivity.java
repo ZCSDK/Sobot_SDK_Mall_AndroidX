@@ -92,6 +92,7 @@ public class WebViewActivity extends SobotBaseActivity implements View.OnClickLi
         if (isUrlOrText) {
             //加载url
             mWebView.loadUrl(mUrl);
+            sobot_webview_copy.setVisibility(View.VISIBLE);
         } else {
             //修改图片高度为自适应宽度
             mUrl = "<!DOCTYPE html>\n" +
@@ -112,6 +113,7 @@ public class WebViewActivity extends SobotBaseActivity implements View.OnClickLi
                     "</html>";
             //显示文本内容
             mWebView.loadData(mUrl, "text/html; charset=UTF-8", null);
+            sobot_webview_copy.setVisibility(View.GONE);
         }
         LogUtils.i("webViewActivity---" + mUrl);
     }
@@ -243,8 +245,8 @@ public class WebViewActivity extends SobotBaseActivity implements View.OnClickLi
                 super.onPageFinished(view, url);
                 sobot_webview_goback.setEnabled(mWebView.canGoBack());
                 sobot_webview_forward.setEnabled(mWebView.canGoForward());
-                if (!mUrl.replace("http://", "").replace("https://", "").equals(view.getTitle()) && sobot_webview_title_display) {
-                     setTitle(view.getTitle());
+                if (isUrlOrText && !mUrl.replace("http://", "").replace("https://", "").equals(view.getTitle()) && sobot_webview_title_display) {
+                    setTitle(view.getTitle());
                 }
             }
         });
@@ -255,7 +257,7 @@ public class WebViewActivity extends SobotBaseActivity implements View.OnClickLi
             public void onReceivedTitle(WebView view, String title) {
                 super.onReceivedTitle(view, title);
                 LogUtils.i("网页--title---：" + title);
-                if (!mUrl.replace("http://", "").replace("https://", "").equals(title) && sobot_webview_title_display) {
+                if (isUrlOrText && !mUrl.replace("http://", "").replace("https://", "").equals(title) && sobot_webview_title_display) {
                     setTitle(title);
                 }
             }

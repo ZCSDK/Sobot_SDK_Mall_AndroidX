@@ -18,7 +18,7 @@ public class ScreenUtils {
 
 	/**
 	 * 把dip单位转成px单位
-	 * 
+	 *
 	 * @param context
 	 *            context对象
 	 * @param dip
@@ -33,8 +33,24 @@ public class ScreenUtils {
 	}
 
 	/**
+	 * 把dip单位转成px单位
+	 *
+	 * @param context
+	 *            context对象
+	 * @param dip
+	 *            dip数值
+	 * @return
+	 */
+	public static float formatDipToPx(Context context, float dip) {
+		DisplayMetrics dm = new DisplayMetrics();
+		((Activity) context).getWindowManager().getDefaultDisplay()
+				.getMetrics(dm);
+		return dip * dm.density;
+	}
+
+	/**
 	 * 把px单位转成dip单位
-	 * 
+	 *
 	 * @param context
 	 *            context对象
 	 * @param px
@@ -129,6 +145,8 @@ public class ScreenUtils {
 		int height = defaultDisplay.getHeight();
 		return new int[]{width,height};
 	}
+
+
 	/**
 	 * 获取屏幕高度
 	 *
@@ -214,5 +232,16 @@ public class ScreenUtils {
 		} else {
 			v.setBackgroundDrawable(bgDrawable);
 		}
+	}
+
+	/**
+	 * 是否是全屏
+	 * @return
+	 */
+	public static boolean isFullScreen(Activity activity){
+		if (activity==null){
+			return false;
+		}
+		return (activity.getWindow().getAttributes().flags &WindowManager.LayoutParams.FLAG_FULLSCREEN)==WindowManager.LayoutParams.FLAG_FULLSCREEN;
 	}
 }

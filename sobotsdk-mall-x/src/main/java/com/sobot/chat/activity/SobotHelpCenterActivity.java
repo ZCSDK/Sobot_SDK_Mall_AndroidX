@@ -36,7 +36,7 @@ public class SobotHelpCenterActivity extends SobotBaseHelpCenterActivity impleme
     @Override
     protected void initView() {
         setTitle(getResString("sobot_help_center_title"));
-        showLeftMenu(getResDrawableId("sobot_btn_back_selector"), getResString("sobot_back"), true);
+        showLeftMenu(getResDrawableId("sobot_btn_back_grey_selector"), getResString("sobot_back"), true);
         mEmptyView = findViewById(getResId("ll_empty_view"));
         mBottomBtn = findViewById(getResId("ll_bottom"));
         mGridView = findViewById(getResId("sobot_gv"));
@@ -47,7 +47,7 @@ public class SobotHelpCenterActivity extends SobotBaseHelpCenterActivity impleme
     @Override
     protected void initData() {
         ZhiChiApi api = SobotMsgManager.getInstance(getApplicationContext()).getZhiChiApi();
-        api.getCategoryList(SobotHelpCenterActivity.this, mInfo.getAppkey(), new StringResultCallBack<List<StCategoryModel>>() {
+        api.getCategoryList(SobotHelpCenterActivity.this, mInfo.getApp_key(), new StringResultCallBack<List<StCategoryModel>>() {
             @Override
             public void onSuccess(List<StCategoryModel> datas) {
                 if (datas != null && datas.size() > 0) {

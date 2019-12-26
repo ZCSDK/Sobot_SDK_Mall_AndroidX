@@ -13,6 +13,7 @@
         android:background="@color/sobot_lv_message_bg"
         android:divider="@null"
         android:listSelector="@android:color/transparent"
-        android:transcriptMode="normal"/>
+        android:scrollbarThumbVertical="@drawable/custom_scroll_style"
+        android:transcriptMode="normal" />
 
 </LinearLayout>

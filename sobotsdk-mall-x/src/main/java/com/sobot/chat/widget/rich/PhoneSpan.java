@@ -1,8 +1,6 @@
 package com.sobot.chat.widget.rich;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
@@ -29,7 +27,6 @@ public class PhoneSpan extends ClickableSpan {
             return;
         }
         if (SobotOption.newHyperlinkListener != null) {
-            //如果返回true,拦截;false 不拦截
             boolean isIntercept = SobotOption.newHyperlinkListener.onPhoneClick("tel:" + phone);
             if (isIntercept) {
                 return;

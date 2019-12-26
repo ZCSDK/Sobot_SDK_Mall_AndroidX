@@ -26,6 +26,7 @@ import com.sobot.chat.api.ResultCallBack;
 import com.sobot.chat.api.ZhiChiApi;
 import com.sobot.chat.api.apiUtils.GsonUtil;
 import com.sobot.chat.api.apiUtils.SobotVerControl;
+import com.sobot.chat.api.enumtype.SobotChatAvatarDisplayMode;
 import com.sobot.chat.api.enumtype.SobotChatTitleDisplayMode;
 import com.sobot.chat.api.model.CommonModel;
 import com.sobot.chat.api.model.Information;
@@ -63,8 +64,11 @@ public class ChatUtils {
 
     public static void showThankDialog(final Activity act, Handler handler, final boolean isFinish) {
 
-        ToastUtil.showToast(act.getApplicationContext(), act.getResources().getString(
-                ResourceUtils.getIdByName(act, "string", "sobot_thank_dialog_hint")));
+//        ToastUtil.showToast(act.getApplicationContext(), act.getResources().getString(
+//                ResourceUtils.getIdByName(act, "string", "sobot_thank_dialog_hint")));
+        CustomToast.makeText(act.getApplicationContext(), act.getResources().getString(
+                ResourceUtils.getIdByName(act, "string", "sobot_thank_dialog_hint")), 1000,
+                ResourceUtils.getDrawableId(act.getApplicationContext(), "sobot_iv_login_right")).show();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -98,10 +102,10 @@ public class ChatUtils {
         Intent intent;
         if (Build.VERSION.SDK_INT < 19) {
             intent = new Intent(Intent.ACTION_GET_CONTENT);
-            intent.setType("image/*");
+            intent.setType("video/*;image/*");
         } else {
-            intent = new Intent(Intent.ACTION_PICK);
-            intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            intent = new Intent(Intent.ACTION_PICK,
+                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         }
         try {
             if (childFragment != null) {
@@ -110,7 +114,7 @@ public class ChatUtils {
                 act.startActivityForResult(intent, ZhiChiConstant.REQUEST_CODE_picture);
             }
         } catch (Exception e) {
-            ToastUtil.showToast(act.getApplicationContext(), ResourceUtils.getResString(act, "sobot_not_open_album"));
+            ToastUtil.showToast(act.getApplicationContext(), ResourceUtils.getResString(act,"sobot_not_open_album"));
         }
     }
 
@@ -139,9 +143,10 @@ public class ChatUtils {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            ToastUtil.showToast(act.getApplicationContext(), ResourceUtils.getResString(act, "sobot_not_open_album"));
+            ToastUtil.showToast(act.getApplicationContext(), ResourceUtils.getResString(act,"sobot_not_open_album"));
         }
     }
+
 
     /**
      * activity打开相机
@@ -216,16 +221,16 @@ public class ChatUtils {
             File tmpFile = new File(picturePath);
             if (tmpFile.exists() && tmpFile.isFile()) {
                 sendPicLimitBySize(picturePath, initModel.getCid(),
-                        initModel.getUid(), handler, context, lv_message, messageAdapter);
+                        initModel.getPartnerid(), handler, context, lv_message, messageAdapter);
             }
         } else {
             File file = new File(selectedImage.getPath());
             if (!file.exists()) {
-                ToastUtil.showToast(context, ResourceUtils.getResString(context, "sobot_not_find_pic"));
+                ToastUtil.showToast(context, ResourceUtils.getResString(context,"sobot_not_find_pic"));
                 return;
             }
             sendPicLimitBySize(file.getAbsolutePath(),
-                    initModel.getCid(), initModel.getUid(), handler, context, lv_message, messageAdapter);
+                    initModel.getCid(), initModel.getPartnerid(), handler, context, lv_message, messageAdapter);
         }
     }
 
@@ -262,10 +267,10 @@ public class ChatUtils {
                 sendPicture(context, cid, uid, filePath, handler, id, lv_message,
                         messageAdapter);
             } else {
-                ToastUtil.showToast(context, ResourceUtils.getResString(context, "sobot_file_lt_8M"));
+                ToastUtil.showToast(context, ResourceUtils.getResString(context,"sobot_file_lt_8M"));
             }
         } else {
-            ToastUtil.showToast(context, ResourceUtils.getResString(context, "sobot_pic_type_error"));
+            ToastUtil.showToast(context, ResourceUtils.getResString(context,"sobot_pic_type_error"));
         }
     }
 
@@ -350,22 +355,21 @@ public class ChatUtils {
             initModel, int type) {
         Resources resources = context.getResources();
         if (1 == type) {// 管理员下线
-            return resources.getString(ResourceUtils.getIdByName(context, "string", "sobot_outline_leverByManager"));
+            return initModel.isServiceEndPushFlag() && !TextUtils.isEmpty(initModel.getServiceEndPushMsg()) ? initModel.getServiceEndPushMsg() : "";//ResourceUtils.getResString(context,"sobot_outline_leverByManager");
         } else if (2 == type) { // 被管理员移除结束会话
             return initModel.isServiceEndPushFlag() && !TextUtils.isEmpty(initModel.getServiceEndPushMsg()) ? initModel.getServiceEndPushMsg() : "";
         } else if (3 == type) { // 被加入黑名单
-            return resources.getString(ResourceUtils.getIdByName(context, "string", "sobot_outline_leverByManager"));
+            return ResourceUtils.getResString(context,"sobot_outline_leverByManager");
         } else if (4 == type) { // 超时下线
-            String userOutWord = SharedPreferencesUtil.getStringData(context, ZhiChiConstant.SOBOT_CUSTOMUSEROUTWORD, "");
+            String userOutWord = SharedPreferencesUtil.getStringData(context, ZhiChiConstant.SOBOT_USER_OUT_WORD, "");
             if (!TextUtils.isEmpty(userOutWord)) {
                 return userOutWord;
             } else {
-                return initModel != null ? initModel.getUserOutWord() : resources.getString(ResourceUtils
-                        .getIdByName(context, "string", "sobot_outline_leverByManager"));
+                return initModel != null ? initModel.getUserOutWord() : ResourceUtils.getResString(context,"sobot_outline_leverByManager");
             }
 
         } else if (6 == type) {
-            return resources.getString(ResourceUtils.getIdByName(context, "string", "sobot_outline_openNewWindows"));
+            return ResourceUtils.getResString(context,"sobot_outline_openNewWindows");
         }
         return null;
     }
@@ -374,7 +378,7 @@ public class ChatUtils {
         ZhiChiMessageBase msgBase = new ZhiChiMessageBase();
         msgBase.setSenderType(ZhiChiConstant.message_sender_type_remide_info + "");
         ZhiChiReplyAnswer answer = new ZhiChiReplyAnswer();
-        answer.setMsg(context.getResources().getString(ResourceUtils.getIdByName(context, "string", "sobot_no_read")));
+        answer.setMsg(ResourceUtils.getResString(context, "sobot_no_read"));
         answer.setRemindType(ZhiChiConstant.sobot_remind_type_below_unread);
         msgBase.setAnswer(answer);
         return msgBase;
@@ -389,7 +393,7 @@ public class ChatUtils {
     public static ZhiChiMessageBase getCustomEvaluateMode(ZhiChiPushMessage pushMessage) {
         ZhiChiMessageBase base = new ZhiChiMessageBase();
         base.setT(Calendar.getInstance().getTime().getTime() + "");
-        base.setSenderName(TextUtils.isEmpty(pushMessage.getAname()) ? ResourceUtils.getResString(MyApplication.getInstance(), "sobot_cus_service") : pushMessage.getAname());
+        base.setSenderName(TextUtils.isEmpty(pushMessage.getAname()) ? ResourceUtils.getResString(MyApplication.getInstance(),"sobot_cus_service") : pushMessage.getAname());
         SobotEvaluateModel sobotEvaluateModel = new SobotEvaluateModel();
         sobotEvaluateModel.setIsQuestionFlag(pushMessage.getIsQuestionFlag());
         sobotEvaluateModel.setIsResolved(-1);
@@ -484,7 +488,8 @@ public class ChatUtils {
         if (!TextUtils.isEmpty(announceMsg)) {
             announceMsg = announceMsg.replace("<p>", "")
                     .replace("</p>", "")
-                    .replace("<br/>", "");
+                    .replace("<br/>", "")
+                    .replace("\n", "");
         }
         reply.setMsg(announceMsg);
         reply.setMsgType(ZhiChiConstant.message_type_text + "");
@@ -505,13 +510,13 @@ public class ChatUtils {
         SharedPreferencesUtil.saveStringData(context, "sobot_current_sender_face", TextUtils.isEmpty
                 (info.getFace()) ? "" : info.getFace());
         SharedPreferencesUtil.saveStringData(context, "sobot_current_sender_name", TextUtils.isEmpty
-                (info.getUname()) ? "" : info.getUname());
+                (info.getUser_nick()) ? "" : info.getUser_nick());
         SharedPreferencesUtil.saveStringData(context, "sobot_user_phone", TextUtils.isEmpty
-                (info.getTel()) ? "" : info.getTel());
+                (info.getUser_tels()) ? "" : info.getUser_tels());
         SharedPreferencesUtil.saveStringData(context, "sobot_user_email", TextUtils.isEmpty
-                (info.getEmail()) ? "" : info.getEmail());
+                (info.getUser_emails()) ? "" : info.getUser_emails());
 
-        if (TextUtils.isEmpty(info.getUid())) {
+        if (TextUtils.isEmpty(info.getPartnerid())) {
             info.setEquipmentId(CommonUtils.getPartnerId(context));
         }
     }
@@ -523,10 +528,17 @@ public class ChatUtils {
      * @param info
      * @return
      */
+    /**
+     * 初始化时检查一下传入参数是否发生变化，是否需要重新进行初始化
+     *
+     * @param context
+     * @param info
+     * @return
+     */
     public static boolean checkConfigChange(Context context, String appkey, final Information info) {
         if (!SobotVerControl.isPlatformVer) {
             String last_current_appkey = SharedPreferencesUtil.getStringData(context, ZhiChiConstant.sobot_last_current_appkey, "");
-            if (!last_current_appkey.equals(info.getAppkey())) {
+            if (!last_current_appkey.equals(info.getApp_key())) {
                 SharedPreferencesUtil.removeKey(context, ZhiChiConstant.sobot_last_login_group_id);
                 SobotApi.exitSobotChat(context);
                 return true;
@@ -535,53 +547,57 @@ public class ChatUtils {
         Information lastInfo = (Information) SharedPreferencesUtil.getObject(context,
                 ZhiChiConstant.sobot_last_current_info);
         // appkey，技能组、用户id，客服id，对接机器人编号、接入模式，自定义字段，自定义k固定KEY字段 ，userRemark
-        if (lastInfo == null)
-            return false;
-        //判断上次uid是否跟此次传入的一样
-        if (!TextUtils.isEmpty(lastInfo.getUid()) && !lastInfo.getUid().equals(info.getUid())) {
-            LogUtils.i("uid发生了变化，重新初始化..............");
-            return true;
-        } else if (!TextUtils.isEmpty(lastInfo.getReceptionistId()) && !lastInfo.getReceptionistId().equals(info.getReceptionistId())) {
-            LogUtils.i("转入的指定客服发生了变化，重新初始化..............");
-            return true;
-        } else if (!TextUtils.isEmpty(lastInfo.getRobotCode()) && !lastInfo.getRobotCode().equals(info.getRobotCode())) {
-            LogUtils.i("指定机器人发生变化，重新初始化..............");
-            return true;
-        } else if (!TextUtils.isEmpty(lastInfo.getRemark()) && !lastInfo.getRemark().equals(info.getRemark())) {
-            LogUtils.i("备注发生变化，重新初始化..............");
-            return true;
-        } else if (!TextUtils.isEmpty(lastInfo.getSkillSetId()) && !lastInfo.getSkillSetId().equals(info.getSkillSetId())) {
-            LogUtils.i("技能组发生变化，重新初始化..............");
-            return true;
-        } else if (lastInfo.getInitModeType() != info.getInitModeType()) {
-            LogUtils.i("接入模式发生变化，重新初始化..............");
-            return true;
-        } else if (!lastInfo.getCustomerFields().equals(info.getCustomerFields())) {
-            LogUtils.i("自定义字段发生变化，重新初始化..............");
-            return true;
-        } else {
-            return false;
+        if (lastInfo != null) {
+            //判断上次uid是否跟此次传入的一样
+            if (!TextUtils.isEmpty(lastInfo.getPartnerid()) && !lastInfo.getPartnerid().equals(info.getPartnerid())) {
+                LogUtils.i("uid发生了变化，重新初始化..............");
+                return true;
+            } else if (!TextUtils.isEmpty(lastInfo.getChoose_adminid()) && !lastInfo.getChoose_adminid().equals(info.getChoose_adminid())) {
+                LogUtils.i("转入的指定客服发生了变化，重新初始化..............");
+                return true;
+            } else if (!TextUtils.isEmpty(lastInfo.getRobotCode()) && !lastInfo.getRobotCode().equals(info.getRobotCode())) {
+                LogUtils.i("指定机器人发生变化，重新初始化..............");
+                return true;
+            } else if (!TextUtils.isEmpty(lastInfo.getRemark()) && !lastInfo.getRemark().equals(info.getRemark())) {
+                LogUtils.i("备注发生变化，重新初始化..............");
+                return true;
+            } else if (!TextUtils.isEmpty(lastInfo.getGroupid()) && !lastInfo.getGroupid().equals(info.getGroupid())) {
+                LogUtils.i("技能组发生变化，重新初始化..............");
+                return true;
+            } else if (lastInfo.getService_mode() != info.getService_mode()) {
+                LogUtils.i("接入模式发生变化，重新初始化..............");
+                return true;
+            } else if (!TextUtils.isEmpty(lastInfo.getCustomer_fields()) &&!lastInfo.getCustomer_fields().equals(info.getCustomer_fields())) {
+                LogUtils.i("自定义字段发生变化，重新初始化..............");
+                return true;
+            } else {
+                return false;
+            }
         }
+        return false;
     }
-
-
     /**
      * 打开评价对话框
      *
      * @param context
      * @param isFinish      评价完是否关闭
+     * @param isExitCommit      评价完是否结束会话
      * @param initModel     初始化信息
      * @param current_model 评价对象
      * @param commentType   commentType 评价类型 主动评价1 邀请评价0
      */
-    public static SobotEvaluateDialog showEvaluateDialog(Activity context,
-                                                         boolean isFinish, ZhiChiInitModeBase
-                                                                 initModel, int current_model, int commentType, String customName, int scroe) {
+    public static SobotEvaluateDialog showEvaluateDialog(Activity context, boolean isFinish,boolean isExitCommit, ZhiChiInitModeBase
+            initModel, int current_model, int commentType, String customName, int scroe, int isSolve) {
         if (initModel == null) {
             return null;
         }
+        SobotEvaluateDialog dialog=null;
+        if (ScreenUtils.isFullScreen(context)){
+            dialog =new SobotEvaluateDialog(context, isFinish,isExitCommit, initModel, current_model, commentType, customName, scroe, isSolve, ResourceUtils.getIdByName(context, "style", "sobot_FullScreenDialogStyle"));
+        }else{
+            dialog =new SobotEvaluateDialog(context, isFinish,isExitCommit, initModel, current_model, commentType, customName, scroe, isSolve);
+        }
 
-        SobotEvaluateDialog dialog = new SobotEvaluateDialog(context, isFinish, initModel, current_model, commentType, customName, scroe);
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
         return dialog;
@@ -592,8 +608,7 @@ public class ChatUtils {
      *
      * @param context
      */
-    public static SobotTicketEvaluateDialog showTicketEvaluateDialog(Activity
-                                                                             context, SobotUserTicketEvaluate evaluate) {
+    public static SobotTicketEvaluateDialog showTicketEvaluateDialog(Activity context, SobotUserTicketEvaluate evaluate) {
 
         SobotTicketEvaluateDialog dialog = new SobotTicketEvaluateDialog(context, evaluate);
         dialog.setCanceledOnTouchOutside(true);
@@ -607,13 +622,12 @@ public class ChatUtils {
      * @param context
      * @param initMode 初始化对象
      */
-    public static SobotRobotListDialog showRobotListDialog(Activity context, ZhiChiInitModeBase
-            initMode, SobotRobotListDialog.SobotRobotListListener listener) {
+    public static SobotRobotListDialog showRobotListDialog(Activity context, ZhiChiInitModeBase initMode, SobotRobotListDialog.SobotRobotListListener listener) {
         if (context == null || initMode == null || listener == null) {
             return null;
         }
 
-        SobotRobotListDialog dialog = new SobotRobotListDialog(context, initMode.getUid(), initMode.getCurrentRobotFlag(), listener);
+        SobotRobotListDialog dialog = new SobotRobotListDialog(context, initMode.getPartnerid(), initMode.getRobotid(), listener);
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
         return dialog;
@@ -624,8 +638,7 @@ public class ChatUtils {
      *
      * @return
      */
-    public static String getCurrentCid(ZhiChiInitModeBase initModel, List<String> cids,
-                                       int currentCidPosition) {
+    public static String getCurrentCid(ZhiChiInitModeBase initModel, List<String> cids, int currentCidPosition) {
         if (initModel != null) {
             String currentCid = initModel.getCid();
             if (currentCidPosition > 0) {
@@ -650,9 +663,8 @@ public class ChatUtils {
      * @param companyName
      * @return
      */
-    public static String getLogicTitle(Context context, boolean ignoreLogic, String
-            title, String
-                                               companyName) {
+    public static String getLogicTitle(Context context, boolean ignoreLogic, String title, String
+            companyName) {
         if (ignoreLogic) {
             return title;
         } else {
@@ -686,6 +698,49 @@ public class ChatUtils {
     }
 
     /**
+     * 根据逻辑获取应该显示的头像
+     *
+     * @param context
+     * @param ignoreLogic
+     * @param avatar
+     * @param companyAvatart
+     * @return
+     */
+    public static String getLogicAvatar(Context context, boolean ignoreLogic, String avatar, String
+            companyAvatart) {
+        if (ignoreLogic) {
+            return avatar;
+        } else {
+            int titleDisplayMode = SharedPreferencesUtil.getIntData(context, ZhiChiConstant
+                    .SOBOT_CHAT_AVATAR_DISPLAY_MODE, SobotChatAvatarDisplayMode.Default.getValue());
+            if (SobotChatAvatarDisplayMode.Default.getValue() == titleDisplayMode) {
+                //显示头像
+                return avatar;
+            } else if (SobotChatAvatarDisplayMode.ShowFixedAvatar.getValue() == titleDisplayMode) {
+                //显示固定头像
+                String avatarContent = SharedPreferencesUtil.getStringData(context, ZhiChiConstant
+                        .SOBOT_CHAT_AVATAR_DISPLAY_CONTENT, "");
+                if (!TextUtils.isEmpty(avatarContent)) {
+                    return avatarContent;
+                } else {
+                    //显示头像
+                    return avatar;
+                }
+            } else if (SobotChatAvatarDisplayMode.ShowCompanyAvatar.getValue() == titleDisplayMode) {
+                //显示公司头像
+                String titleContent = companyAvatart;
+                if (!TextUtils.isEmpty(titleContent)) {
+                    return titleContent;
+                } else {
+                    //显示头像
+                    return avatar;
+                }
+            }
+        }
+        return avatar;
+    }
+
+    /**
      * 获取被xx客服接入的提醒对象
      *
      * @param context
@@ -716,8 +771,7 @@ public class ChatUtils {
      * @param content 欢迎语内容
      * @return
      */
-    public static ZhiChiMessageBase getServiceHelloTip(String aname, String aface, String
-            content) {
+    public static ZhiChiMessageBase getServiceHelloTip(String aname, String aface, String content) {
         ZhiChiMessageBase base = new ZhiChiMessageBase();
         base.setT(Calendar.getInstance().getTime().getTime() + "");
         base.setSenderName(TextUtils.isEmpty(aname) ? "" : aname);
@@ -771,8 +825,8 @@ public class ChatUtils {
      * @param current_client_model
      * @return
      */
-    public static boolean isEvaluationCompletedExit(Context context, boolean isComment,
-                                                    int current_client_model) {
+    public static boolean isEvaluationCompletedExit(Context context, boolean isComment, int current_client_model) {
+
         boolean evaluationCompletedExit = SharedPreferencesUtil.getBooleanData
                 (context, ZhiChiConstant.SOBOT_CHAT_EVALUATION_COMPLETED_EXIT, false);
         if (evaluationCompletedExit && isComment && current_client_model == ZhiChiConstant.client_model_customService) {
@@ -852,7 +906,7 @@ public class ChatUtils {
             }
             listener.onSuccess(filePath);
         } else {
-            ToastUtil.showToast(context, ResourceUtils.getResString(context, "sobot_pic_type_error"));
+            ToastUtil.showToast(context, ResourceUtils.getResString(context,"sobot_pic_type_error"));
             listener.onError();
         }
     }
@@ -864,7 +918,7 @@ public class ChatUtils {
         } else {
             File file = new File(selectedImage.getPath());
             if (!file.exists()) {
-                ToastUtil.showToast(context, ResourceUtils.getResString(context, "sobot_not_find_pic"));
+                ToastUtil.showToast(context, ResourceUtils.getResString(context,"sobot_not_find_pic"));
                 return;
             }
             sendPicByFilePath(context, picturePath, listener);
@@ -875,7 +929,6 @@ public class ChatUtils {
         void onSuccess(String filePath);
 
         void onError();
-
     }
 
     /**
@@ -899,8 +952,7 @@ public class ChatUtils {
      * @param initModel
      * @param messageList
      */
-    public static void saveLastMsgInfo(Context context, Information info, String
-            appkey, ZhiChiInitModeBase initModel, List<ZhiChiMessageBase> messageList) {
+    public static void saveLastMsgInfo(Context context, Information info, String appkey, ZhiChiInitModeBase initModel, List<ZhiChiMessageBase> messageList) {
         SobotCache sobotCache = SobotCache.get(context);
 
         SobotMsgCenterModel sobotMsgCenterModel = new SobotMsgCenterModel();
@@ -920,24 +972,25 @@ public class ChatUtils {
                 }
                 String lastMsg = "";
                 if ((ZhiChiConstant.message_sender_type_customer_sendImage + "").equals(tempMsg.getSenderType())) {
-                    lastMsg = ResourceUtils.getResString(context, "sobot_chat_type_pic");
+                    lastMsg = ResourceUtils.getResString(context,"sobot_chat_type_pic");
                 } else if ((ZhiChiConstant.message_sender_type_send_voice + "").equals(tempMsg.getSenderType())) {
-                    lastMsg = ResourceUtils.getResString(context, "sobot_chat_type_voice");
+                    lastMsg = ResourceUtils.getResString(context,"sobot_chat_type_voice");
                 } else if (tempMsg.getAnswer() != null) {
                     if ((ZhiChiConstant.message_type_pic + "").equals(tempMsg.getAnswer().getMsgType())) {
-                        lastMsg = ResourceUtils.getResString(context, "sobot_chat_type_pic");
+                        lastMsg = ResourceUtils.getResString(context,"sobot_chat_type_pic");
                     } else {
-                        if (tempMsg.getAnswer().getMsg() == null) {
-                            if ((ZhiChiConstant.message_type_card + "").equals(tempMsg.getAnswer().getMsgType())) {
-                                lastMsg = ResourceUtils.getResString(context, "sobot_chat_type_goods");
-                            } else if ((ZhiChiConstant.message_type_ordercard + "").equals(tempMsg.getAnswer().getMsgType())) {
-                                lastMsg = ResourceUtils.getResString(context, "sobot_chat_type_card");
-                            } else {
-                                lastMsg = ResourceUtils.getResString(context, "sobot_chat_type_other_msg");
+                        if (tempMsg.getAnswer().getMsg()==null){
+                            if((ZhiChiConstant.message_type_card + "").equals(tempMsg.getAnswer().getMsgType())){
+                                lastMsg = ResourceUtils.getResString(context,"sobot_chat_type_goods");
+                            }else if((ZhiChiConstant.message_type_ordercard + "").equals(tempMsg.getAnswer().getMsgType())){
+                                lastMsg = ResourceUtils.getResString(context,"sobot_chat_type_card");
+                            }else{
+                                lastMsg = ResourceUtils.getResString(context,"sobot_chat_type_other_msg");
                             }
-                        } else {
+                        }else{
                             lastMsg = tempMsg.getAnswer().getMsg();
                         }
+
                     }
                 }
                 sobotMsgCenterModel.setLastMsg(lastMsg);
@@ -945,15 +998,15 @@ public class ChatUtils {
                 break;
             }
         }
-        sobotCache.put(SobotMsgManager.getMsgCenterDataKey(appkey, info.getUid()), sobotMsgCenterModel);
+        sobotCache.put(SobotMsgManager.getMsgCenterDataKey(appkey, info.getPartnerid()), sobotMsgCenterModel);
 
-        ArrayList<String> msgDatas = (ArrayList<String>) sobotCache.getAsObject(SobotMsgManager.getMsgCenterListKey(info.getUid()));
+        ArrayList<String> msgDatas = (ArrayList<String>) sobotCache.getAsObject(SobotMsgManager.getMsgCenterListKey(info.getPartnerid()));
         if (msgDatas == null) {
             msgDatas = new ArrayList<String>();
         }
         if (!msgDatas.contains(appkey)) {
             msgDatas.add(appkey);
-            sobotCache.put(SobotMsgManager.getMsgCenterListKey(info.getUid()), msgDatas);
+            sobotCache.put(SobotMsgManager.getMsgCenterListKey(info.getPartnerid()), msgDatas);
         }
         SharedPreferencesUtil.removeKey(context, ZhiChiConstant.SOBOT_CURRENT_IM_APPID);
         Intent lastMsgIntent = new Intent(ZhiChiConstant.SOBOT_ACTION_UPDATE_LAST_MSG);
@@ -961,9 +1014,7 @@ public class ChatUtils {
         LocalBroadcastManager.getInstance(context).sendBroadcast(lastMsgIntent);
     }
 
-    public static void sendMultiRoundQuestions(Context context, SobotMultiDiaRespInfo
-            multiDiaRespInfo, Map<String, String> interfaceRet, SobotMsgAdapter.SobotMsgCallBack
-                                                       msgCallBack) {
+    public static void sendMultiRoundQuestions(Context context, SobotMultiDiaRespInfo multiDiaRespInfo, Map<String, String> interfaceRet, SobotMsgAdapter.SobotMsgCallBack msgCallBack) {
         if (context != null && multiDiaRespInfo != null && interfaceRet != null) {
             ZhiChiMessageBase msgObj = new ZhiChiMessageBase();
             String content = "{\"interfaceRetList\":[" + GsonUtil.map2Json(interfaceRet) + "]," + "\"template\":" + multiDiaRespInfo.getTemplate() + "}";
@@ -976,8 +1027,7 @@ public class ChatUtils {
         }
     }
 
-    private static String formatQuestionStr(String[]
-                                                    outPutParam, Map<String, String> interfaceRet, SobotMultiDiaRespInfo multiDiaRespInfo) {
+    private static String formatQuestionStr(String[] outPutParam, Map<String, String> interfaceRet, SobotMultiDiaRespInfo multiDiaRespInfo) {
         if (multiDiaRespInfo != null && interfaceRet != null && interfaceRet.size() > 0) {
             Map<String, String> map = new HashMap<>();
             map.put("level", multiDiaRespInfo.getLevel());
@@ -1012,8 +1062,7 @@ public class ChatUtils {
      * @param initModel 初始化参数
      * @return
      */
-    public static ZhiChiMessageBase getQuestionRecommendData(
-            final ZhiChiInitModeBase initModel, final SobotQuestionRecommend data) {
+    public static ZhiChiMessageBase getQuestionRecommendData(final ZhiChiInitModeBase initModel, final SobotQuestionRecommend data) {
         ZhiChiMessageBase robot = new ZhiChiMessageBase();
         robot.setSenderType(ZhiChiConstant.message_sender_type_questionRecommend + "");
         ZhiChiReplyAnswer reply = new ZhiChiReplyAnswer();
@@ -1037,17 +1086,16 @@ public class ChatUtils {
         return data;
     }
 
-    public static void msgLogicalProcess(ZhiChiInitModeBase initModel, SobotMsgAdapter
-            messageAdapter, ZhiChiPushMessage pushMessage) {
+    public static void msgLogicalProcess(ZhiChiInitModeBase initModel, SobotMsgAdapter messageAdapter, ZhiChiPushMessage pushMessage) {
         if (initModel != null && ChatUtils.isNeedWarning(pushMessage.getContent(), initModel.getAccountStatus())) {
-            messageAdapter.justAddData(ChatUtils.getTipByText(ResourceUtils.getResString(MyApplication.getInstance(), "sobot_money_trading_tip")));
+            messageAdapter.justAddData(ChatUtils.getTipByText(ResourceUtils.getResString(MyApplication.getInstance(),"sobot_money_trading_tip")));
         }
     }
 
     private static boolean isNeedWarning(String content, int accountStatus) {
         return !TextUtils.isEmpty(content) && (accountStatus == ZhiChiConstant.SOBOT_ACCOUNTSTATUS_FREE_EDITION
                 || accountStatus == ZhiChiConstant.SOBOT_ACCOUNTSTATUS_TRIAL_EDITION)
-                && content.contains(ResourceUtils.getResString(MyApplication.getInstance(), "sobot_ver_code"));
+                && content.contains(ResourceUtils.getResString(MyApplication.getInstance(),"sobot_ver_code"));
     }
 
     /**
@@ -1057,7 +1105,8 @@ public class ChatUtils {
      */
     public static TextView initAnswerItemTextView(Context context, boolean isHistoryMsg) {
         TextView answer = new TextView(context);
-        answer.setTextSize(16);
+        answer.setTextSize(14);
+        answer.setPadding(0,ScreenUtils.dip2px(context,7),0,ScreenUtils.dip2px(context,7));
         answer.setLineSpacing(2f, 1f);
         // 设置字体的颜色的样式
         int colorId = 0;

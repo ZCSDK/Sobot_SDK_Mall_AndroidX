@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.RelativeLayout;
 
 import com.sobot.chat.application.MyApplication;
@@ -39,11 +40,12 @@ public class SobotPhotoActivity extends Activity implements View.OnLongClickList
 	private SelectPicPopupWindow menuWindow;
 	String imageUrL;
 	Bitmap bitmap;
-	String isRight;
+	boolean isRight;
 	String sdCardPath;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(ResourceUtils.getIdByName(this, "layout",
 				"sobot_photo_activity"));
@@ -52,12 +54,19 @@ public class SobotPhotoActivity extends Activity implements View.OnLongClickList
 				"id", "sobot_big_photo"));
 		sobot_image_view = (GifView2) findViewById(ResourceUtils.getIdByName(
 				this, "id", "sobot_image_view"));
+		sobot_image_view.setIsCanTouch(true);
 		sobot_rl_gif = (RelativeLayout) findViewById(ResourceUtils.getIdByName(
 				this, "id", "sobot_rl_gif"));
 		sobot_rl_gif.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				finish();
+			}
+		});
+		sobot_image_view.setLoadFinishListener(new GifView2.LoadFinishListener() {
+			@Override
+			public void endCallBack(String pathAbsolute) {
+				showView(pathAbsolute);
 			}
 		});
 		initBundleData(savedInstanceState);
@@ -91,10 +100,10 @@ public class SobotPhotoActivity extends Activity implements View.OnLongClickList
 	private void initBundleData(Bundle savedInstanceState) {
 		if(savedInstanceState == null){
 			imageUrL = getIntent().getStringExtra("imageUrL");
-			isRight = getIntent().getStringExtra("isRight");
+			isRight = getIntent().getBooleanExtra("isRight",false);
 		} else {
 			imageUrL = savedInstanceState.getString("imageUrL");
-			isRight = savedInstanceState.getString("isRight");
+			isRight = savedInstanceState.getBoolean("isRight");
 		}
 
 	}
@@ -102,7 +111,7 @@ public class SobotPhotoActivity extends Activity implements View.OnLongClickList
 	void showView(String savePath) {
 		if (!TextUtils.isEmpty(imageUrL)
 				&& (imageUrL.endsWith(".gif") || imageUrL.endsWith(".GIF"))
-				&& TextUtils.isEmpty(isRight)) {
+				&&isRight) {
 			showGif(savePath);
 		} else {
 			if (!TextUtils.isEmpty(imageUrL)
@@ -134,7 +143,7 @@ public class SobotPhotoActivity extends Activity implements View.OnLongClickList
 			in = new FileInputStream(savePath);
 			bitmap = BitmapFactory.decodeFile(savePath);
 //			sobot_image_view.setGifImageType(GifView.GifImageType.COVER);
-			sobot_image_view.setGifImage(in);
+			sobot_image_view.setGifImage(in,imageUrL);
 			int screenWidth = ScreenUtils
 					.getScreenWidth(SobotPhotoActivity.this);
 			int screenHeight = ScreenUtils
@@ -150,12 +159,15 @@ public class SobotPhotoActivity extends Activity implements View.OnLongClickList
 				}
 			} else {
 				if (w > screenWidth) {
+
 					h = (int) (h * (screenWidth*1.0f / w));
-					w = screenWidth;
+                    w = screenWidth;
 				}
 				if (h > screenHeight) {
+
 					w = (int) (w * (screenHeight*1.0f / h));
-					h = screenHeight;
+                    h = screenHeight;
+
 				}
 			}
 			LogUtils.i("bitmap" + w + "*" + h);
@@ -167,23 +179,26 @@ public class SobotPhotoActivity extends Activity implements View.OnLongClickList
 			e.printStackTrace();
 		}
 		sobot_rl_gif.setVisibility(View.VISIBLE);
-		sobot_rl_gif.setOnLongClickListener(new View.OnLongClickListener() {
-			@Override
-			public boolean onLongClick(View v) {
-				if (!TextUtils.isEmpty(sdCardPath) && new File(sdCardPath).exists()){
-					menuWindow = new SelectPicPopupWindow(SobotPhotoActivity.this,sdCardPath,"gif");
-					try {
-						menuWindow.showAtLocation(sobot_rl_gif, Gravity.BOTTOM
-                                | Gravity.CENTER_HORIZONTAL, 0, 0); // 设置layout在PopupWindow中显示的位置
-					} catch (Exception e) {
-						menuWindow = null;
-//						e.printStackTrace();
-					}
-				}
-				return false;
-			}
-		});
+		sobot_rl_gif.setOnLongClickListener(gifLongClickListener);
+		sobot_image_view.setOnLongClickListener(gifLongClickListener);
 	}
+
+	private View.OnLongClickListener gifLongClickListener=new View.OnLongClickListener() {
+		@Override
+		public boolean onLongClick(View v) {
+			if (!TextUtils.isEmpty(sdCardPath) && new File(sdCardPath).exists()){
+				menuWindow = new SelectPicPopupWindow(SobotPhotoActivity.this,sdCardPath,"gif");
+				try {
+					menuWindow.showAtLocation(sobot_rl_gif, Gravity.BOTTOM
+							| Gravity.CENTER_HORIZONTAL, 0, 0); // 设置layout在PopupWindow中显示的位置
+				} catch (Exception e) {
+					menuWindow = null;
+//						e.printStackTrace();
+				}
+			}
+			return false;
+		}
+	};
 
 	public void displayImage(String url, File saveFile, final GifView2 gifView) {
 		// 下载图片
@@ -268,7 +283,7 @@ public class SobotPhotoActivity extends Activity implements View.OnLongClickList
 	protected void onSaveInstanceState(Bundle outState) {
 		//被摧毁前缓存一些数据
 		outState.putString("imageUrL",imageUrL);
-		outState.putString("isRight", isRight);
+		outState.putBoolean("isRight", isRight);
 		super.onSaveInstanceState(outState);
 	}
 }

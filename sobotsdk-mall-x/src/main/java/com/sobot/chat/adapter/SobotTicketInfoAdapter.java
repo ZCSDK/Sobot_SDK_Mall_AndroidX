@@ -1,15 +1,16 @@
 package com.sobot.chat.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
+import android.text.Html;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sobot.chat.adapter.base.SobotBaseAdapter;
 import com.sobot.chat.api.model.SobotUserTicketInfo;
-import com.sobot.chat.utils.HtmlTools;
 import com.sobot.chat.utils.ResourceUtils;
 
 import java.util.List;
@@ -98,7 +99,7 @@ public class SobotTicketInfoAdapter extends SobotBaseAdapter<SobotUserTicketInfo
         private TextView tv_content;
         private TextView tv_code;
         private TextView tv_time;
-        private TextView sobot_tv_new;
+        private ImageView sobot_tv_new;
 
         private int bg1_resId;
         private int bg2_resId;
@@ -116,7 +117,7 @@ public class SobotTicketInfoAdapter extends SobotBaseAdapter<SobotUserTicketInfo
             tv_content = (TextView) view.findViewById(ResourceUtils.getResId(context, "sobot_tv_content"));
             tv_code = (TextView) view.findViewById(ResourceUtils.getResId(context, "sobot_tv_code"));
             tv_time = (TextView) view.findViewById(ResourceUtils.getResId(context, "sobot_tv_time"));
-            sobot_tv_new = (TextView) view.findViewById(ResourceUtils.getResId(context, "sobot_tv_new"));
+            sobot_tv_new = (ImageView) view.findViewById(ResourceUtils.getResId(context, "sobot_tv_new"));
             bg1_resId = ResourceUtils.getDrawableId(context, "sobot_ticket_status_bg3");
             bg2_resId = ResourceUtils.getDrawableId(context, "sobot_ticket_status_bg2");
             bg3_resId = ResourceUtils.getDrawableId(context, "sobot_ticket_status_bg1");
@@ -126,7 +127,7 @@ public class SobotTicketInfoAdapter extends SobotBaseAdapter<SobotUserTicketInfo
         }
 
         void bindData(SobotUserTicketInfo data) {
-            HtmlTools.getInstance(context).setRichText(tv_title, data.getContent(), Color.BLACK);
+            tv_content.setText(TextUtils.isEmpty(data.getContent())?"": Html.fromHtml(data.getContent()));
             if (2 == data.getFlag()) {
                 tv_ticket_status.setText(str2_resId);
                 tv_ticket_status.setBackgroundResource(bg2_resId);

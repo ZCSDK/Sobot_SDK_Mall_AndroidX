@@ -414,7 +414,9 @@ public class StExpandableTextView extends LinearLayout implements View.OnClickLi
 //        setText(mTv.getText().toString());
         mImageView.setSelected(!mCollapsed);
         mImageView.setImageResource(mCollapsed ? mExpandStrResId : mCollapseStrResId);
-        mOtherView.setVisibility(mCollapsed?GONE:VISIBLE);
+        if (mOtherView!=null) {
+            mOtherView.setVisibility(mCollapsed ? GONE : VISIBLE);
+        }
     }
 
     public void setLinkBottomLine(boolean linkBottomLine) {

@@ -62,6 +62,7 @@ public class MyURLSpan extends URLSpan {
                     if (isIntercept) {
                         return;
                     }
+
                 }
                 url = fixUrl(url);
                 // 外部浏览器
@@ -77,7 +78,6 @@ public class MyURLSpan extends URLSpan {
                     return;
                 }
                 if (SobotOption.newHyperlinkListener != null) {
-                    //如果返回true,拦截;false 不拦截
                     boolean isIntercept = SobotOption.newHyperlinkListener.onPhoneClick(url);
                     if (isIntercept) {
                         return;
@@ -94,7 +94,6 @@ public class MyURLSpan extends URLSpan {
                     SobotOption.hyperlinkListener.onUrlClick(url);
                     return;
                 }
-                // 内部浏览器
                 if (SobotOption.newHyperlinkListener != null) {
                     //如果返回true,拦截;false 不拦截
                     boolean isIntercept = SobotOption.newHyperlinkListener.onUrlClick(url);

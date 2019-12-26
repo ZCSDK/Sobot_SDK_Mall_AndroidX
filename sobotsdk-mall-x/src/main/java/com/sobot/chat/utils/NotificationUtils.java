@@ -48,7 +48,7 @@ public class NotificationUtils {
 
         boolean compatFlag = CommonUtils.getTargetSdkVersion(context) >= 26;
         if (Build.VERSION.SDK_INT >= 26 && compatFlag) {
-            String SOBOT_CHANNEL_NAME = context.getResources().getString(ResourceUtils.getIdByName(context, "string", "sobot_notification_name"));//"客服通知";
+            String SOBOT_CHANNEL_NAME = ResourceUtils.getResString(context,"sobot_notification_name");//"客服通知";
             NotificationChannel mChannel = new NotificationChannel(SOBOT_CHANNEL_ID, SOBOT_CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
             manager.createNotificationChannel(mChannel);
             builder.setChannelId(SOBOT_CHANNEL_ID);

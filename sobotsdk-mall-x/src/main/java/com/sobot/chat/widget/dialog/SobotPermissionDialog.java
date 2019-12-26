@@ -33,7 +33,7 @@ public class SobotPermissionDialog extends Dialog implements View.OnClickListene
     private String title;
 
     public SobotPermissionDialog(Activity context, ClickViewListener itemsOnClick) {
-        super(context, ResourceUtils.getIdByName(context, "style", "sobot_back_DialogStyle"));
+        super(context, ResourceUtils.getIdByName(context, "style", "sobot_noAnimDialogStyle"));
         this.viewListenern=itemsOnClick;
         screenHeight = ScreenUtils.getScreenHeight(context);
 
@@ -108,7 +108,7 @@ public class SobotPermissionDialog extends Dialog implements View.OnClickListene
     }
 
     public interface ClickViewListener{
-        void clickRightView(Context context,SobotPermissionDialog dialog);
-        void clickLeftView(Context context,SobotPermissionDialog dialog);
+        void clickRightView(Context context, SobotPermissionDialog dialog);
+        void clickLeftView(Context context, SobotPermissionDialog dialog);
     }
 }

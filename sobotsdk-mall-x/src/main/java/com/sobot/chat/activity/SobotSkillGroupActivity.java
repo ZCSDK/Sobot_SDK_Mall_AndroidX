@@ -5,8 +5,8 @@ import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 
 import com.sobot.chat.activity.base.SobotDialogBaseActivity;
 import com.sobot.chat.adapter.SobotSikllAdapter;
@@ -29,7 +29,7 @@ import java.util.List;
 
 public class SobotSkillGroupActivity extends SobotDialogBaseActivity {
 
-    private Button sobot_btn_cancle;
+    private LinearLayout sobot_btn_cancle;
     private GridView sobot_gv_skill;
     private SobotSikllAdapter sobotSikllAdapter;
     private List<ZhiChiGroupBase> list_skill = new ArrayList<ZhiChiGroupBase>();
@@ -55,37 +55,36 @@ public class SobotSkillGroupActivity extends SobotDialogBaseActivity {
     @Override
     protected void initView() {
         mPressenter = StPostMsgPresenter.newInstance(SobotSkillGroupActivity.this, SobotSkillGroupActivity.this);
-        sobot_btn_cancle = (Button) findViewById(ResourceUtils.getIdByName(
+        sobot_btn_cancle = (LinearLayout) findViewById(ResourceUtils.getIdByName(
                 this, "id", "sobot_btn_cancle"));
         sobot_gv_skill = (GridView) findViewById(ResourceUtils.getIdByName(
                 this, "id", "sobot_gv_skill"));
 
         sobotSikllAdapter = new SobotSikllAdapter(this, list_skill, msgFlag);
         sobot_gv_skill.setAdapter(sobotSikllAdapter);
-
-        sobot_gv_skill
-                .setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView,
-                                            View view, int i, long l) {
-                        if (list_skill != null && list_skill.size() > 0) {
-                            if (!TextUtils.isEmpty(list_skill.get(i).getGroupName())) {
-                                if (list_skill.get(i).isOnline().endsWith("true")) {
-                                    Intent intent = new Intent();
-                                    intent.putExtra("groupIndex", i);
-                                    intent.putExtra("transferType", transferType);
-                                    setResult(ZhiChiConstant.REQUEST_COCE_TO_GRROUP, intent);
-                                    finish();
-                                } else {
-                                    if (msgFlag == ZhiChiConstant.sobot_msg_flag_open) {
-                                        //留言开关开启时才能点击去留言
-                                        startToPostMsgActivty();
-                                    }
-                                }
-                            }
+        sobot_gv_skill.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (list_skill != null && list_skill.size() > 0) {
+                    if ("true".equals(list_skill.get(position).isOnline())) {
+                        if (!TextUtils.isEmpty(list_skill.get(position).getGroupName())) {
+                            Intent intent = new Intent();
+                            intent.putExtra("groupIndex", position);
+                            intent.putExtra("transferType", transferType);
+                            setResult(ZhiChiConstant.REQUEST_COCE_TO_GRROUP, intent);
+                            finish();
+                        }
+                    } else {
+                        if (msgFlag == ZhiChiConstant.sobot_msg_flag_open) {
+                            Intent intent = new Intent();
+                            intent.putExtra("toLeaveMsg", true);
+                            setResult(ZhiChiConstant.REQUEST_COCE_TO_GRROUP, intent);
+                            finish();
                         }
                     }
-                });
+                }
+            }
+        });
 
         sobot_btn_cancle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,9 +138,9 @@ public class SobotSkillGroupActivity extends SobotDialogBaseActivity {
 
                 list_skill = zhiChiGroup.getData();
                 if (list_skill != null && list_skill.size() > 0) {
-                    if (list_skill.size() % 2 != 0) {
-                        list_skill.add(new ZhiChiGroupBase("", ""));// 奇数时，加一个空布局，仅为展示
-                    }
+//                    if (list_skill.size() % 2 != 0) {
+//                        list_skill.add(new ZhiChiGroupBase("", ""));// 奇数时，加一个空布局，仅为展示
+//                    }
                     sobotSikllAdapter = new SobotSikllAdapter(getApplicationContext(), list_skill, msgFlag);
                     sobot_gv_skill.setAdapter(sobotSikllAdapter);
                 }

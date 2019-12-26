@@ -12,6 +12,9 @@ import com.sobot.chat.utils.ResourceUtils;
 
 import java.util.List;
 
+/**
+ * 留言模版适配器
+ */
 public class SobotPostMsgTmpListAdapter extends SobotBaseGvAdapter<SobotPostMsgTemplate> {
 
     public SobotPostMsgTmpListAdapter(Context context, List<SobotPostMsgTemplate> list) {
@@ -31,7 +34,6 @@ public class SobotPostMsgTmpListAdapter extends SobotBaseGvAdapter<SobotPostMsgT
     private static class ViewHolder extends SobotBaseGvAdapter.BaseViewHolder<SobotPostMsgTemplate> {
         private TextView sobot_tv_content;
         private LinearLayout sobot_ll_content;
-        private View sobot_divider_top;
 
         private ViewHolder(Context context, View view) {
             super(context,view);
@@ -39,12 +41,9 @@ public class SobotPostMsgTmpListAdapter extends SobotBaseGvAdapter<SobotPostMsgT
                     .getIdByName(context, "id", "sobot_ll_content"));
             sobot_tv_content = (TextView) view.findViewById(ResourceUtils
                     .getIdByName(context, "id", "sobot_tv_content"));
-            sobot_divider_top = view.findViewById(ResourceUtils
-                    .getIdByName(context, "id", "sobot_divider_top"));
         }
 
         public void bindData(SobotPostMsgTemplate data, int position) {
-            sobot_divider_top.setVisibility(position < 2 ? View.VISIBLE : View.GONE);
             if (data != null && !TextUtils.isEmpty(data.getTemplateName())) {
                 sobot_ll_content.setVisibility(View.VISIBLE);
 //                sobot_ll_content.setSelected(true);

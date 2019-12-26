@@ -19,7 +19,7 @@ public class ReSendDialog extends Dialog {
 	public Button button2;
 	public OnItemClick mOnItemClick = null;
 	public ReSendDialog(Context context) {
-		super(context);
+		super(context, ResourceUtils.getIdByName(context, "style", "sobot_noAnimDialogStyle"));
 		this.content = context;
 	}
 

@@ -59,7 +59,7 @@ public class KeyboardUtil {
         }
         InputMethodManager imm =
                 (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        if(imm != null){
+        if (imm != null) {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
@@ -165,7 +165,7 @@ public class KeyboardUtil {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     public static ViewTreeObserver.OnGlobalLayoutListener attach(final Activity activity,
                                                                  IPanelHeightTarget target,
-                                                                 /* Nullable */
+            /* Nullable */
                                                                  OnKeyboardShowingListener lis) {
         final ViewGroup contentView = (ViewGroup) activity.findViewById(android.R.id.content);
         final boolean isFullScreen = ViewUtil.isFullScreen(activity);
@@ -410,12 +410,14 @@ public class KeyboardUtil {
 
                 }*/
 
-                if (maxOverlayLayoutHeight == 0|| SobotApi.getSwitchMarkStatus(MarkConfig.LANDSCAPE_SCREEN)) {//横屏
+                if (maxOverlayLayoutHeight == 0 || SobotApi.getSwitchMarkStatus(MarkConfig.LANDSCAPE_SCREEN)) {//横屏
                     // non-used.
                     isKeyboardShowing = lastKeyboardShowing;
                 } else {
+
                     isKeyboardShowing = displayHeight < maxOverlayLayoutHeight
                             - getMinKeyboardHeight(getContext());
+
                 }
 
                 maxOverlayLayoutHeight = Math

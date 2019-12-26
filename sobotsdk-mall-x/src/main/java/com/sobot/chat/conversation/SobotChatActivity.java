@@ -35,7 +35,6 @@ public class SobotChatActivity extends SobotBaseActivity {
 
     @Override
     protected void initView() {
-
         if (isFullScreen()){
             chatFSFragment = (SobotChatFSFragment) getSupportFragmentManager()
                     .findFragmentById(getResId("sobot_contentFrame"));
@@ -47,7 +46,6 @@ public class SobotChatActivity extends SobotBaseActivity {
             }
             return;
         }
-
         chatFragment = (SobotChatFragment) getSupportFragmentManager()
                 .findFragmentById(getResId("sobot_contentFrame"));
         if (chatFragment == null) {

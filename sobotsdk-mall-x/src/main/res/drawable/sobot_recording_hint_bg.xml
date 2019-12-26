@@ -3,6 +3,6 @@
 <!-- 在录制语音过程中，手指上滑时所显示布局的背景 -->
     <corners android:radius="5dp" />
 
-    <solid android:color="#99000000" />
+    <solid android:color="#E6566573" />
 
 </shape>

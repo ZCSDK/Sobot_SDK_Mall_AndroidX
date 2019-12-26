@@ -5,6 +5,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import android.util.Log;
+import android.view.ViewGroup;
 
 import com.sobot.chat.fragment.SobotBaseFragment;
 
@@ -47,14 +49,14 @@ public class StViewPagerAdapter extends FragmentStatePagerAdapter {
         return "";
     }
 
-    /*@Override
+    @Override
     public void finishUpdate(ViewGroup container) {
         try {
             super.finishUpdate(container);
         } catch (NullPointerException nullPointerException) {
             Log.d(StViewPagerAdapter.class.getSimpleName(), "Catch the NullPointerException in FragmentPagerAdapter.finishUpdate");
         }
-    }*/
+    }
 
     @Override
     public int getItemPosition(@NonNull Object object) {

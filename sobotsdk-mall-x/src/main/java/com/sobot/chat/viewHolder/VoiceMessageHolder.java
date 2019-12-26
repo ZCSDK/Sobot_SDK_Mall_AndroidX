@@ -55,7 +55,7 @@ public class VoiceMessageHolder extends MessageHolderBase {
     public void bindData(final Context context, final ZhiChiMessageBase message) {
         this.message = message;
         voiceTimeLong.setText(message.getAnswer().getDuration() == null ?
-                "00:00" : (DateUtil.stringToLongMs(message.getAnswer().getDuration()) + "″"));
+                "" : (DateUtil.stringToLongMs(message.getAnswer().getDuration()) + "″"));
 
         applyTextViewUIConfig(voiceTimeLong);
         checkBackground();
@@ -71,13 +71,11 @@ public class VoiceMessageHolder extends MessageHolderBase {
 
         if (isRight) {
             if (message.getSendSuccessState() == ZhiChiConstant.MSG_SEND_STATUS_SUCCESS) {
-                ll_voice_layout.clearAnimation();
                 msgStatus.setVisibility(View.GONE);
                 msgProgressBar.setVisibility(View.GONE);
                 voiceTimeLong.setVisibility(View.VISIBLE);
                 voicePlay.setVisibility(View.VISIBLE);
             } else if (message.getSendSuccessState() == ZhiChiConstant.MSG_SEND_STATUS_ERROR) {
-                ll_voice_layout.clearAnimation();
                 msgStatus.setVisibility(View.VISIBLE);
                 msgProgressBar.setVisibility(View.GONE);
                 voicePlay.setVisibility(View.VISIBLE);
@@ -96,14 +94,12 @@ public class VoiceMessageHolder extends MessageHolderBase {
                 msgStatus.setVisibility(View.GONE);
                 voiceTimeLong.setVisibility(View.GONE);
                 voicePlay.setVisibility(View.GONE);
-                Animation alpha = AnimationUtils.loadAnimation(context, ResourceUtils.getIdByName(context, "anim", "anim_alpha")); // 获取“透明度变化”动画资源
-                ll_voice_layout.startAnimation(alpha);
             }
 
             //根据语音长短设置长度
             long duration = DateUtil.stringToLongMs(message.getAnswer().getDuration());
             duration = duration == 0 ? 1 : duration;
-            int min = ScreenUtils.getScreenWidth((Activity) context) / 6;
+            int min = ScreenUtils.getScreenWidth((Activity) context) / 5;
             int max = ScreenUtils.getScreenWidth((Activity) context) * 3 / 5;
             int step = (int) ((duration < 10) ? duration : (duration / 10 + 9));
             ll_voice_layout.getLayoutParams().width = (step == 0) ? min

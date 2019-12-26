@@ -73,7 +73,7 @@ public class SobotProblemDetailActivity extends SobotBaseHelpCenterActivity impl
     @Override
     protected void initData() {
         ZhiChiApi api = SobotMsgManager.getInstance(getApplicationContext()).getZhiChiApi();
-        api.getHelpDocByDocId(SobotProblemDetailActivity.this, mInfo.getAppkey(), mDoc.getDocId(), new StringResultCallBack<StHelpDocModel>() {
+        api.getHelpDocByDocId(SobotProblemDetailActivity.this, mInfo.getApp_key(), mDoc.getDocId(), new StringResultCallBack<StHelpDocModel>() {
 
             @Override
             public void onSuccess(StHelpDocModel data) {
@@ -96,6 +96,7 @@ public class SobotProblemDetailActivity extends SobotBaseHelpCenterActivity impl
                             "    </head>\n" +
                             "    <body>" + answerDesc + "  </body>\n" +
                             "</html>";
+                    //显示文本内容
                     mWebView.loadData(DEFAULT_STYLE + answerDesc, "text/html; charset=UTF-8", "UTF-8");
                 }
             }
@@ -154,12 +155,11 @@ public class SobotProblemDetailActivity extends SobotBaseHelpCenterActivity impl
             }
 
             @Override
-            // 在点击请求的是链接是才会调用，重写此方法返回true表明点击网页里面的链接还是在当前的webview里跳转，不跳到浏览器那边。这个函数我们可以做很多操作，比如我们读取到某些特殊的URL，于是就可以不打开地址，取消这个操作，进行预先定义的其他操作，这对一个程序是非常必要的。
+            // 在点击请求的是链接是才会调用，重写此方法返回true表明点击网页里面的链接还是在当前的webview里跳转，不跳到浏览器那边。
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-
                 if (SobotOption.hyperlinkListener != null) {
-                     SobotOption.hyperlinkListener.onUrlClick(url);
-                        return true;
+                    SobotOption.hyperlinkListener.onUrlClick(url);
+                    return true;
                 }
                 if (SobotOption.newHyperlinkListener != null) {
                     //如果返回true,拦截;false 不拦截

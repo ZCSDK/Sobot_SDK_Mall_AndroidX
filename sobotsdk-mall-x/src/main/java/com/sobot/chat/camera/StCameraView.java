@@ -20,6 +20,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.VideoView;
 
+import com.sobot.chat.R;
 import com.sobot.chat.camera.listener.StCameraListener;
 import com.sobot.chat.camera.listener.StCaptureListener;
 import com.sobot.chat.camera.listener.StClickListener;
@@ -301,6 +302,7 @@ public class StCameraView extends FrameLayout implements CameraInterface.CameraO
                         setFocusViewWidthAnimation(getWidth()/2,getHeight()/2);
                     }
                 },1000);
+
             }
         }.start();
     }

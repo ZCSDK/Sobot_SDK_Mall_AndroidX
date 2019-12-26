@@ -55,7 +55,7 @@ public final class EmailAddressParsedResult extends ParsedResult {
    * @deprecated use {@link #getTos()}
    */
   @Deprecated
-  public String getEmailAddress() {
+  public String getUser_emailsAddress() {
     return tos == null || tos.length == 0 ? null : tos[0];
   }
 

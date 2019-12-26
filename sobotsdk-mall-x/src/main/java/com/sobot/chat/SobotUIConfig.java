@@ -21,12 +21,17 @@ public class SobotUIConfig {
     public static int sobot_chat_left_textColor = DEFAULT;//聊天界面左边文字字体颜色
     public static int sobot_chat_left_link_textColor = DEFAULT;//聊天界面左边链接文字字体颜色
     public static int sobot_chat_left_bgColor = DEFAULT;//聊天界面左边气泡背景颜色
-    public static int sobot_chat_right_bgColor = DEFAULT;//聊天界面右边气泡背景颜色
+
     public static int sobot_chat_file_bgColor = DEFAULT;//聊天界面文件消息气泡背景颜色
     public static int sobot_chat_right_link_textColor = DEFAULT;//聊天界面右边链接文字字体颜色
-    public static int sobot_chat_right_textColor = DEFAULT;//聊天界面右边文字字体颜色
+
     public static int sobot_chat_bottom_bgColor = DEFAULT;//聊天界面底部布局背景颜色
     public static boolean sobot_webview_title_display = true;//网页跳转页是否显示标题
+
+    //---  聊天消息气泡样式设置 ---
+    public static int sobot_chat_right_bgColor = DEFAULT;//聊天界面右边气泡背景颜色
+    public static int sobot_chat_right_textColor = DEFAULT;//聊天界面右边文字字体颜色
+
 
     /**
      * 更多面板中的菜单配置

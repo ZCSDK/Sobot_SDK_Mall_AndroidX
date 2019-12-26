@@ -110,6 +110,7 @@ public class KPSwitchConflictUtil {
                         }else{
                             panelLayout.setVisibility(View.GONE);
                         }
+
                     }
                     return false;
                 }
@@ -208,9 +209,9 @@ public class KPSwitchConflictUtil {
         }else {
             LogUtils.e(panelLayout.getMeasuredHeight()+"");
 //            if (panelLayout.getMeasuredHeight() > ScreenUtils.getScreenHeight(activity) * 0.6) {//
-            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) panelLayout.getLayoutParams();
-            layoutParams.height= (int) (ScreenUtils.getScreenHeight(activity) * 0.37);
-            panelLayout.setLayoutParams(layoutParams);
+                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) panelLayout.getLayoutParams();
+                layoutParams.height= (int) (ScreenUtils.getScreenHeight(activity) * 0.37);
+                panelLayout.setLayoutParams(layoutParams);
 //            }
             if (activity.getCurrentFocus() != null) {
                 KeyboardUtil.hideKeyboard(activity.getCurrentFocus());

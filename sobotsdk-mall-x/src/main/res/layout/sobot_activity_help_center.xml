@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/sobot_common_bg"
     android:orientation="vertical">
 
     <include layout="@layout/sobot_layout_titlebar1" />
@@ -23,7 +23,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="180dp"
             android:text="@string/sobot_help_center_no_data"
-            android:textColor="#666666"
+            android:textColor="@color/sobot_common_gray"
             android:textSize="16sp" />
 
         <TextView
@@ -32,7 +32,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
             android:text="@string/sobot_help_center_no_data_describe"
-            android:textColor="#999999"
+            android:textColor="@color/sobot_common_gray"
             android:textSize="14sp" />
 
     </LinearLayout>
@@ -45,12 +45,14 @@
         android:cacheColorHint="@android:color/transparent"
         android:fadingEdge="none"
         android:listSelector="@null"
+        android:scrollbars="none"
+        android:padding="12dp"
         android:numColumns="2"
         android:overScrollMode="never"
         android:scrollbarThumbVertical="@drawable/sobot_skill_group_scroll_img"
-        android:scrollbars="vertical"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="0dp"
+        android:verticalSpacing="6dp"
+        android:horizontalSpacing="6dp"
         android:visibility="gone" />
 
     <include layout="@layout/sobot_layout_online_service_btn" />

@@ -20,8 +20,8 @@
             android:layout_width="fill_parent"
             android:layout_height="84dp"
             android:gravity="center"
-            android:textColor="#515a7c"
             android:text="@string/sobot_no_permission_text"
+            android:textColor="#515a7c"
             android:textSize="17sp" />
 
         <View
@@ -42,7 +42,7 @@
                 android:background="@null"
                 android:gravity="center"
                 android:text="@string/sobot_cancel"
-                android:textColor="#4d9dfe"
+                android:textColor="@drawable/sobot_btn_leavemsg_text_color_selector"
                 android:textSize="15sp" />
 
             <View
@@ -58,7 +58,7 @@
                 android:background="@null"
                 android:gravity="center"
                 android:text="@string/sobot_go_setting"
-                android:textColor="#4d9dfe"
+                android:textColor="@drawable/sobot_btn_leavemsg_text_color_selector"
                 android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>

@@ -4,18 +4,12 @@
 <!-- 客户的语音帧动画 -->
     <item
         android:drawable="@drawable/sobot_pop_voice_send_anime_1"
-        android:duration="150"/>
+        android:duration="250"/>
     <item
         android:drawable="@drawable/sobot_pop_voice_send_anime_2"
-        android:duration="150"/>
+        android:duration="250"/>
     <item
         android:drawable="@drawable/sobot_pop_voice_send_anime_3"
-        android:duration="150"/>
-    <item
-        android:drawable="@drawable/sobot_pop_voice_send_anime_4"
-        android:duration="150"/>
-    <item
-        android:drawable="@drawable/sobot_pop_voice_send_anime_5"
-        android:duration="150"/>
+        android:duration="250"/>
 
 </animation-list>

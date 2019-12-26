@@ -15,13 +15,14 @@ import com.sobot.chat.utils.ResourceUtils;
 import com.sobot.chat.utils.ZhiChiConstant;
 import com.sobot.chat.viewHolder.base.MessageHolderBase;
 import com.sobot.chat.widget.RoundProgressBar;
+import com.sobot.chat.widget.image.SobotRCImageView;
 
 /**
  * 图片消息
  * Created by jinxl on 2017/3/17.
  */
 public class ImageMessageHolder extends MessageHolderBase {
-    ImageView image;
+    SobotRCImageView image;
     ImageView pic_send_status;
     public ProgressBar pic_progress;
     public RoundProgressBar sobot_pic_progress_round;
@@ -32,7 +33,7 @@ public class ImageMessageHolder extends MessageHolderBase {
         super(context,convertView);
         isGif = (TextView) convertView.findViewById(ResourceUtils
                 .getIdByName(context, "id", "sobot_pic_isgif"));
-        image = (ImageView) convertView.findViewById(ResourceUtils
+        image = (SobotRCImageView) convertView.findViewById(ResourceUtils
                 .getIdByName(context, "id", "sobot_iv_picture"));
 
         pic_send_status = (ImageView) convertView
@@ -52,7 +53,7 @@ public class ImageMessageHolder extends MessageHolderBase {
         isGif.setVisibility(View.GONE);
         image.setVisibility(View.VISIBLE);
         if(isRight){
-            sobot_pic_progress_round.setVisibility(View.VISIBLE);
+            sobot_pic_progress_round.setVisibility(View.GONE);
             sobot_pic_progress_rl.setVisibility(View.VISIBLE);
             if (ZhiChiConstant.MSG_SEND_STATUS_ERROR == message.getSendSuccessState()) {
                 pic_send_status.setVisibility(View.VISIBLE);
@@ -68,7 +69,7 @@ public class ImageMessageHolder extends MessageHolderBase {
                 sobot_pic_progress_round.setVisibility(View.GONE);
                 sobot_pic_progress_rl.setVisibility(View.GONE);
             } else if (ZhiChiConstant.MSG_SEND_STATUS_LOADING == message.getSendSuccessState()) {
-                pic_progress.setVisibility(View.GONE);
+                pic_progress.setVisibility(View.VISIBLE);
                 pic_send_status.setVisibility(View.GONE);
             } else {
                 pic_send_status.setVisibility(View.GONE);
@@ -78,12 +79,12 @@ public class ImageMessageHolder extends MessageHolderBase {
             }
         }
 
-        String picPath = message.getAnswer().getMsg();
-        if(!TextUtils.isEmpty(picPath) && (picPath.endsWith("gif") || picPath.endsWith("GIF"))){
-            isGif.setVisibility(View.VISIBLE);
-        }else{
-            isGif.setVisibility(View.GONE);
-        }
+//        String picPath = message.getAnswer().getMsg();
+//        if(!TextUtils.isEmpty(picPath) && (picPath.endsWith("gif") || picPath.endsWith("GIF"))){
+//            isGif.setVisibility(View.VISIBLE);
+//        }else{
+//            isGif.setVisibility(View.GONE);
+//        }
         SobotBitmapUtil.display(context, message.getAnswer().getMsg(), image);
         image.setOnClickListener(new ImageClickLisenter(context,message.getAnswer().getMsg(), isRight));
     }

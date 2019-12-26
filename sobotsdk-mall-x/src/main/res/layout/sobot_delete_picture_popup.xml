@@ -34,9 +34,9 @@
             android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:background="@drawable/sobot_item_setting_selector"
-            android:textSize="@dimen/sobot_text_font_normal"
+            android:text="@string/sobot_delete"
             android:textColor="#e64340"
-            android:text="@string/sobot_delete"/>
+            android:textSize="@dimen/sobot_text_font_normal" />
 
         <View
             android:layout_width="match_parent"

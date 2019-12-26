@@ -6,9 +6,13 @@ import android.text.TextUtils;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.sobot.chat.activity.base.SobotBaseActivity;
+import com.sobot.chat.activity.base.SobotDialogBaseActivity;
 import com.sobot.chat.adapter.SobotPostCategoryAdapter;
 import com.sobot.chat.api.model.SobotTypeModel;
 import com.sobot.chat.utils.ResourceUtils;
@@ -18,12 +22,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 留言问题分类 选择
  * Created by Administrator on 2017/7/13.
  */
-public class SobotPostCategoryActivity extends SobotBaseActivity {
+public class SobotPostCategoryActivity extends SobotDialogBaseActivity {
 
     private SobotPostCategoryAdapter categoryAdapter;
     private ListView listView;
+    private LinearLayout sobot_btn_cancle;
+    private TextView sobot_tv_title;
+    private ImageView sobot_btn_back;
 
     private List<SobotTypeModel> types = new ArrayList<>();
     private SparseArray<List<SobotTypeModel>> tmpMap = new SparseArray<>();
@@ -33,35 +41,20 @@ public class SobotPostCategoryActivity extends SobotBaseActivity {
     private String typeId;
 
     @Override
-    protected int getContentViewResId() {
-        return getResLayoutId("sobot_activity_post_category");
+    protected int getRootViewLayoutId() {
+        return ResourceUtils.getResLayoutId(this, "sobot_activity_post_category");
     }
 
-    @Override
-    protected void initBundleData(Bundle savedInstanceState) {
-        types.clear();
-        Intent intent = getIntent();
-        Bundle bundle = intent.getBundleExtra("bundle");
-        ArrayList<SobotTypeModel> typeTemp = (ArrayList<SobotTypeModel>) bundle.getSerializable("types");
-        if (typeTemp != null) {
-            types.addAll(typeTemp);
-        }
-
-        typeName = bundle.getString("typeName");
-        typeId = bundle.getString("typeId");
-        //存贮一级List
-        currentLevel = 1;
-        tmpMap.put(1, types);
-    }
 
     @Override
     protected void initView() {
-        setTitle(getResString("sobot_choice_classification"));
-        showLeftMenu(getResDrawableId("sobot_btn_back_selector"), getResString("sobot_back"), true);
-        listView = (ListView) findViewById(getResId("sobot_activity_post_category_listview"));
-        if (types != null && types.size() != 0) {
-            showDataWithLevel(-1);
-        }
+        sobot_btn_cancle = (LinearLayout) findViewById(ResourceUtils.getIdByName(
+                this, "id", "sobot_btn_cancle"));
+        sobot_tv_title = (TextView) findViewById(ResourceUtils.getIdByName(
+                this, "id", "sobot_tv_title"));
+        sobot_btn_back=(ImageView) findViewById(ResourceUtils.getIdByName(this,"id","sobot_btn_back"));
+        listView = (ListView) findViewById(ResourceUtils.getResId(getBaseContext(), ("sobot_activity_post_category_listview")));
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -83,14 +76,46 @@ public class SobotPostCategoryActivity extends SobotBaseActivity {
                 }
             }
         });
+
+        sobot_btn_cancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        sobot_btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backPressed();
+
+            }
+        });
     }
 
     @Override
     protected void initData() {
+        types.clear();
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra("bundle");
+        ArrayList<SobotTypeModel> typeTemp = (ArrayList<SobotTypeModel>) bundle.getSerializable("types");
+        if (typeTemp != null) {
+            types.addAll(typeTemp);
+        }
+        sobot_tv_title.setText(ResourceUtils.getResString(getBaseContext(), "sobot_choice_classification"));
 
+        typeName = bundle.getString("typeName");
+        typeId = bundle.getString("typeId");
+        //存贮一级List
+        currentLevel = 1;
+        tmpMap.put(1, types);
+        if (types != null && types.size() != 0) {
+            showDataWithLevel(-1);
+        }
+        sobot_btn_back.setVisibility(View.GONE);
     }
 
     private void showDataWithLevel(int position) {
+            sobot_btn_back.setVisibility(currentLevel>1?View.VISIBLE:View.GONE);
         if (position >= 0) {
             tmpMap.put(currentLevel, tmpMap.get(currentLevel - 1).get(position).getItems());
         }
@@ -123,6 +148,12 @@ public class SobotPostCategoryActivity extends SobotBaseActivity {
             finish();
         } else {
             currentLevel--;
+            if (currentLevel==1){
+                sobot_btn_back.setVisibility(View.GONE);
+            }
+            if (currentLevel>1){
+                sobot_btn_back.setVisibility(View.VISIBLE);
+            }
             List<SobotTypeModel> sobotTypeModels = tmpMap.get(currentLevel);
             notifyListData(sobotTypeModels);
         }

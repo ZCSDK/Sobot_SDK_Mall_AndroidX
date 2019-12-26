@@ -63,7 +63,7 @@ public class SobotHelpCenterAdapter extends SobotBaseAdapter<StCategoryModel> {
                     .getResId(context, "sobot_tv_title"));
             sobot_tv_descripe = (TextView) view.findViewById(ResourceUtils
                     .getResId(context, "sobot_tv_descripe"));
-            sobot_bg_default_pic = ResourceUtils.getDrawableId(context, "sobot_bg_default_pic2");
+            sobot_bg_default_pic = ResourceUtils.getDrawableId(context, "sobot_bg_default_pic_img");
         }
 
         public void bindData(int position, StCategoryModel data) {

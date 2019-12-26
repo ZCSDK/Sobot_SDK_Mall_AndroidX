@@ -1,6 +1,7 @@
 package com.sobot.chat.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.ViewGroup;
 
 import com.sobot.chat.adapter.base.SobotBasePagerAdapter;
@@ -24,8 +25,11 @@ public class SobotImageScaleAdapter extends SobotBasePagerAdapter<ZhiChiUploadAp
     public Object instantiateItem(ViewGroup container, int position) {
         PhotoView imageView = new PhotoView(context);
 
-        SobotBitmapUtil.display(context, list.get(position).getFileLocalPath(), imageView);
-
+        if (!TextUtils.isEmpty(list.get(position).getFileLocalPath())) {
+            SobotBitmapUtil.display(context, list.get(position).getFileLocalPath(), imageView);
+        }else{
+            SobotBitmapUtil.display(context, list.get(position).getFileUrl(), imageView);
+        }
         //将ImageView加入到ViewPager中
         container.addView(imageView);
         return imageView;

@@ -25,6 +25,7 @@ public class EmailSpan extends ClickableSpan {
             SobotOption.hyperlinkListener.onEmailClick(email);
             return;
         }
+
         if (SobotOption.newHyperlinkListener != null) {
             //如果返回true,拦截;false 不拦截
             boolean isIntercept = SobotOption.newHyperlinkListener.onEmailClick(email);

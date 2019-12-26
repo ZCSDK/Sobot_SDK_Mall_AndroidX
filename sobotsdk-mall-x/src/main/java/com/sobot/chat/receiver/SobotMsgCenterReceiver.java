@@ -41,7 +41,7 @@ public abstract class SobotMsgCenterReceiver extends BroadcastReceiver {
                 if (datas != null) {
                     for (int i = 0; i < datas.size(); i++) {
                         SobotMsgCenterModel sobotMsgCenterModel = datas.get(i);
-                        if (sobotMsgCenterModel.getInfo() != null && pushMessage.getAppId().equals(sobotMsgCenterModel.getInfo().getAppkey())) {
+                        if (sobotMsgCenterModel.getInfo() != null && pushMessage.getAppId().equals(sobotMsgCenterModel.getInfo().getApp_key())) {
                             sobotMsgCenterModel.setLastDateTime(Calendar.getInstance().getTime().getTime() + "");
                             if (pushMessage.getAnswer() != null) {
                                 sobotMsgCenterModel.setLastMsg(pushMessage.getAnswer().getMsg());
@@ -56,7 +56,7 @@ public abstract class SobotMsgCenterReceiver extends BroadcastReceiver {
             }
         } else if (ZhiChiConstant.SOBOT_ACTION_UPDATE_LAST_MSG.equals(intent.getAction())) {
             SobotMsgCenterModel lastMsg = (SobotMsgCenterModel) intent.getSerializableExtra("lastMsg");
-            if (lastMsg == null || lastMsg.getInfo() == null || TextUtils.isEmpty(lastMsg.getInfo().getAppkey())) {
+            if (lastMsg == null || lastMsg.getInfo() == null || TextUtils.isEmpty(lastMsg.getInfo().getApp_key())) {
                 return;
             }
             onDataChanged(lastMsg);

@@ -5,7 +5,7 @@ package com.sobot.chat.listener;
  */
 public interface HyperlinkListener {
 
-    // 链接的点击事件,
+    // 链接的点击拦截事件
     void onUrlClick(String url);
 
     //邮箱的点击拦截事件
@@ -13,5 +13,4 @@ public interface HyperlinkListener {
 
     //电话的点击拦截事件
     void onPhoneClick(String phone);
-
 }

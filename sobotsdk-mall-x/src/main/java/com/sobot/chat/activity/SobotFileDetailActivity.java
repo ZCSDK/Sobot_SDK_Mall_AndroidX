@@ -106,7 +106,6 @@ public class SobotFileDetailActivity extends SobotBaseActivity implements View.O
             }
             sobot_file_icon.setBackgroundResource(ChatUtils.getFileIcon(getApplicationContext(), mCacheFile.getFileType()));
             sobot_file_name.setText(mCacheFile.getFileName());
-
             if (TextUtils.isEmpty(mCacheFile.getFileSize())){
                 FileSizeUtil.getFileUrlSize(mCacheFile.getUrl(), new FileSizeUtil.CallBack<String>() {
                     @Override
@@ -124,8 +123,6 @@ public class SobotFileDetailActivity extends SobotBaseActivity implements View.O
             }else {
                 sobot_tv_file_size.setText(String.format(getResString("sobot_file_size"), mCacheFile.getFileSize()));
             }
-            sobot_tv_file_size.setText(String.format(getResString("sobot_file_size"), mCacheFile.getFileSize()));
-
             SobotDownload.getInstance().setFolder(SobotPathManager.getInstance().getCacheDir());
 //            LogUtils.i("initFolder:" +SobotPathManager.getInstance().getCacheDir()));
             if (!TextUtils.isEmpty(mCacheFile.getFilePath())) {
@@ -263,4 +260,5 @@ public class SobotFileDetailActivity extends SobotBaseActivity implements View.O
         }
         super.onDestroy();
     }
+
 }

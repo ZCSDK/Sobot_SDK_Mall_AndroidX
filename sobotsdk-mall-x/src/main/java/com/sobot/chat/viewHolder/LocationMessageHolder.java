@@ -14,6 +14,7 @@ import com.sobot.chat.utils.SobotBitmapUtil;
 import com.sobot.chat.utils.StMapOpenHelper;
 import com.sobot.chat.utils.ZhiChiConstant;
 import com.sobot.chat.viewHolder.base.MessageHolderBase;
+import com.sobot.chat.widget.image.SobotRCImageView;
 
 /**
  * 位置消息
@@ -22,7 +23,7 @@ import com.sobot.chat.viewHolder.base.MessageHolderBase;
 public class LocationMessageHolder extends MessageHolderBase implements View.OnClickListener {
     private TextView st_localName;
     private TextView st_localLabel;
-    private ImageView st_snapshot;
+    private SobotRCImageView st_snapshot;
     private ImageView sobot_msgStatus;
     private ProgressBar sobot_msgProgressBar;
     private LinearLayout sobot_msg_container;
@@ -36,8 +37,8 @@ public class LocationMessageHolder extends MessageHolderBase implements View.OnC
         st_localName = (TextView) convertView.findViewById(ResourceUtils.getResId(context, "st_localName"));
         st_localLabel = (TextView) convertView.findViewById(ResourceUtils.getResId(context, "st_localLabel"));
         sobot_msgStatus = (ImageView) convertView.findViewById(ResourceUtils.getResId(context, "sobot_msgStatus"));
-        st_snapshot = (ImageView) convertView.findViewById(ResourceUtils.getResId(context, "st_snapshot"));
-        sobot_msg_container = (LinearLayout) convertView.findViewById(ResourceUtils.getResId(context, "sobot_msg_container"));
+        st_snapshot = (SobotRCImageView) convertView.findViewById(ResourceUtils.getResId(context, "st_snapshot"));
+        sobot_msg_container = (LinearLayout) convertView.findViewById(ResourceUtils.getResId(context, "sobot_ll_hollow_container"));
         sobot_msgProgressBar = (ProgressBar) convertView.findViewById(ResourceUtils.getResId(context, "sobot_msgProgressBar"));
         sobot_msg_container.setOnClickListener(this);
         sobot_bg_default_map = ResourceUtils.getDrawableId(context, "sobot_bg_default_map");
@@ -50,7 +51,7 @@ public class LocationMessageHolder extends MessageHolderBase implements View.OnC
             mLocationData = message.getAnswer().getLocationData();
             st_localName.setText(mLocationData.getLocalName());
             st_localLabel.setText(mLocationData.getLocalLabel());
-            SobotBitmapUtil.display(context, mLocationData.getSnapshot(), st_snapshot,sobot_bg_default_map,sobot_bg_default_map);
+            SobotBitmapUtil.display(context, mLocationData.getSnapshot(), st_snapshot, sobot_bg_default_map, sobot_bg_default_map);
             if (isRight) {
                 refreshUi();
             }
@@ -95,7 +96,7 @@ public class LocationMessageHolder extends MessageHolderBase implements View.OnC
 
         if (v == sobot_msg_container) {
             if (mLocationData != null) {
-                StMapOpenHelper.openMap(mContext,mLocationData);
+                StMapOpenHelper.openMap(mContext, mLocationData);
             }
         }
     }

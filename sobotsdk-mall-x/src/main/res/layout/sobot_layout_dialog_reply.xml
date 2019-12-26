@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:id="@+id/sobot_container"
     android:background="@color/sobot_bg_white"
+    android:gravity="bottom"
     android:orientation="vertical">
 
-    <include layout="@layout/sobot_layout_titlebar1"/>
+    <include layout="@layout/sobot_dialog_title"/>
 
 
         <EditText
@@ -31,8 +32,7 @@
     <LinearLayout
         android:id="@+id/sobot_reply_enclosure_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"

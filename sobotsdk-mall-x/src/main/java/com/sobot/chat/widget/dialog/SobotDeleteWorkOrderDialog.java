@@ -31,6 +31,16 @@ public class SobotDeleteWorkOrderDialog extends Dialog {
     private final int screenHeight;
     private String title;
 
+    private int position;
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
     public SobotDeleteWorkOrderDialog(Activity context, String title, View.OnClickListener itemsOnClick) {
         super(context, ResourceUtils.getIdByName(context, "style", "sobot_clearHistoryDialogStyle"));
         this.itemsOnClick = itemsOnClick;

@@ -27,7 +27,6 @@
             android:textSize="12sp"
             android:visibility="gone"
             tools:background="@drawable/sobot_message_bubble_1"
-            tools:text="3"
             tools:visibility="visible" />
     </RelativeLayout>
 
@@ -42,8 +41,7 @@
         <TextView
             android:id="@+id/sobot_tv_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="标题" />
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/sobot_tv_content"
@@ -52,7 +50,7 @@
             android:layout_alignParentBottom="true"
             android:ellipsize="end"
             android:lines="1"
-            android:maxLines="1"/>
+            android:maxLines="1" />
     </LinearLayout>
 
     <TextView
@@ -60,6 +58,5 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginRight="10dp"
-        android:gravity="center"
-        tools:text="8月3日" />
+        android:gravity="center" />
 </LinearLayout>

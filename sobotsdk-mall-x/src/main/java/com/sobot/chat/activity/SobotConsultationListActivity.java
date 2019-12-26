@@ -142,8 +142,8 @@ public class SobotConsultationListActivity extends SobotBaseActivity implements 
                 SobotMsgCenterModel sobotMsgCenterModel = datas.get(position);
                 Information info = sobotMsgCenterModel.getInfo();
                 if (info != null) {
-                    info.setUid(currentUid);
-                    if (SobotOption.sobotConversationListCallback != null && !TextUtils.isEmpty(sobotMsgCenterModel.getAppkey())) {
+                    info.setPartnerid(currentUid);
+                    if (SobotOption.sobotConversationListCallback != null && !TextUtils.isEmpty(sobotMsgCenterModel.getApp_key())) {
                         SobotOption.sobotConversationListCallback.onConversationInit(getApplicationContext(), info);
                         return;
                     }

@@ -48,6 +48,5 @@
     <dimen name="sobot_DIMEN_481PX">220dp</dimen>
     <dimen name="sobot_DIMEN_100PX">90dp</dimen>
 
-    <dimen name="sobot_text_title">18sp</dimen>
-    <dimen name="sobot_pic_img_width">50dp</dimen>
+    <dimen name="sobot_text_title">17sp</dimen>
 </resources>

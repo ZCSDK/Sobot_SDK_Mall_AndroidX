@@ -5,13 +5,15 @@
     android:layout_height="wrap_content"
     android:background="@android:color/white"
     android:clickable="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:sobot_mhv_HeightRatio="0.7"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="49dp"
+        android:layout_height="60dp"
         android:layout_gravity="top"
-        android:background="@drawable/sobot_grey_underline_selector">
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,25 +28,31 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/sobot_please_comment"
-                android:textColor="#000000"
-                android:textSize="15sp"
+                android:textColor="@color/sobot_color_title_bar_title"
+                android:textSize="17sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/sobot_negativeButton"
             android:layout_width="60dp"
+            android:layout_alignParentRight="true"
             android:layout_height="match_parent">
 
             <TextView
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="25dp"
                 android:background="@drawable/sobot_icon_evaluation_cancel" />
         </LinearLayout>
 
     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height_0_4_dp"
+        android:background="@color/sobot_line_1dp"
+        />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -91,14 +99,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp">
+                >
 
                 <EditText
                     android:id="@+id/sobot_add_content"
                     android:layout_width="315dp"
-                    android:layout_height="60dp"
+                    android:layout_height="80dp"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/sobot_evaluate_btn_nomal"
+                    android:background="@drawable/sobot_f2f5f7_corners_6dpl"
                     android:enabled="true"
                     android:gravity="top"
                     android:hint="@string/sobot_edittext_hint"
@@ -117,13 +125,19 @@
     <Button
         android:id="@+id/sobot_close_now"
         android:layout_width="match_parent"
-        android:layout_height="49dp"
+        android:layout_height="44dp"
         android:layout_gravity="bottom"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:stateListAnimator="@null"
+        android:background="@drawable/sobot_evaluate_commit_selector"
         android:gravity="center"
-        android:background="@drawable/sobot_text_button_selector"
+        android:textStyle="bold"
         android:singleLine="true"
         android:text="@string/sobot_btn_submit_text"
         android:textColor="@drawable/sobot_text_button_color_selector"
-        android:textSize="15sp" />
+        android:textSize="17sp" />
 
 </com.sobot.chat.widget.SobotMHLinearLayout>

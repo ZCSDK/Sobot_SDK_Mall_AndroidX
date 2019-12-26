@@ -143,7 +143,7 @@ public class SobotSessionServer extends Service {
                         return;
                     }
                     info = (Information) extras.getSerializable("info");
-                    config = SobotMsgManager.getInstance(getApplicationContext()).getConfig(info.getAppkey());
+                    config = SobotMsgManager.getInstance(getApplicationContext()).getConfig(info.getApp_key());
                     if (config.getInitModel() != null) {
                         if (config.customerState == CustomerState.Online) {
                             startTimeTask();
@@ -219,7 +219,7 @@ public class SobotSessionServer extends Service {
                     String notificationContent = content;
                     if (msgType == ZhiChiConstant.message_type_textAndPic || msgType ==
                             ZhiChiConstant.message_type_textAndText) {
-                        content = ResourceUtils.getResString(this, "sobot_chat_type_rich_text");;
+                        content = ResourceUtils.getResString(this, "sobot_chat_type_rich_text");
                         notificationContent = ResourceUtils.getResString(this, "sobot_receive_new_message");
                     } else if (msgType == ZhiChiConstant.message_type_pic) {
                         content = ResourceUtils.getResString(this, "sobot_chat_type_pic");
@@ -241,14 +241,14 @@ public class SobotSessionServer extends Service {
                 createCustomerQueue(pushMessage.getAppId(), pushMessage.getCount(), pushMessage.getQueueDoc());
             }
         } else if (ZhiChiConstant.push_message_outLine == pushMessage.getType()) {// 用户被下线
-            // 发送用户被下线的广播
-            SobotMsgManager.getInstance(getApplication()).clearAllConfig();
-            CommonUtils.sendLocalBroadcast(getApplicationContext(), new Intent(Const.SOBOT_CHAT_USER_OUTLINE));
-            showNotification(ResourceUtils.getResString(this, "sobot_dialogue_finish"), pushMessage);
             if (SobotOption.sobotChatStatusListener != null) {
                 //修改聊天状态为离线状态
                 SobotOption.sobotChatStatusListener.onChatStatusListener(SobotChatStatusMode.ZCServerConnectOffline);
             }
+            // 发送用户被下线的广播
+            SobotMsgManager.getInstance(getApplication()).clearAllConfig();
+            CommonUtils.sendLocalBroadcast(getApplicationContext(), new Intent(Const.SOBOT_CHAT_USER_OUTLINE));
+            showNotification(ResourceUtils.getResString(this, "sobot_dialogue_finish"), pushMessage);
         } else if (ZhiChiConstant.push_message_transfer == pushMessage.getType()) {
             if (config.getInitModel() != null) {
                 LogUtils.i("用户被转接--->" + pushMessage.getName());
@@ -365,7 +365,7 @@ public class SobotSessionServer extends Service {
 
         //显示人工欢迎语
         if (initModel.isAdminHelloWordFlag()) {
-            String adminHolloWord = SharedPreferencesUtil.getStringData(getApplicationContext(), ZhiChiConstant.SOBOT_CUSTOMADMINHELLOWORD, "");
+            String adminHolloWord = SharedPreferencesUtil.getStringData(getApplicationContext(), ZhiChiConstant.SOBOT_ADMIN_HELLO_WORD, "");
             if (!TextUtils.isEmpty(adminHolloWord)) {
                 config.addMessage(ChatUtils.getServiceHelloTip(name, face, adminHolloWord));
             } else {

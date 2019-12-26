@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:clickable="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ddd" >
+    android:background="@color/sobot_white"
+    android:clickable="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#ddd" >
+        android:layout_height="match_parent">
 
         <ProgressBar
             android:id="@+id/sobot_image_view"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_centerInParent="true"
-            android:indeterminateDrawable="@drawable/sobot_progressbar_circle_loading"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:indeterminateDrawable="@drawable/sobot_progressbar_circle_loading" />
 
         <!-- 显示加载文字的动画 -->
 

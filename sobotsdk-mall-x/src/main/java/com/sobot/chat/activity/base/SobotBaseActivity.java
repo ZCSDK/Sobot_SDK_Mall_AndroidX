@@ -35,7 +35,9 @@ import com.sobot.chat.utils.CommonUtils;
 import com.sobot.chat.utils.ResourceUtils;
 import com.sobot.chat.utils.ScreenUtils;
 import com.sobot.chat.utils.SharedPreferencesUtil;
+import com.sobot.chat.utils.ToastUtil;
 import com.sobot.chat.utils.ZhiChiConstant;
+import com.sobot.chat.widget.image.SobotRCImageView;
 import com.sobot.chat.widget.statusbar.StatusBarCompat;
 
 import java.io.File;
@@ -63,7 +65,9 @@ public abstract class SobotBaseActivity extends FragmentActivity {
         }else{
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);//横屏
         }
+
         setContentView(getContentViewResId());
+
         int sobot_status_bar_color = getStatusBarColor();
         if (sobot_status_bar_color != 0) {
             try {
@@ -174,9 +178,14 @@ public abstract class SobotBaseActivity extends FragmentActivity {
         return findViewById(getResId("sobot_tv_right"));
     }
 
+    protected SobotRCImageView getAvatarMenu() {
+        return findViewById(getResId("sobot_avatar_iv"));
+    }
+
     protected View getTitleView() {
         return findViewById(getResId("sobot_text_title"));
     }
+
 
     /**
      * @param resourceId
@@ -281,11 +290,13 @@ public abstract class SobotBaseActivity extends FragmentActivity {
     }
 
     public void setTitle(int title) {
+        getAvatarMenu().setVisibility(View.GONE);
         View tmpMenu = getTitleView();
         if (tmpMenu == null || !(tmpMenu instanceof TextView)) {
             return;
         }
         TextView tvTitle = (TextView) tmpMenu;
+        tvTitle.setVisibility(View.VISIBLE);
         tvTitle.setText(title);
     }
 
@@ -438,8 +449,8 @@ public abstract class SobotBaseActivity extends FragmentActivity {
      */
     public void selectPicFromCamera() {
         if (!CommonUtils.isExitsSdcard()) {
-            Toast.makeText(getApplicationContext(), getResString("sobot_sdcard_does_not_exist"),
-                    Toast.LENGTH_SHORT).show();
+            ToastUtil.showCustomToast(getApplicationContext(), getResString("sobot_sdcard_does_not_exist"),
+                    Toast.LENGTH_SHORT);
             return;
         }
 
@@ -510,6 +521,7 @@ public abstract class SobotBaseActivity extends FragmentActivity {
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
+
 //        if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){//横屏
 //            SobotApi.setSwitchMarkStatus(MarkConfig.LANDSCAPE_SCREEN,true);
 //        }else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){//竖屏

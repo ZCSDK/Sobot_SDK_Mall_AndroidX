@@ -10,10 +10,10 @@ import android.widget.TextView;
 
 import com.sobot.chat.activity.WebViewActivity;
 import com.sobot.chat.api.model.ZhiChiMessageBase;
-import com.sobot.chat.utils.SobotBitmapUtil;
 import com.sobot.chat.utils.CommonUtils;
 import com.sobot.chat.utils.LogUtils;
 import com.sobot.chat.utils.ResourceUtils;
+import com.sobot.chat.utils.SobotBitmapUtil;
 import com.sobot.chat.utils.SobotOption;
 import com.sobot.chat.viewHolder.base.MessageHolderBase;
 
@@ -27,6 +27,7 @@ public class ConsultMessageHolder extends MessageHolderBase implements View.OnCl
     private Button btn_sendBtn;
     private View sobot_container;
     private TextView tv_lable;
+    private TextView tv_des;
     private int defaultPicResId;
     private ZhiChiMessageBase mData;
 
@@ -34,10 +35,10 @@ public class ConsultMessageHolder extends MessageHolderBase implements View.OnCl
         super(context, convertView);
         btn_sendBtn = (Button) convertView.findViewById(ResourceUtils.getResId(context, "sobot_goods_sendBtn"));
         sobot_container = convertView.findViewById(ResourceUtils.getResId(context, "sobot_container"));
-
         iv_pic = (ImageView) convertView.findViewById(ResourceUtils.getResId(context, "sobot_goods_pic"));
         tv_title = (TextView) convertView.findViewById(ResourceUtils.getResId(context, "sobot_goods_title"));
         tv_lable = (TextView) convertView.findViewById(ResourceUtils.getResId(context, "sobot_goods_label"));
+        tv_des = (TextView) convertView.findViewById(ResourceUtils.getResId(context, "sobot_goods_des"));
         defaultPicResId = ResourceUtils.getDrawableId(context, "sobot_icon_consulting_default_pic");
         sobot_container.setOnClickListener(this);
     }
@@ -52,13 +53,17 @@ public class ConsultMessageHolder extends MessageHolderBase implements View.OnCl
         String describe = message.getReceiverFace();
         if (!TextUtils.isEmpty(picurl)) {
             iv_pic.setVisibility(View.VISIBLE);
+            tv_des.setMaxLines(1);
+            tv_des.setEllipsize(TextUtils.TruncateAt.END);
             SobotBitmapUtil.display(context, CommonUtils.encode(picurl), iv_pic, defaultPicResId, defaultPicResId);
         } else {
             iv_pic.setVisibility(View.GONE);
             iv_pic.setImageResource(defaultPicResId);
         }
 
+        tv_des.setText(describe);
         tv_title.setText(title);
+
         if (!TextUtils.isEmpty(lable)) {
             tv_lable.setVisibility(View.VISIBLE);
             tv_lable.setText(lable);
@@ -86,9 +91,8 @@ public class ConsultMessageHolder extends MessageHolderBase implements View.OnCl
         if (v == sobot_container && mData != null && !TextUtils.isEmpty(mData.getUrl())) {
             if (SobotOption.hyperlinkListener != null) {
                 SobotOption.hyperlinkListener.onUrlClick(mData.getUrl());
-                    return;
+                return;
             }
-
             if (SobotOption.newHyperlinkListener != null) {
                 //如果返回true,拦截;false 不拦截
                 boolean isIntercept = SobotOption.newHyperlinkListener.onUrlClick(mData.getUrl());

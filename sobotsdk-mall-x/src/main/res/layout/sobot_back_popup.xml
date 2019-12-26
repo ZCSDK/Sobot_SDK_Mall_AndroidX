@@ -19,9 +19,9 @@
             android:layout_width="fill_parent"
             android:layout_height="84dp"
             android:gravity="center"
-            android:textColor="#515a7c"
             android:padding="10dp"
             android:text="@string/sobot_will_end_conversation"
+            android:textColor="#515a7c"
             android:textSize="17sp" />
 
         <View
@@ -43,7 +43,7 @@
                 android:padding="5dp"
                 android:gravity="center"
                 android:text="@string/sobot_cancle_conversation"
-                android:textColor="#4d9dfe"
+                android:textColor="@color/sobot_color"
                 android:textSize="15sp" />
 
             <View
@@ -60,7 +60,7 @@
                 android:padding="5dp"
                 android:gravity="center"
                 android:text="@string/sobot_temporary_leave"
-                android:textColor="#4d9dfe"
+                android:textColor="@color/sobot_color"
                 android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>

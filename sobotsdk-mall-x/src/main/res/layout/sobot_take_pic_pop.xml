@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
     android:background="@null"
-    android:orientation="vertical" >
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/pop_layout"
@@ -13,7 +13,7 @@
         android:layout_alignParentBottom="true"
         android:background="@android:color/white"
         android:gravity="center_horizontal"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/btn_take_photo"
@@ -21,7 +21,7 @@
             android:layout_height="50dp"
             android:background="@drawable/sobot_item_setting_selector"
             android:text="@string/sobot_attach_take_pic"
-            android:textSize="@dimen/sobot_text_font_normal"/>
+            android:textSize="@dimen/sobot_text_font_normal" />
 
         <View
             android:layout_width="match_parent"
@@ -33,8 +33,8 @@
             android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:background="@drawable/sobot_item_setting_selector"
-            android:textSize="@dimen/sobot_text_font_normal"
-            android:text="@string/sobot_choice_form_picture"/>
+            android:text="@string/sobot_choice_form_picture"
+            android:textSize="@dimen/sobot_text_font_normal" />
 
         <View
             android:layout_width="match_parent"
@@ -47,8 +47,9 @@
             android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:background="@drawable/sobot_item_setting_selector"
-            android:textSize="@dimen/sobot_text_font_normal"
-            android:text="@string/sobot_choice_form_vedio"/>
+            android:text="@string/sobot_choice_form_vedio"
+            android:textSize="@dimen/sobot_text_font_normal" />
+
 
         <View
             android:layout_width="match_parent"
@@ -60,8 +61,8 @@
             android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:background="@drawable/sobot_item_setting_selector"
-            android:textSize="@dimen/sobot_text_font_normal"
-            android:text="@string/sobot_btn_cancle"/>
+            android:text="@string/sobot_btn_cancle"
+            android:textSize="@dimen/sobot_text_font_normal" />
     </LinearLayout>
 
 </RelativeLayout>

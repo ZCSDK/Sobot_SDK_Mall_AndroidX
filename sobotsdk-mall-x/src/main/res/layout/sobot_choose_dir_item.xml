@@ -37,8 +37,7 @@
             android:maxLines="1"
             android:singleLine="true"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/sobot_text_font_small"
-            tools:text="Directory Name" />
+            android:textSize="@dimen/sobot_text_font_small" />
 
     </LinearLayout>
 
@@ -49,7 +48,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/line_height_0_4_dp"
             android:layout_marginLeft="60dp"
             android:background="#EFF3FA" />
     </LinearLayout>

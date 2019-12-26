@@ -3,6 +3,7 @@ package com.sobot.chat.viewHolder.base;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
 import android.text.TextUtils;
 import android.view.Display;
 import android.view.View;
@@ -14,14 +15,14 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.sobot.chat.R;
 import com.sobot.chat.SobotUIConfig;
 import com.sobot.chat.activity.SobotPhotoActivity;
 import com.sobot.chat.adapter.SobotMsgAdapter;
 import com.sobot.chat.api.model.ZhiChiMessageBase;
-import com.sobot.chat.utils.ScreenUtils;
-import com.sobot.chat.utils.SobotBitmapUtil;
-import com.sobot.chat.utils.CommonUtils;
+import com.sobot.chat.listener.NoDoubleClickListener;
 import com.sobot.chat.utils.ResourceUtils;
+import com.sobot.chat.utils.ScreenUtils;
 import com.sobot.chat.utils.ToastUtil;
 import com.sobot.chat.widget.ReSendDialog;
 import com.sobot.chat.widget.SobotImageView;
@@ -31,6 +32,8 @@ import com.sobot.chat.widget.SobotImageView;
  * Created by jinxl on 2017/3/17.
  */
 public abstract class MessageHolderBase {
+
+    public ZhiChiMessageBase message;//消息体
     protected Context mContext;
     protected boolean isRight = false;
     protected SobotMsgAdapter.SobotMsgCallBack msgCallBack;
@@ -43,10 +46,23 @@ public abstract class MessageHolderBase {
     protected ImageView msgStatus;// 消息发送的状态
     protected ProgressBar msgProgressBar; // 重新发送的进度条的信信息；
     protected View sobot_ll_content;
-    protected RelativeLayout sobot_ll_file_container;//文件类型的气泡
+    protected RelativeLayout sobot_rl_hollow_container;//文件类型的气泡
+    protected LinearLayout sobot_ll_hollow_container;//文件类型的气泡
     protected int sobot_chat_file_bgColor;//文件类型的气泡默认颜色
 
+
+    protected RelativeLayout rightEmptyRL;//左侧消息右边的空白区域
+    protected LinearLayout sobot_ll_likeBtn;
+    protected LinearLayout sobot_ll_dislikeBtn;
+    protected TextView sobot_tv_likeBtn;//机器人评价 顶 的按钮
+    protected TextView sobot_tv_dislikeBtn;//机器人评价 踩 的按钮
+
+    private TextView msgContentTV; // 聊天的消息内容
+
+    protected View mItemView;
+
     public MessageHolderBase(Context context, View convertView) {
+        mItemView = convertView;
         mContext = context;
         reminde_time_Text = (TextView) convertView.findViewById(ResourceUtils.getIdByName(context, "id", "sobot_reminde_time_Text"));
         imgHead = (SobotImageView) convertView.findViewById(ResourceUtils.getIdByName(context, "id", "sobot_imgHead"));
@@ -56,7 +72,16 @@ public abstract class MessageHolderBase {
         // 消息的状态
         msgStatus = (ImageView) convertView.findViewById(ResourceUtils.getIdByName(context, "id", "sobot_msgStatus"));
         sobot_ll_content = convertView.findViewById(ResourceUtils.getIdByName(context, "id", "sobot_ll_content"));
-        sobot_ll_file_container = (RelativeLayout) convertView.findViewById(ResourceUtils.getIdByName(context, "id", "sobot_ll_file_container"));
+        sobot_rl_hollow_container = (RelativeLayout) convertView.findViewById(ResourceUtils.getIdByName(context, "id", "sobot_rl_hollow_container"));
+        sobot_ll_hollow_container = (LinearLayout) convertView.findViewById(ResourceUtils.getIdByName(context, "id", "sobot_ll_hollow_container"));
+
+        rightEmptyRL = (RelativeLayout) convertView.findViewById(ResourceUtils.getIdByName(context, "id", "sobot_right_empty_rl"));
+        sobot_ll_likeBtn = (LinearLayout) convertView.findViewById(ResourceUtils.getIdByName(context, "id", "sobot_ll_likeBtn"));
+        sobot_ll_dislikeBtn = (LinearLayout) convertView.findViewById(ResourceUtils.getIdByName(context, "id", "sobot_ll_dislikeBtn"));
+        sobot_tv_likeBtn = (TextView) convertView.findViewById(ResourceUtils.getIdByName(context, "id", "sobot_tv_likeBtn"));
+        sobot_tv_dislikeBtn = (TextView) convertView.findViewById(ResourceUtils.getIdByName(context, "id", "sobot_tv_dislikeBtn"));
+        msgContentTV = (TextView) convertView.findViewById(ResourceUtils.getIdByName(context, "id", "sobot_msg"));
+
         sobot_chat_file_bgColor = ResourceUtils.getIdByName(mContext, "color", "sobot_chat_file_bgColor");
         applyCustomHeadUI();
     }
@@ -77,20 +102,20 @@ public abstract class MessageHolderBase {
             case SobotMsgAdapter.MSG_TYPE_VIDEO_R:
             case SobotMsgAdapter.MSG_TYPE_LOCATION_R:
             case SobotMsgAdapter.MSG_TYPE_CARD_R:
+            case SobotMsgAdapter.MSG_TYPE_ROBOT_ORDERCARD_R:
             case SobotMsgAdapter.MSG_TYPE_AUDIO_R:
             case SobotMsgAdapter.MSG_TYPE_MULTI_ROUND_R:
-            case SobotMsgAdapter.MSG_TYPE_ROBOT_ORDERCARD_R:
                 this.isRight = true;
-                int defId = ResourceUtils.getIdByName(context, "drawable", "sobot_chatting_default_head");
-                imgHead.setVisibility(View.VISIBLE);
-                if (TextUtils.isEmpty(senderface)) {
-                    SobotBitmapUtil.displayRound(context, defId, imgHead, defId);
-                } else {
-                    SobotBitmapUtil.displayRound(context, CommonUtils.encode(senderface), imgHead, defId);
-                }
+                //  int defId = ResourceUtils.getIdByName(context, "drawable", "sobot_chatting_default_head");
+                //  imgHead.setVisibility(View.VISIBLE);
+                //  if (TextUtils.isEmpty(senderface)) {
+                //     SobotBitmapUtil.displayRound(context, defId, imgHead, defId);
+                //  } else {
+                //      SobotBitmapUtil.displayRound(context, CommonUtils.encode(senderface), imgHead, defId);
+                // }
 
-                name.setVisibility(TextUtils.isEmpty(sendername) ? View.GONE : View.VISIBLE);
-                name.setText(sendername);
+                // name.setVisibility(TextUtils.isEmpty(sendername) ? View.GONE : View.VISIBLE);
+                // name.setText(sendername);
                 break;
             case SobotMsgAdapter.MSG_TYPE_TXT_L:
             case SobotMsgAdapter.MSG_TYPE_FILE_L:
@@ -105,22 +130,18 @@ public abstract class MessageHolderBase {
             case SobotMsgAdapter.MSG_TYPE_ROBOT_ANSWER_ITEMS:
             case SobotMsgAdapter.MSG_TYPE_ROBOT_QUESTION_RECOMMEND:
             case SobotMsgAdapter.MSG_TYPE_ROBOT_KEYWORD_ITEMS:
-            case SobotMsgAdapter.MSG_TYPE_CARD_L:
-            case SobotMsgAdapter.MSG_TYPE_ROBOT_ORDERCARD_L:
                 this.isRight = false;
-                //昵称、头像显示
-                name.setVisibility(TextUtils.isEmpty(message.getSenderName()) ? View.GONE : View.VISIBLE);
-                name.setText(message.getSenderName());
-                SobotBitmapUtil.displayRound(context, CommonUtils.encode(message.getSenderFace()),
-                        imgHead, ResourceUtils.getIdByName(context, "drawable", "sobot_avatar_robot"));
+                //  昵称、头像显示
+                //  name.setVisibility(TextUtils.isEmpty(message.getSenderName()) ? View.GONE : View.VISIBLE);
+                //  name.setText(message.getSenderName());
+                //  SobotBitmapUtil.displayRound(context, CommonUtils.encode(message.getSenderFace()),
+                //         imgHead, ResourceUtils.getIdByName(context, "drawable", "sobot_avatar_robot"));
                 break;
             default:
                 break;
         }
     }
 
-    public void refreshItem() {
-    }
 
     public void applyCustomUI() {
         if (isRight()) {
@@ -136,12 +157,25 @@ public abstract class MessageHolderBase {
                 }
             }
         }
-        if (sobot_ll_file_container != null) {
+        if (sobot_rl_hollow_container != null && sobot_rl_hollow_container.getBackground() != null) {
             //文件类型气泡颜色特殊处理
             int filleContainerBgColor = SobotUIConfig.DEFAULT != SobotUIConfig.sobot_chat_file_bgColor
                     ? SobotUIConfig.sobot_chat_file_bgColor : sobot_chat_file_bgColor;
-            ScreenUtils.setBubbleBackGroud(mContext, sobot_ll_file_container, filleContainerBgColor);
+            GradientDrawable drawable = (GradientDrawable) sobot_rl_hollow_container.getBackground().mutate();
+            if (drawable != null) {
+                drawable.setStroke(ScreenUtils.dip2px(mContext,1), mContext.getResources().getColor(filleContainerBgColor));
+            }
         }
+        if (sobot_ll_hollow_container != null && sobot_ll_hollow_container.getBackground() != null) {
+            //文件类型气泡颜色特殊处理
+            int filleContainerBgColor = SobotUIConfig.DEFAULT != SobotUIConfig.sobot_chat_file_bgColor
+                    ? SobotUIConfig.sobot_chat_file_bgColor : sobot_chat_file_bgColor;
+            GradientDrawable drawable = (GradientDrawable) sobot_ll_hollow_container.getBackground().mutate();
+            if (drawable != null) {
+                drawable.setStroke(ScreenUtils.dip2px(mContext,1), mContext.getResources().getColor(filleContainerBgColor));
+            }
+        }
+
     }
 
     //左右两边气泡内文字字体颜色
@@ -259,6 +293,11 @@ public abstract class MessageHolderBase {
             context.startActivity(intent);
         }
     }
+
+    public void bindZhiChiMessageBase(ZhiChiMessageBase zhiChiMessageBase) {
+        this.message = zhiChiMessageBase;
+    }
+
 
     /**
      * 设置头像UI

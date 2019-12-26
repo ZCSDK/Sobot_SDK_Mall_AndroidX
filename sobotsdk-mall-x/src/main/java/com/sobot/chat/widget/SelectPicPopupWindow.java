@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import com.sobot.chat.R;
 import com.sobot.chat.widget.zxing.Result;
 import com.sobot.chat.activity.WebViewActivity;
 import com.sobot.chat.utils.SobotBitmapUtil;

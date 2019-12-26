@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
 
     <LinearLayout
         android:id="@+id/sobot_ly_root"
@@ -15,7 +17,8 @@
             android:id="@+id/sobot_plus_menu"
             style="@style/sobot_chatting_panel_upload"
             android:layout_gravity="center"
-            tools:drawableTop="@drawable/sobot_tack_picture_button_selector"
-            tools:text="@string/sobot_upload" />
+            android:textColor="@color/sobot_common_black"
+            android:drawablePadding="5dp"
+            tools:drawableTop="@drawable/sobot_tack_picture_button_selector" />
     </LinearLayout>
 </LinearLayout>

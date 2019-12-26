@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import androidx.viewpager.widget.ViewPager;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -42,6 +43,8 @@ public class SobotPostMsgActivity extends SobotBaseActivity implements View.OnCl
     private TextView mTvCompleted;
     private StViewPagerAdapter mAdapter;
     private PagerSlidingTab sobot_pst_indicator;
+    private ImageView psgBackIv;
+
 
     private SobotPostMsgFragment mPostMsgFragment;
     private List<SobotBaseFragment> mFragments = new ArrayList<>();
@@ -70,17 +73,18 @@ public class SobotPostMsgActivity extends SobotBaseActivity implements View.OnCl
 
     @Override
     protected void initView() {
-
-        showLeftMenu(getResDrawableId("sobot_btn_back_selector"), getResString("sobot_back"), true);
-        setTitle(getResString("sobot_str_bottom_message"));
+//        showLeftMenu(getResDrawableId("sobot_icon_back_grey"), "", true);
+//        setTitle(getResString("sobot_str_bottom_message"));
         mLlCompleted = (LinearLayout) findViewById(getResId("sobot_ll_completed"));
         mllContainer = (LinearLayout) findViewById(getResId("sobot_ll_container"));
         mTvTicket = (TextView) findViewById(getResId("sobot_tv_ticket"));
         mTvCompleted = (TextView) findViewById(getResId("sobot_tv_completed"));
         mViewPager = (ViewPager) findViewById(getResId("sobot_viewPager"));
         sobot_pst_indicator = (PagerSlidingTab) findViewById(getResId("sobot_pst_indicator"));
+        psgBackIv = (ImageView) findViewById(getResId("sobot_pst_back_iv"));
         mTvTicket.setOnClickListener(this);
         mTvCompleted.setOnClickListener(this);
+        psgBackIv.setOnClickListener(this);
         initReceiver();
     }
 
@@ -95,6 +99,7 @@ public class SobotPostMsgActivity extends SobotBaseActivity implements View.OnCl
             bundle.putInt(ZhiChiConstant.FLAG_EXIT_TYPE, flag_exit_type);
             bundle.putBoolean(ZhiChiConstant.FLAG_EXIT_SDK, flag_exit_sdk);
             bundle.putSerializable(StPostMsgPresenter.INTENT_KEY_CONFIG, mConfig);
+            bundle.putSerializable(StPostMsgPresenter.INTENT_KEY_CUS_FIELDS, getIntent().getSerializableExtra(StPostMsgPresenter.INTENT_KEY_CUS_FIELDS));
             mPostMsgFragment = SobotPostMsgFragment.newInstance(bundle);
             mFragments.add(mPostMsgFragment);
         }
@@ -110,8 +115,10 @@ public class SobotPostMsgActivity extends SobotBaseActivity implements View.OnCl
         if (mConfig != null) {
             mTvTicket.setVisibility(mConfig.isTicketShowFlag() ? View.VISIBLE : View.GONE);
         }
+
         mAdapter = new StViewPagerAdapter(this, getSupportFragmentManager(), new String[]{getResString("sobot_please_leave_a_message"), getResString("sobot_message_record")}, mFragments);
         mViewPager.setAdapter(mAdapter);
+
         if ((mConfig != null && mConfig.isTicketShowFlag()) && !mIsShowTicket) {
             if (!mIsCreateSuccess) {//不是创建成功
                 mLlCompleted.setVisibility(View.VISIBLE);
@@ -120,14 +127,17 @@ public class SobotPostMsgActivity extends SobotBaseActivity implements View.OnCl
             sobot_pst_indicator.setViewPager(mViewPager);
         }
 
-        if (mConfig != null) {
-            mTvTicket.setVisibility(mConfig.isTicketShowFlag() ? View.VISIBLE : View.GONE);
-        }
 
         if (mIsShowTicket) {
+            showLeftMenu(getResDrawableId("sobot_btn_back_selector"), getResString("sobot_back"), true);
             setTitle(getResString("sobot_message_record"));
             showTicketInfo();
+            getToolBar().setVisibility(View.VISIBLE);
+        } else {
+            getToolBar().setVisibility(View.GONE);
         }
+
+
     }
 
     /**
@@ -185,6 +195,10 @@ public class SobotPostMsgActivity extends SobotBaseActivity implements View.OnCl
         if (v == mTvCompleted) {
             onBackPressed();
         }
+
+        if (v == psgBackIv) {
+            onBackPressed();
+        }
     }
 
     public class MessageReceiver extends BroadcastReceiver {
@@ -200,6 +214,7 @@ public class SobotPostMsgActivity extends SobotBaseActivity implements View.OnCl
                 mLlCompleted.setVisibility(View.VISIBLE);
                 mIsCreateSuccess = true;
                 initData();
+
             }
         }
     }

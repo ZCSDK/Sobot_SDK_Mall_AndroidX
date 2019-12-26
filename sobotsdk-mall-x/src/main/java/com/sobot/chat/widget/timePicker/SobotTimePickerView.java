@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -30,7 +31,8 @@ public class SobotTimePickerView extends SobotBasePickerView implements View.OnC
     private SobotCustomListener customListener;
 
     SobotWheelTime wheelTime; //自定义控件
-    private Button btnSubmit, btnCancel; //确定、取消按钮
+    private Button btnSubmit;//确定
+    private ImageView btnCancel; //取消按钮
     private TextView tvTitle;//标题
     private OnTimeSelectListener timeSelectListener;//回调接口
     private int gravity = Gravity.CENTER;//内容显示位置 默认居中
@@ -399,7 +401,7 @@ public class SobotTimePickerView extends SobotBasePickerView implements View.OnC
 
             //确定和取消按钮
             btnSubmit = (Button) findViewById(ResourceUtils.getIdByName(context,"id","btnSubmit"));
-            btnCancel = (Button) findViewById(ResourceUtils.getIdByName(context,"id","btnCancel"));
+            btnCancel = (ImageView) findViewById(ResourceUtils.getIdByName(context,"id","btnCancel"));
 
             btnSubmit.setTag(TAG_SUBMIT);
             btnCancel.setTag(TAG_CANCEL);
@@ -409,17 +411,17 @@ public class SobotTimePickerView extends SobotBasePickerView implements View.OnC
 
             //设置文字
             btnSubmit.setText(TextUtils.isEmpty(Str_Submit) ? context.getResources().getString(ResourceUtils.getIdByName(context,"string","sobot_btn_submit")) : Str_Submit);
-            btnCancel.setText(TextUtils.isEmpty(Str_Cancel) ? context.getResources().getString(ResourceUtils.getIdByName(context,"string","sobot_btn_cancle")) : Str_Cancel);
+//            btnCancel.setText(TextUtils.isEmpty(Str_Cancel) ? context.getResources().getString(ResourceUtils.getIdByName(context,"string","sobot_btn_cancle")) : Str_Cancel);
             tvTitle.setText(TextUtils.isEmpty(Str_Title) ? "" : Str_Title);//默认为空
 
             //设置文字颜色
             btnSubmit.setTextColor(Color_Submit == 0 ? pickerview_timebtn_nor : Color_Submit);
-            btnCancel.setTextColor(Color_Cancel == 0 ? pickerview_timebtn_nor : Color_Cancel);
+//            btnCancel.setTextColor(Color_Cancel == 0 ? pickerview_timebtn_nor : Color_Cancel);
             tvTitle.setTextColor(Color_Title == 0 ? pickerview_topbar_title : Color_Title);
 
             //设置文字大小
             btnSubmit.setTextSize(Size_Submit_Cancel);
-            btnCancel.setTextSize(Size_Submit_Cancel);
+//            btnCancel.setTextSize(Size_Submit_Cancel);
             tvTitle.setTextSize(Size_Title);
             RelativeLayout rv_top_bar = (RelativeLayout) findViewById(ResourceUtils.getIdByName(context,"id","rv_topbar"));
             rv_top_bar.setBackgroundColor(Color_Background_Title == 0 ? pickerview_bg_topbar : Color_Background_Title);

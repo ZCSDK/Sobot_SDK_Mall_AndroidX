@@ -1,26 +1,12 @@
 <resources>
 
-    <!--
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-
-    -->
-    <style name="sobot_AppBaseTheme" parent="android:Theme.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-
-        -->
-    </style>
-
-    <!-- Application theme. -->
-    <style name="sobot_AppTheme" parent="sobot_AppBaseTheme">
-        <item name="android:windowNoTitle">true</item>
-    </style>
-
     <style name="sobot_roomRatingBar" parent="@android:style/Widget.RatingBar">
         <item name="android:progressDrawable">@drawable/sobot_rating_yellow</item>
+        <item name="android:numStars">5</item>
+    </style>
+
+    <style name="sobot_small_roomRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/sobot_small_rating_yellow</item>
         <item name="android:numStars">5</item>
     </style>
 
@@ -38,7 +24,7 @@
     <style name="sobot_dialog_skill" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowAnimationStyle">@style/AnimBottom</item>
     </style>
 
@@ -56,13 +42,6 @@
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
     </style>
 
-    <style name="sobot_chatting_keyboard_btn">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">10dp</item>
-        <item name="android:contentDescription">@null</item>
-        <item name="android:visibility">gone</item>
-    </style>
 
     <style name="sobot_center_remind_note">
         <item name="android:layout_width">wrap_content</item>
@@ -71,16 +50,24 @@
         <item name="android:background">@drawable/sobot_toast_selector</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/sobot_listview_remind_text_color</item>
-        <item name="android:textSize">@dimen/sobot_listview_remind_text_size</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:visibility">gone</item>
         <item name="android:layout_marginLeft">20dp</item>
         <item name="android:layout_marginRight">20dp</item>
-        <item name="android:layout_marginTop">5dp</item>
-        <item name="android:layout_marginBottom">15dp</item>
+
     </style>
 
-    <style name="sobot_center_remind_time" parent="sobot_center_remind_note">
-        <item name="android:layout_marginTop">3dp</item>
+    <style name="sobot_center_remind_time" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/sobot_listview_remind_text_color</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
     </style>
 
     <style name="sobot_chatting_panel_upload">
@@ -121,11 +108,18 @@
     <style name="sobot_clearHistoryDialogStyle" parent="@android:style/Theme.Dialog">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowAnimationStyle">@style/AnimBottom</item>
         <item name="android:windowIsFloating">true</item>
+        <item name="android:windowAnimationStyle">@style/AnimBottom</item>
+    </style>
+    <style name="sobot_FullScreenDialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowAnimationStyle">@style/AnimBottom</item>
     </style>
 
-    <style name="sobot_back_DialogStyle" parent="@android:style/Theme.Dialog">
+    <style name="sobot_noAnimDialogStyle" parent="@android:style/Theme.Dialog">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsFloating">true</item>
@@ -149,6 +143,19 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <!--邀请评价解决和未解决背景-->
+    <style name="sobot_rb_evaluate_style">
+        <item name="android:textColor">@drawable/sobot_btn_text_color_selector</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">42dp</item>
+        <item name="android:background">@drawable/sobot_evaluate_yes_no_bg_2</item>
+        <item name="android:button">@null</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+    </style>
+
     <style name="sobot_cb_style">
         <item name="android:textColor">@drawable/sobot_btn_text_color_selector</item>
         <item name="android:layout_width">120dp</item>
@@ -162,21 +169,10 @@
     </style>
 
     <style name="sobot_dialog_Progress" parent="@android:style/Theme.Dialog">
-        <item name="android:windowFrame">@null</item>
-        <!-- 边框 -->
-        <item name="android:windowIsFloating">true</item>
-        <!-- 是否浮现在activity之上 -->
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <!-- 半透明 -->
-        <item name="android:windowNoTitle">true</item>
-        <!-- 无标题 -->
-        <item name="android:background">@android:color/transparent</item>
-        <item name="android:windowBackground">@drawable/sobot_round_angle_toast</item>
-
-        <!-- 自己想要的背景 -->
-        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
     </style>
+
 
     <style name="sobot_custom_dialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
@@ -221,20 +217,170 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_gravity">center_horizontal</item>
-        <item name="android:layout_marginLeft">10dp</item>
-        <item name="android:layout_marginRight">10dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:background">#F5F5F5</item>
+        <item name="android:layout_marginLeft">0dp</item>
+        <item name="android:layout_marginRight">0dp</item>
+<!--        <item name="android:layout_weight">1</item>-->
+        <item name="android:background">@color/sobot_white</item>
         <item name="android:cacheColorHint">@android:color/transparent</item>
         <item name="android:fadingEdge">none</item>
         <item name="android:horizontalSpacing">10dp</item>
-        <item name="android:listSelector">@null</item>
+        <item name="android:verticalSpacing">10dp</item>
         <item name="android:numColumns">2</item>
         <item name="android:overScrollMode">never</item>
         <item name="android:scrollbarThumbVertical">@drawable/sobot_skill_group_scroll_img</item>
         <item name="android:scrollbars">vertical</item>
         <item name="android:stretchMode">columnWidth</item>
-        <item name="android:verticalSpacing">0dp</item>
+        <item name="android:listSelector">@android:color/transparent</item>
     </style>
+
+
+    <!--聊天消息左侧气泡背景-->
+    <style name="sobot_msg_left_content_ll_bg_style">
+        <item name="android:layout_marginRight">60dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">12dp</item>
+        <item name="android:background">@drawable/sobot_chat_msg_bg_left</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:minHeight">42dp</item>
+    </style>
+    <!--聊天消息左侧气泡背景_模版1-->
+    <style name="sobot_msg_left_content_ll_bg_style_temp_1">
+        <item name="android:layout_marginRight">60dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">12dp</item>
+        <item name="android:background">@drawable/sobot_chat_msg_bg_left_temp_1</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingTop">13dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:minHeight">42dp</item>
+    </style>
+
+    <!--聊天消息右侧气泡背景-->
+    <style name="sobot_msg_right_content_ll_bg_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/sobot_chat_msg_bg_right</item>
+        <item name="android:layout_marginRight">12dp</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:minHeight">42dp</item>
+    </style>
+
+
+    <!--聊天消息气泡上下间距-->
+    <style name="sobot_msg_top_bottom_style">
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+    </style>
+
+
+    <!--右侧发送消息  左侧空白区域  背景样式-->
+    <style name="sobot_msg_left_empty_bg_style">
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:paddingRight">10dp</item>
+    </style>
+
+
+    <!--左侧发送消息  右侧空白区域  背景样式-->
+    <style name="sobot_msg_right_empty_bg_style">
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">72dp</item>
+        <item name="android:paddingLeft">10dp</item>
+    </style>
+
+    <!--发送消息 菊花 样式-->
+    <style name="sobot_msg_send_loading_style">
+        <item name="android:layout_width">18dp</item>
+        <item name="android:layout_height">18dp</item>
+        <item name="android:layout_gravity">center_vertical|right</item>
+    </style>
+
+    <!--发送消息 发送结果 样式-->
+    <style name="sobot_msg_send_status_style">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_gravity">center_vertical|right</item>
+        <item name="android:background">@drawable/sobot_re_send_selector</item>
+    </style>
+
+
+    <!--聊天消息左侧气泡无内间距背景-->
+    <style name="sobot_msg_left_content_ll_bg_no_padding_style">
+        <item name="android:layout_marginLeft">12dp</item>
+        <item name="android:layout_marginRight">60dp</item>
+    </style>
+
+    <!--聊天消息左侧气泡无 右 间距背景-->
+    <style name="sobot_msg_template_left_content_ll_bg_no_right_style">
+        <item name="android:layout_marginLeft">12dp</item>
+        <item name="android:layout_marginTop">18dp</item>
+        <item name="android:background">@drawable/sobot_chat_msg_template_bg_left</item>
+        <item name="android:layout_marginRight">12dp</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:minHeight">42dp</item>
+    </style>
+
+    <!--多轮会话聊天消息左侧气泡无 右 间距背景-->
+    <style name="sobot_msg_left_content_ll_bg_no_right_style" parent="sobot_msg_left_content_ll_bg_style">
+        <item name="android:layout_marginRight">0dp</item>
+    </style>
+
+    <!--聊天消息右侧气泡背景-->
+    <style name="sobot_msg_right_content_ll_bg_no_padding_style">
+        <item name="android:layout_marginLeft">60dp</item>
+        <item name="android:layout_marginRight">12dp</item>
+    </style>
+
+    <!--语音消息右侧气泡背景  左侧无间距-->
+    <style name="sobot_msg_audio_right_content_ll_bg_style" parent="sobot_msg_right_content_ll_bg_style">
+        <item name="android:layout_marginLeft">0dp</item>
+    </style>
+
+    <!--文件消息右侧气泡背景 空心边框-->
+    <style name="sobot_msg_file_right_content_ll_bg_style">
+        <item name="android:background">@drawable/sobot_chat_msg_hollow_bg_right</item>
+        <item name="android:layout_marginRight">12dp</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingBottom">15dp</item>
+    </style>
+
+    <!--位置消息右侧气泡背景 空心边框-->
+    <style name="sobot_msg_location_right_content_ll_bg_style">
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:background">@drawable/sobot_chat_msg_hollow_bg_right</item>
+        <item name="android:layout_marginRight">12dp</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:paddingBottom">1dp</item>
+    </style>
+
+    <!--文件消息左侧气泡背景 空心边框-->
+    <style name="sobot_msg_file_left_content_ll_bg_style">
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginLeft">12dp</item>
+        <item name="android:background">@drawable/sobot_chat_msg_hollow_bg_left</item>
+        <item name="android:layout_marginRight">60dp</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingBottom">10dp</item>
+    </style>
+
 
 </resources>

@@ -37,11 +37,11 @@ public enum DisplayRules {
     QQBIAOQING2(0, 1, "expression_3", "[色]", "[色]"),
     QQBIAOQING3(0, 1, "expression_4", "[发呆]", "[发呆]"),
     QQBIAOQING4(0, 1, "expression_5", "[得意]", "[得意]"),
-    QQBIAOQING5(0, 1, "expression_6", "[流泪]", "[流泪]"),
+    QQBIAOQING5(0, 1, "expression_6", "[大哭]", "[大哭]"),
     QQBIAOQING6(0, 1, "expression_7", "[害羞]", "[害羞]"),
     QQBIAOQING7(0, 1, "expression_8", "[闭嘴]", "[闭嘴]"),
     QQBIAOQING8(0, 1, "expression_9", "[睡]", "[睡]"),
-    QQBIAOQING9(0, 1, "expression_10", "[大哭]", "[大哭]"),
+    QQBIAOQING9(0, 1, "expression_10", "[流泪]", "[流泪]"),
     QQBIAOQING10(0, 1, "expression_11", "[尴尬]", "[尴尬]"),
     QQBIAOQING11(0, 1, "expression_12", "[发怒]", "[发怒]"),
     QQBIAOQING12(0, 1, "expression_13", "[调皮]", "[调皮]"),
@@ -135,8 +135,8 @@ public enum DisplayRules {
     QQBIAOQING100(0, 1, "expression_101", "[激动]", "[激动]"),
     QQBIAOQING101(0, 1, "expression_102", "[乱舞]", "[乱舞]"),
     QQBIAOQING102(0, 1, "expression_103", "[献吻]", "[献吻]"),
-    QQBIAOQING103(0, 1, "expression_104", "[左太极]", "[左太极]"),
-    QQBIAOQING104(0, 1, "expression_105", "[右太极]", "[右太极]");
+    QQBIAOQING103(0, 1, "expression_104", "[右太极]", "[右太极]"),
+    QQBIAOQING104(0, 1, "expression_105", "[左太极]", "[左太极]");
 
     /*********************************
      * 操作

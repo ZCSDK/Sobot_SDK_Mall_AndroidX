@@ -23,12 +23,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 留言界面
+ * 留言列表界面
  *
  * @author Created by jinxl on 2019/3/7.
  */
 public class SobotTicketInfoFragment extends SobotBaseFragment {
+
     private final static int REQUEST_CODE = 0x001;
+
     private View mRootView;
     private ListView mListView;
     private TextView mEmptyView;
@@ -121,6 +123,7 @@ public class SobotTicketInfoFragment extends SobotBaseFragment {
         });
 
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

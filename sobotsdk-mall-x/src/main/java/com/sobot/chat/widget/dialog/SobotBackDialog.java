@@ -13,7 +13,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.sobot.chat.utils.ResourceUtils;
 import com.sobot.chat.utils.ScreenUtils;
@@ -30,7 +29,7 @@ public class SobotBackDialog extends Dialog {
     private final int screenHeight;
 
     public SobotBackDialog(Activity context, View.OnClickListener itemsOnClick) {
-        super(context, ResourceUtils.getIdByName(context, "style", "sobot_back_DialogStyle"));
+        super(context, ResourceUtils.getIdByName(context, "style", "sobot_noAnimDialogStyle"));
         this.itemsOnClick = itemsOnClick;
         screenHeight = ScreenUtils.getScreenHeight(context);
 

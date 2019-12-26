@@ -1,9 +1,11 @@
 package com.sobot.chat.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,6 +19,7 @@ import com.sobot.chat.api.model.SobotQueryFormModel;
 import com.sobot.chat.core.http.callback.StringResultCallBack;
 import com.sobot.chat.listener.ISobotCusField;
 import com.sobot.chat.presenter.StCusFieldPresenter;
+import com.sobot.chat.utils.CustomToast;
 import com.sobot.chat.utils.LogUtils;
 import com.sobot.chat.utils.ResourceUtils;
 import com.sobot.chat.utils.ScreenUtils;
@@ -30,7 +33,7 @@ import java.util.ArrayList;
 /**
  * @author Created by jinxl on 2018/1/4.
  */
-public class SobotQueryFromActivity extends SobotBaseActivity implements ISobotCusField {
+public class SobotQueryFromActivity extends SobotBaseActivity implements ISobotCusField, View.OnClickListener {
     private Bundle mIntentBundleData;
     private String mGroupId;
     private SobotQueryFormModel mQueryFormModel;
@@ -42,6 +45,7 @@ public class SobotQueryFromActivity extends SobotBaseActivity implements ISobotC
 
     private LinearLayout sobot_container;
     private TextView sobot_tv_doc;
+    private Button sobot_btn_submit;
     //防止多次提交
     private boolean isSubmitting = false;
 
@@ -66,7 +70,7 @@ public class SobotQueryFromActivity extends SobotBaseActivity implements ISobotC
         mGroupName = mIntentBundleData.getString(ZhiChiConstant.SOBOT_INTENT_BUNDLE_DATA_GROUPNAME);
         mQueryFormModel = (SobotQueryFormModel) mIntentBundleData.getSerializable(ZhiChiConstant.SOBOT_INTENT_BUNDLE_DATA_FIELD);
         mUid = mIntentBundleData.getString(ZhiChiConstant.SOBOT_INTENT_BUNDLE_DATA_UID);
-        mTransferType = mIntentBundleData.getInt(ZhiChiConstant.SOBOT_INTENT_BUNDLE_DATA_TRANSFER_TYPE,0);
+        mTransferType = mIntentBundleData.getInt(ZhiChiConstant.SOBOT_INTENT_BUNDLE_DATA_TRANSFER_TYPE, 0);
         if (mQueryFormModel != null) {
             mField = mQueryFormModel.getField();
         }
@@ -74,9 +78,9 @@ public class SobotQueryFromActivity extends SobotBaseActivity implements ISobotC
 
     @Override
     protected void initView() {
-        showRightMenu(0, getResString("sobot_submit"), true);
-        showLeftMenu(getResDrawableId("sobot_btn_back_selector"),getResString("sobot_back"),true);
-
+        showLeftMenu(getResDrawableId("sobot_btn_back_selector"), getResString("sobot_back"), true);
+        sobot_btn_submit = (Button) findViewById(getResId("sobot_btn_submit"));
+        sobot_btn_submit.setOnClickListener(this);
         sobot_container = (LinearLayout) findViewById(getResId("sobot_container"));
         sobot_tv_doc = (TextView) findViewById(getResId("sobot_tv_doc"));
         if (mQueryFormModel != null) {
@@ -98,16 +102,6 @@ public class SobotQueryFromActivity extends SobotBaseActivity implements ISobotC
         super.onSaveInstanceState(outState);
     }
 
-    @Override
-    protected void onRightMenuClick(View view) {
-        StCusFieldPresenter.formatCusFieldVal(SobotQueryFromActivity.this, sobot_container, mField);
-
-        if (!checkInput(mField)) {
-            return;
-        }
-
-        submit();
-    }
 
     private void submit() {
         //提交信息
@@ -115,12 +109,13 @@ public class SobotQueryFromActivity extends SobotBaseActivity implements ISobotC
             return;
         }
         isSubmitting = true;
-        zhiChiApi.submitForm(SobotQueryFromActivity.this,mUid, StCusFieldPresenter.getCusFieldVal(mField, mFinalData), new StringResultCallBack<CommonModel>() {
+        zhiChiApi.submitForm(SobotQueryFromActivity.this, mUid, StCusFieldPresenter.getCusFieldVal(mField, mFinalData), new StringResultCallBack<CommonModel>() {
             @Override
             public void onSuccess(CommonModel data) {
                 isSubmitting = false;
                 if (data != null && "1".equals(data.getCode())) {
-                    LogUtils.i("提交成功");
+                    CustomToast.makeText(getBaseContext(), ResourceUtils.getResString(getBaseContext(), "sobot_leavemsg_success_tip"), 1000,
+                            ResourceUtils.getDrawableId(getBaseContext(), "sobot_iv_login_right")).show();
                 }
                 saveIntentWithFinish();
             }
@@ -208,7 +203,7 @@ public class SobotQueryFromActivity extends SobotBaseActivity implements ISobotC
             case ZhiChiConstant.WORK_ORDER_CUSTOMER_FIELD_CASCADE_TYPE:
                 LogUtils.i("点击了城市");
                 SobotDialogUtils.startProgressDialog(SobotQueryFromActivity.this);
-                zhiChiApi.queryCity(SobotQueryFromActivity.this,null, null, new StringResultCallBack<SobotCityResult>() {
+                zhiChiApi.queryCity(SobotQueryFromActivity.this, null, null, new StringResultCallBack<SobotCityResult>() {
                     @Override
                     public void onSuccess(SobotCityResult result) {
                         SobotDialogUtils.stopProgressDialog(SobotQueryFromActivity.this);
@@ -262,12 +257,33 @@ public class SobotQueryFromActivity extends SobotBaseActivity implements ISobotC
                                     String aStr = mFinalData.areaName == null ? "" : mFinalData.areaName;
                                     String str = pStr + cStr + aStr;
                                     textClick.setText(str);
+                                    TextView fieldName = (TextView) view.findViewById(ResourceUtils.getIdByName(getBaseContext(), "id", "work_order_customer_field_text_lable"));
+                                    LinearLayout work_order_customer_field_ll = (LinearLayout) view.findViewById(ResourceUtils.getIdByName(getBaseContext(), "id", "work_order_customer_field_ll"));
+                                    work_order_customer_field_ll.setVisibility(View.VISIBLE);
+                                    fieldName.setTextColor(Color.parseColor("#ACB5C4"));
+                                    fieldName.setTextSize(12);
                                 }
                             }
                         }
                     }
                     break;
             }
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == sobot_btn_submit) {
+            //自定义表单校验结果:为空,校验通过,可以提交;不为空,说明自定义字段校验不通过，不能提交留言表单;
+            String checkCustomFieldResult = StCusFieldPresenter.formatCusFieldVal(SobotQueryFromActivity.this, sobot_container, mField);
+            if (!TextUtils.isEmpty(checkCustomFieldResult)) {
+                return;
+            }
+            if (!checkInput(mField)) {
+                return;
+            }
+
+            submit();
         }
     }
 }

@@ -133,8 +133,9 @@ public class FileMessageHolder extends MessageHolderBase implements View.OnClick
         if (progress == null) {
             if (sobot_msgStatus != null) {
                 sobot_msgStatus.setVisibility(View.GONE);
+                msgProgressBar.setVisibility(View.GONE);
             }
-            sobot_progress.setProgress(100);
+           // sobot_progress.setProgress(100);
             return;
         }
         if (sobot_msgStatus == null) {
@@ -143,25 +144,29 @@ public class FileMessageHolder extends MessageHolderBase implements View.OnClick
         switch (progress.status) {
             case SobotProgress.NONE:
                 sobot_msgStatus.setVisibility(View.GONE);
-                sobot_progress.setProgress(progress.fraction * 100);
+                msgProgressBar.setVisibility(View.GONE);
+               // sobot_progress.setProgress(progress.fraction * 100);
                 break;
             case SobotProgress.ERROR:
                 sobot_msgStatus.setVisibility(View.VISIBLE);
                 sobot_msgStatus.setBackgroundResource(mResNetError);
                 sobot_msgStatus.setSelected(true);
-                sobot_progress.setProgress(100);
+              //  sobot_progress.setProgress(100);
+                msgProgressBar.setVisibility(View.GONE);
                 break;
             case SobotProgress.FINISH:
                 sobot_msgStatus.setVisibility(View.GONE);
-                sobot_progress.setProgress(100);
+             //   sobot_progress.setProgress(100);
+                msgProgressBar.setVisibility(View.GONE);
                 break;
             case SobotProgress.PAUSE:
             case SobotProgress.WAITING:
             case SobotProgress.LOADING:
+                msgProgressBar.setVisibility(View.VISIBLE);
                 sobot_msgStatus.setVisibility(View.GONE);
                 sobot_msgStatus.setBackgroundResource(mResRemove);
                 sobot_msgStatus.setSelected(false);
-                sobot_progress.setProgress(progress.fraction * 100);
+            //    sobot_progress.setProgress(progress.fraction * 100);
                 break;
         }
     }

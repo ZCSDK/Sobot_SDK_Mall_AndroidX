@@ -9,6 +9,7 @@ import android.hardware.Camera;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.core.content.ContextCompat;
 import android.text.TextUtils;
@@ -27,7 +28,10 @@ import com.sobot.chat.utils.ChatUtils;
 import com.sobot.chat.utils.CommonUtils;
 import com.sobot.chat.utils.ResourceUtils;
 import com.sobot.chat.utils.ScreenUtils;
+import com.sobot.chat.utils.SobotBitmapUtil;
+import com.sobot.chat.utils.ToastUtil;
 import com.sobot.chat.utils.ZhiChiConstant;
+import com.sobot.chat.widget.image.SobotRCImageView;
 
 import java.io.File;
 
@@ -41,7 +45,6 @@ public abstract class SobotBaseFragment extends Fragment {
     protected File cameraFile;
 
     private Activity activity;
-
     //权限回调
     public PermissionListener permissionListener;
 
@@ -56,6 +59,7 @@ public abstract class SobotBaseFragment extends Fragment {
             activity = getActivity();
         }
     }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -178,6 +182,25 @@ public abstract class SobotBaseFragment extends Fragment {
         }
 
         rightMenu.setVisibility(View.VISIBLE);
+    }
+
+
+    /**
+     * 显示头像
+     *
+     * @param avatarIV
+     * @param avatarUrl
+     * @param isShow
+     */
+    protected void showAvatar(SobotRCImageView avatarIV, String avatarUrl, boolean isShow) {
+        if (!TextUtils.isEmpty(avatarUrl)) {
+            SobotBitmapUtil.display(getContext(), avatarUrl, avatarIV);
+        }
+        if (isShow) {
+            avatarIV.setVisibility(View.VISIBLE);
+        } else {
+            avatarIV.setVisibility(View.GONE);
+        }
     }
 
     /**
@@ -317,8 +340,8 @@ public abstract class SobotBaseFragment extends Fragment {
      */
     public void selectPicFromCamera() {
         if (!CommonUtils.isExitsSdcard()) {
-            Toast.makeText(getContext().getApplicationContext(), getResString("sobot_sdcard_does_not_exist"),
-                    Toast.LENGTH_SHORT).show();
+            ToastUtil.showCustomToast(getContext().getApplicationContext(), getResString("sobot_sdcard_does_not_exist"),
+                    Toast.LENGTH_SHORT);
             return;
         }
 
@@ -345,8 +368,8 @@ public abstract class SobotBaseFragment extends Fragment {
      */
     public void selectPicFromCameraBySys() {
         if (!CommonUtils.isExitsSdcard()) {
-            Toast.makeText(getContext(), getResString("sobot_sdcard_does_not_exist"),
-                    Toast.LENGTH_SHORT).show();
+            ToastUtil.showCustomToast(getContext(), getResString("sobot_sdcard_does_not_exist"),
+                    Toast.LENGTH_SHORT);
             return;
         }
         permissionListener = new PermissionListenerImpl() {
@@ -400,6 +423,7 @@ public abstract class SobotBaseFragment extends Fragment {
         ChatUtils.openSelectVedio(getSobotActivity(), SobotBaseFragment.this);
     }
 
+
     protected void applyTitleTextColor(TextView view) {
         if (view == null) {
             return;
@@ -444,4 +468,5 @@ public abstract class SobotBaseFragment extends Fragment {
         return activity;
 
     }
+
 }

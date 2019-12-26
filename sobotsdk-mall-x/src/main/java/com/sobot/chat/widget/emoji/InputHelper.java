@@ -108,10 +108,10 @@ public class InputHelper {
                 if (resId > 0) {
                     // 构建图片span
                     Drawable drawable = res.getDrawable(resId);
-                    drawable.setBounds(0, 20, bound, bound + 20);
+                    drawable.setBounds(0, 0, bound, bound + 0);
 
                     // 将Drawable封装到ImageSpan中
-                    ImageSpan span = new ImageSpan(drawable, ImageSpan.ALIGN_BASELINE);
+                    ImageSpan span = new ImageSpan(drawable, ImageSpan.ALIGN_BOTTOM);
 
                     // 替换指定位置内容为图片ImageSpan
                     spannable.setSpan(span, m.start(), m.end(),

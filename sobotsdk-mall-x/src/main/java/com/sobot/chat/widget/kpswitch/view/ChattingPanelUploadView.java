@@ -64,27 +64,27 @@ public class ChattingPanelUploadView extends BaseChattingPanelView implements Vi
         mEmoticonsIndicatorView = ((EmoticonsIndicatorView) getRootView().findViewById(getResId("view_eiv")));
         mEmoticonsFuncView.setOnIndicatorListener(this);
 
-        //评价
-        SobotPlusEntity satisfactionEntity = new SobotPlusEntity(getResDrawableId("sobot_picture_satisfaction_selector"), getResString("sobot_str_bottom_satisfaction"), ACTION_SATISFACTION);
-        //留言
-        SobotPlusEntity leavemsgEntity = new SobotPlusEntity(getResDrawableId("sobot_leavemsg_selector"), getResString("sobot_str_bottom_message"), ACTION_LEAVEMSG);
         //图片
         SobotPlusEntity picEntity = new SobotPlusEntity(getResDrawableId("sobot_tack_picture_button_selector"), getResString("sobot_upload"), ACTION_PIC);
         //拍照
         SobotPlusEntity cameraEntity = new SobotPlusEntity(getResDrawableId("sobot_camera_picture_button_selector"), getResString("sobot_attach_take_pic"), ACTION_CAMERA);
         //文件
         SobotPlusEntity fileEntity = new SobotPlusEntity(getResDrawableId("sobot_choose_file_btn_selector"), getResString("sobot_choose_file"), ACTION_CHOOSE_FILE);
+        //留言
+        SobotPlusEntity leavemsgEntity = new SobotPlusEntity(getResDrawableId("sobot_leavemsg_selector"), getResString("sobot_str_bottom_message"), ACTION_LEAVEMSG);
+        //评价
+        SobotPlusEntity satisfactionEntity = new SobotPlusEntity(getResDrawableId("sobot_picture_satisfaction_selector"), getResString("sobot_str_bottom_satisfaction"), ACTION_SATISFACTION);
 
         robotList.clear();
-        robotList.add(satisfactionEntity);
         if (leaveMsg == ZhiChiConstant.sobot_msg_flag_open) {
             robotList.add(leavemsgEntity);
         }
+        robotList.add(satisfactionEntity);
 
         operatorList.clear();
         operatorList.add(picEntity);
-        operatorList.add(fileEntity);
         operatorList.add(cameraEntity);
+        operatorList.add(fileEntity);
         if (leaveMsg == ZhiChiConstant.sobot_msg_flag_open) {
             operatorList.add(leavemsgEntity);
         }
@@ -99,6 +99,7 @@ public class ChattingPanelUploadView extends BaseChattingPanelView implements Vi
 
         /**
          * 自定义菜单实体类
+         *
          * @param iconResId 菜单图标
          * @param name      菜单名称
          * @param action    菜单动作 当点击按钮时会将对应action返回给callback
@@ -164,7 +165,7 @@ public class ChattingPanelUploadView extends BaseChattingPanelView implements Vi
                     return;
                 }
                 // 显示菜单
-                viewHolder.ly_root.setBackgroundResource(getResDrawableId("sobot_bg_emoticon"));
+                //viewHolder.ly_root.setBackgroundResource(getResDrawableId("sobot_bg_emoticon"));
                 viewHolder.mMenu.setText(plusEntity.name);
                 Drawable drawable = context.getResources().getDrawable(plusEntity.iconResId);
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());

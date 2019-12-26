@@ -56,6 +56,14 @@
         <attr name="clip_background" />
     </declare-styleable>
 
+    <declare-styleable name="SobotMHLinearLayout">
+        <attr name="sobot_mhv_HeightRatio" format="float"/>
+        <attr name="sobot_mhv_HeightDimen" format="dimension"/>
+        <attr name="sobot_mhH_HeightRatio" format="float"/>
+        <attr name="sobot_mhH_HeightDimen" format="dimension"/>
+
+    </declare-styleable>
+
     <declare-styleable name="ExpandableTextView">
         <attr name="maxCollapsedLines" format="integer"/>
         <attr name="ExpandStrResId" format="reference"/>
